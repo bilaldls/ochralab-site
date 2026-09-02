@@ -3,14 +3,14 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Ochralab — Architecture & design d'intérieur, Marrakech</title>
-<meta name="description" content="Ochralab — cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.">
-<meta property="og:title" content="Ochralab — Architecture & design d'intérieur, Marrakech">
-<meta property="og:description" content="Ochralab — cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.">
+<title>Ochralab, architecture & design d'intérieur à Marrakech</title>
+<meta name="description" content="Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.">
+<meta property="og:title" content="Ochralab, architecture & design d'intérieur à Marrakech">
+<meta property="og:description" content="Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="favicon.svg">
 <link rel="preload" href="assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
-<link rel="preload" as="image" imagesrcset="images/projects/mbk/vmbk-facade-principale-480.webp 480w, images/projects/mbk/vmbk-facade-principale-960.webp 960w, images/projects/mbk/vmbk-facade-principale-1600.webp 1600w, images/projects/mbk/vmbk-facade-principale-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
+<link rel="preload" as="image" imagesrcset="images/projects/boulokat/acimcom-320-480.webp 480w, images/projects/boulokat/acimcom-320-960.webp 960w" imagesizes="(max-width: 899px) 46vw, 30vw" fetchpriority="high">
 <link rel="stylesheet" href="assets/styles.css">
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 </head>
@@ -21,13 +21,20 @@
   <div class="preloader__word"><span>O</span><span>C</span><span>H</span><span>R</span><span>A</span><span>L</span><span>A</span><span>B</span></div>
 </div>
 
-<header class="site-header">
+<aside class="sidebar">
   <a class="wordmark" href="index.html">Ochralab</a>
-  <nav class="site-nav" aria-label="Navigation principale">
-    <a href="index.html#projets" >Projets</a>
-    <a href="index.html#studio" >Studio</a>
-    <a href="index.html#contact" >Contact</a>
+  <nav class="sidebar__nav" aria-label="Navigation principale">
+    <ul>
+      <li><a href="index.html#projets" data-nav="projets"><span>Projets</span></a></li>
+      <li><a href="index.html#studio" data-nav="studio"><span>Studio</span></a></li>
+      <li><a href="index.html#contact" data-nav="contact"><span>Contact</span></a></li>
+    </ul>
   </nav>
+  <p class="sidebar__foot label">Marrakech<br>Maroc</p>
+</aside>
+
+<header class="topbar">
+  <a class="wordmark" href="index.html">Ochralab</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
@@ -36,154 +43,131 @@
   <button class="menu-close" aria-label="Fermer le menu">
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
-  <p class="label">Ochralab — Marrakech</p>
+  <p class="label">Ochralab, Marrakech</p>
   <a href="index.html#projets">Projets</a>
   <a href="index.html#studio">Studio</a>
   <a href="index.html#contact">Contact</a>
 </div>
 <main id="main">
-<section class="hero" id="top">
-  <div class="hero__meta">
-    <span class="label">Cabinet d'architecture</span>
-    <span class="label">Marrakech, Maroc</span>
+<section class="loop" id="projets" aria-label="Projets">
+  <!-- La page s'ouvre sur la mosaïque : le titre reste lisible par les
+       lecteurs d'écran et les moteurs, sans occuper l'écran. -->
+  <h1 class="sr-only">Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech</h1>
+  <div class="loop__head">
+    <span class="label">Cabinet d'architecture, Marrakech</span>
+    <span class="label">12 projets · hôtellerie, riads, villas</span>
   </div>
-  <h1 class="display hero__title" data-lines data-onload>
-    <span class="line"><span class="line-inner">Architecture</span></span>
-    <span class="line"><span class="line-inner">&amp; <em class="swash">intérieurs</em></span></span>
-  </h1>
-  <div class="hero__figure">
-<figure data-reveal data-parallax style="--ratio: 2560 / 1600; background-image: url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoYAA8APu1kq04ppaQiMAgBMB2JZgCdMoR4Lf/gBXbXnEfAAMqhBTKqDB6qMfwWvxsFmxzhpLLzTAVQW2aZtHkDlqqamsoE+6Howcm1n0DIFKuqhQ/2El0HaBEYc/Vbz+IIAAAA');">
-  <img src="images/projects/mbk/vmbk-facade-principale-2400.webp" srcset="images/projects/mbk/vmbk-facade-principale-480.webp 480w, images/projects/mbk/vmbk-facade-principale-960.webp 960w, images/projects/mbk/vmbk-facade-principale-1600.webp 1600w, images/projects/mbk/vmbk-facade-principale-2400.webp 2400w" sizes="100vw" alt="MBK, façade principale" width="2560" height="1600" fetchpriority="high">
-</figure>
-  </div>
-</section>
-
-<section class="section" id="projets">
-  <div class="section__head">
-    <h2 class="display section__title">Projets</h2>
-    <span class="label">12 — Hôtellerie, riads, villas</span>
-  </div>
-  <div class="works">
-<a class="work" href="projets/boulokat.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 1500 / 1000; background-image: url('data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgMYELUtdQzMxGcQqUJyAA/tBbY0XhdrQLrAeLRevmIj0woKqhwcFoexBV9T4VFQ0hV/+fcnuybSKoDyI8qyB6S6GetssDwZBAin2b3uCr3FbE4wWsabeDK+W+I4fe2TrZzLyUkmp+HBCRkVkBFqA6BjkVAAA=');">
-  <img src="images/projects/boulokat/acimcom-320-960.webp" srcset="images/projects/boulokat/acimcom-320-480.webp 480w, images/projects/boulokat/acimcom-320-960.webp 960w" sizes="100vw" alt="Boulokat, vue 1 sur 23" width="1500" height="1000" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">01</span>
-    <span class="work__name">Boulokat</span>
-    <span class="label work__cat">Hôtellerie</span>
+  <div class="loop__viewport">
+    <div class="loop__grid">
+<a class="tile" href="projets/boulokat.html" data-cursor-view>
+  <figure style="--ratio: 1500 / 1000; background-image: url('data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgMYELUtdQzMxGcQqUJyAA/tBbY0XhdrQLrAeLRevmIj0woKqhwcFoexBV9T4VFQ0hV/+fcnuybSKoDyI8qyB6S6GetssDwZBAin2b3uCr3FbE4wWsabeDK+W+I4fe2TrZzLyUkmp+HBCRkVkBFqA6BjkVAAA=');">
+    <img src="images/projects/boulokat/acimcom-320-960.webp" srcset="images/projects/boulokat/acimcom-320-480.webp 480w, images/projects/boulokat/acimcom-320-960.webp 960w" sizes="(max-width: 899px) 46vw, 30vw" alt="Boulokat, vue 1 sur 23" width="1500" height="1000" fetchpriority="high">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Boulokat</span>
+    <span class="label tile__cat">Hôtellerie</span>
   </span>
 </a>
-<a class="work" href="projets/sirayane.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 3840 / 2160; background-image: url('data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOmUABtI+ENel2+kYGdvAD+2Yvk4K6K2cTaP3LRx4HUb1UbEUFS2aVtgw5WvdCgFWIfyZ560jnJSBVmiksYG+oy8kWlLRVlem2pMyUvE7q2Nwdo1MetWA88UM1FX2/wiAYHwha3NYkEuGgFHomY4JU4KxyUmU5EAAAA');">
-  <img src="images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-2400.webp" srcset="images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-480.webp 480w, images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-960.webp 960w, images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-1600.webp 1600w, images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="Sirayane, façade principale" width="3840" height="2160" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">02</span>
-    <span class="work__name">Sirayane</span>
-    <span class="label work__cat">Hôtellerie</span>
+<a class="tile" href="projets/sirayane.html" data-cursor-view>
+  <figure style="--ratio: 3840 / 2160; background-image: url('data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOmUABtI+ENel2+kYGdvAD+2Yvk4K6K2cTaP3LRx4HUb1UbEUFS2aVtgw5WvdCgFWIfyZ560jnJSBVmiksYG+oy8kWlLRVlem2pMyUvE7q2Nwdo1MetWA88UM1FX2/wiAYHwha3NYkEuGgFHomY4JU4KxyUmU5EAAAA');">
+    <img src="images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-2400.webp" srcset="images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-480.webp 480w, images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-960.webp 960w, images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-1600.webp 1600w, images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Sirayane, façade principale" width="3840" height="2160" fetchpriority="high">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Sirayane</span>
+    <span class="label tile__cat">Hôtellerie</span>
   </span>
 </a>
-<a class="work" href="projets/kactus.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 5000 / 2813; background-image: url('data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JQBOmUI7gBKmzJMnnEeoUYAD+VWvI/K+IG2wj98Pk3AYQqHqz7RHtOom7zgYvC+cGt5OFdCh5PNS1ILDHgJbdgDX9IojFnRUPN0vOfakg+F/GGxgtDKvWzH37h+PLvlzQTBkpqNWTnQlHdhmGsAAA');">
-  <img src="images/projects/kactus/vkac-master-finale-2400.webp" srcset="images/projects/kactus/vkac-master-finale-480.webp 480w, images/projects/kactus/vkac-master-finale-960.webp 960w, images/projects/kactus/vkac-master-finale-1600.webp 1600w, images/projects/kactus/vkac-master-finale-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="Kactus, chambre principale" width="5000" height="2813" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">03</span>
-    <span class="work__name">Kactus</span>
-    <span class="label work__cat">Villa</span>
+<a class="tile" href="projets/kactus.html" data-cursor-view>
+  <figure style="--ratio: 5000 / 2813; background-image: url('data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JQBOmUI7gBKmzJMnnEeoUYAD+VWvI/K+IG2wj98Pk3AYQqHqz7RHtOom7zgYvC+cGt5OFdCh5PNS1ILDHgJbdgDX9IojFnRUPN0vOfakg+F/GGxgtDKvWzH37h+PLvlzQTBkpqNWTnQlHdhmGsAAA');">
+    <img src="images/projects/kactus/vkac-master-finale-2400.webp" srcset="images/projects/kactus/vkac-master-finale-480.webp 480w, images/projects/kactus/vkac-master-finale-960.webp 960w, images/projects/kactus/vkac-master-finale-1600.webp 1600w, images/projects/kactus/vkac-master-finale-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Kactus, chambre principale" width="5000" height="2813" fetchpriority="high">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Kactus</span>
+    <span class="label tile__cat">Villa</span>
   </span>
 </a>
-<a class="work" href="projets/perreaux.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 3840 / 2160; background-image: url('data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACQBACdASoYAA4APu1iqU2ppaQiMAgBMB2JbACdMoGvwAPC3h9e9erawOSZbxgA+NU2lhDpEzdB6B12ivdFRSsVZ/1GE2a7p+snO4tkxefVMHp2aTX/EJcz5WcJscUD1pIOq7dN2knoApFlRyM9cYUoW+J0405o60U7B58GKELlP3NZnYtKmo8tcYIggY3U2ku36Bf0iX+D/qGKviO5dGuOjyuWOpWDsI4AAA==');">
-  <img src="images/projects/perreaux/vper-pers-option-a-4-piscine-2400.webp" srcset="images/projects/perreaux/vper-pers-option-a-4-piscine-480.webp 480w, images/projects/perreaux/vper-pers-option-a-4-piscine-960.webp 960w, images/projects/perreaux/vper-pers-option-a-4-piscine-1600.webp 1600w, images/projects/perreaux/vper-pers-option-a-4-piscine-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="Perreaux, piscine" width="3840" height="2160" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">04</span>
-    <span class="work__name">Perreaux</span>
-    <span class="label work__cat">Villa</span>
+<a class="tile" href="projets/perreaux.html" data-cursor-view>
+  <figure style="--ratio: 3840 / 2160; background-image: url('data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACQBACdASoYAA4APu1iqU2ppaQiMAgBMB2JbACdMoGvwAPC3h9e9erawOSZbxgA+NU2lhDpEzdB6B12ivdFRSsVZ/1GE2a7p+snO4tkxefVMHp2aTX/EJcz5WcJscUD1pIOq7dN2knoApFlRyM9cYUoW+J0405o60U7B58GKELlP3NZnYtKmo8tcYIggY3U2ku36Bf0iX+D/qGKviO5dGuOjyuWOpWDsI4AAA==');">
+    <img src="images/projects/perreaux/vper-pers-option-a-4-piscine-2400.webp" srcset="images/projects/perreaux/vper-pers-option-a-4-piscine-480.webp 480w, images/projects/perreaux/vper-pers-option-a-4-piscine-960.webp 960w, images/projects/perreaux/vper-pers-option-a-4-piscine-1600.webp 1600w, images/projects/perreaux/vper-pers-option-a-4-piscine-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Perreaux, piscine" width="3840" height="2160" fetchpriority="high">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Perreaux</span>
+    <span class="label tile__cat">Villa</span>
   </span>
 </a>
-<a class="work" href="projets/ilot.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 1920 / 1080; background-image: url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBYdg6efsrp1SIkbZ4fsAAD54yQnKtgCp7tGzhxOtnL72uoEcppyu03KczncfjrjcJgftZuUAvqwyfFpLy2VIFDkGT7F9UGQygHtIi2+QAAA');">
-  <img src="images/projects/ilot/ilot-pers-2-facade-principale-1600.webp" srcset="images/projects/ilot/ilot-pers-2-facade-principale-480.webp 480w, images/projects/ilot/ilot-pers-2-facade-principale-960.webp 960w, images/projects/ilot/ilot-pers-2-facade-principale-1600.webp 1600w" sizes="(max-width: 899px) 100vw, 62vw" alt="Ilot, façade principale" width="1920" height="1080" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">05</span>
-    <span class="work__name">Ilot</span>
-    <span class="label work__cat">Hôtellerie</span>
+<a class="tile" href="projets/ilot.html" data-cursor-view>
+  <figure style="--ratio: 1920 / 1080; background-image: url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBYdg6efsrp1SIkbZ4fsAAD54yQnKtgCp7tGzhxOtnL72uoEcppyu03KczncfjrjcJgftZuUAvqwyfFpLy2VIFDkGT7F9UGQygHtIi2+QAAA');">
+    <img src="images/projects/ilot/ilot-pers-2-facade-principale-1600.webp" srcset="images/projects/ilot/ilot-pers-2-facade-principale-480.webp 480w, images/projects/ilot/ilot-pers-2-facade-principale-960.webp 960w, images/projects/ilot/ilot-pers-2-facade-principale-1600.webp 1600w" sizes="(max-width: 899px) 46vw, 30vw" alt="Ilot, façade principale" width="1920" height="1080" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Ilot</span>
+    <span class="label tile__cat">Hôtellerie</span>
   </span>
 </a>
-<a class="work" href="projets/pamur.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 3000 / 2000; background-image: url('data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAADQAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgAt2WJchoLPHlLeAA9wu2F/a+Hk/rBI65qFol0DkZfj+SpS3Tsiedw1/19yfAQ1L3qX1RT0Xl77h0fAryD6M1vLRUXFkTqXxOcRSsUjMML5DJLIKUZM6h26KXUO/ntmgHqi3dYTH+/UE1oOw4QW8OG9M/l6FmQlfIodGgAA==');">
-  <img src="images/projects/pamur/salon-01-cam01-1-2400.webp" srcset="images/projects/pamur/salon-01-cam01-1-480.webp 480w, images/projects/pamur/salon-01-cam01-1-960.webp 960w, images/projects/pamur/salon-01-cam01-1-1600.webp 1600w, images/projects/pamur/salon-01-cam01-1-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="Pamur, salon" width="3000" height="2000" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">06</span>
-    <span class="work__name">Pamur</span>
-    <span class="label work__cat">Riad</span>
+<a class="tile" href="projets/pamur.html" data-cursor-view>
+  <figure style="--ratio: 3000 / 2000; background-image: url('data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAADQAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgAt2WJchoLPHlLeAA9wu2F/a+Hk/rBI65qFol0DkZfj+SpS3Tsiedw1/19yfAQ1L3qX1RT0Xl77h0fAryD6M1vLRUXFkTqXxOcRSsUjMML5DJLIKUZM6h26KXUO/ntmgHqi3dYTH+/UE1oOw4QW8OG9M/l6FmQlfIodGgAA==');">
+    <img src="images/projects/pamur/salon-01-cam01-1-2400.webp" srcset="images/projects/pamur/salon-01-cam01-1-480.webp 480w, images/projects/pamur/salon-01-cam01-1-960.webp 960w, images/projects/pamur/salon-01-cam01-1-1600.webp 1600w, images/projects/pamur/salon-01-cam01-1-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Pamur, salon" width="3000" height="2000" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Pamur</span>
+    <span class="label tile__cat">Riad</span>
   </span>
 </a>
-<a class="work" href="projets/devils-rock.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 3000 / 2000; background-image: url('data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABwBACdASoYABAAPu1kqU2ppaOiMAgBMB2JQBOmUGMEz/gKZCpDygahQCtdAAD9Tmin5puGTUoJ7y4g6FsN+F6QFcayfJ0PA9wUng46dB1avXS2grlBLweyYaiPs5uYczCvpCvALhyLuilJMQ3LTbtYR56jh+cAgcql+9H87vFdO5tehopYzVp8SXc+c7a+86KdlGebJrAM130FoAA=');">
-  <img src="images/projects/devils-rock/chambre-02-cam01-1-2400.webp" srcset="images/projects/devils-rock/chambre-02-cam01-1-480.webp 480w, images/projects/devils-rock/chambre-02-cam01-1-960.webp 960w, images/projects/devils-rock/chambre-02-cam01-1-1600.webp 1600w, images/projects/devils-rock/chambre-02-cam01-1-2400.webp 2400w" sizes="100vw" alt="Devils Rock, chambre" width="3000" height="2000" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">07</span>
-    <span class="work__name">Devils Rock</span>
-    <span class="label work__cat">Hôtellerie</span>
+<a class="tile" href="projets/devils-rock.html" data-cursor-view>
+  <figure style="--ratio: 3000 / 2000; background-image: url('data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABwBACdASoYABAAPu1kqU2ppaOiMAgBMB2JQBOmUGMEz/gKZCpDygahQCtdAAD9Tmin5puGTUoJ7y4g6FsN+F6QFcayfJ0PA9wUng46dB1avXS2grlBLweyYaiPs5uYczCvpCvALhyLuilJMQ3LTbtYR56jh+cAgcql+9H87vFdO5tehopYzVp8SXc+c7a+86KdlGebJrAM130FoAA=');">
+    <img src="images/projects/devils-rock/chambre-02-cam01-1-2400.webp" srcset="images/projects/devils-rock/chambre-02-cam01-1-480.webp 480w, images/projects/devils-rock/chambre-02-cam01-1-960.webp 960w, images/projects/devils-rock/chambre-02-cam01-1-1600.webp 1600w, images/projects/devils-rock/chambre-02-cam01-1-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Devils Rock, chambre" width="3000" height="2000" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Devils Rock</span>
+    <span class="label tile__cat">Hôtellerie</span>
   </span>
 </a>
-<a class="work" href="projets/mbk.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 2560 / 1600; background-image: url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoYAA8APu1kq04ppaQiMAgBMB2JZgCdMoR4Lf/gBXbXnEfAAMqhBTKqDB6qMfwWvxsFmxzhpLLzTAVQW2aZtHkDlqqamsoE+6Howcm1n0DIFKuqhQ/2El0HaBEYc/Vbz+IIAAAA');">
-  <img src="images/projects/mbk/vmbk-facade-principale-2400.webp" srcset="images/projects/mbk/vmbk-facade-principale-480.webp 480w, images/projects/mbk/vmbk-facade-principale-960.webp 960w, images/projects/mbk/vmbk-facade-principale-1600.webp 1600w, images/projects/mbk/vmbk-facade-principale-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="MBK, façade principale" width="2560" height="1600" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">08</span>
-    <span class="work__name">MBK</span>
-    <span class="label work__cat">Villa</span>
+<a class="tile" href="projets/mbk.html" data-cursor-view>
+  <figure style="--ratio: 2560 / 1600; background-image: url('data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoYAA8APu1kq04ppaQiMAgBMB2JZgCdMoR4Lf/gBXbXnEfAAMqhBTKqDB6qMfwWvxsFmxzhpLLzTAVQW2aZtHkDlqqamsoE+6Howcm1n0DIFKuqhQ/2El0HaBEYc/Vbz+IIAAAA');">
+    <img src="images/projects/mbk/vmbk-facade-principale-2400.webp" srcset="images/projects/mbk/vmbk-facade-principale-480.webp 480w, images/projects/mbk/vmbk-facade-principale-960.webp 960w, images/projects/mbk/vmbk-facade-principale-1600.webp 1600w, images/projects/mbk/vmbk-facade-principale-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="MBK, façade principale" width="2560" height="1600" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">MBK</span>
+    <span class="label tile__cat">Villa</span>
   </span>
 </a>
-<a class="work" href="projets/chlouh.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 3000 / 3000; background-image: url('data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAAAQBgCdASoYABgAPu1qrVEppaQiqAqpMB2JQBOmWYzlsZyrSFhT+aD7j3ngj706LvxgUzWwNp26/AAA/uZf0ti+NI6B77w1fgZT2MBkVyfyLOZUlWjci1XjukGwvxGCTMIIpj06HgHDmGRB66etNngh2nBmkVR6sOnGpa7mR7fd4LiN02TzGmoxgeDYm3jvlTCZyKXRR2FwpT5XDJY+nw+bwWw04CYBDurJk7XyI4mc43YgAP8FVf5Apl3xUkin1AsnQkRe8cQsnxAOdyAfYUJGMZHV49Xa118jycz8xhgc19AA');">
-  <img src="images/projects/chlouh/rchl-salon-2400.webp" srcset="images/projects/chlouh/rchl-salon-480.webp 480w, images/projects/chlouh/rchl-salon-960.webp 960w, images/projects/chlouh/rchl-salon-1600.webp 1600w, images/projects/chlouh/rchl-salon-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="Chlouh, salon" width="3000" height="3000" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">09</span>
-    <span class="work__name">Chlouh</span>
-    <span class="label work__cat">Riad</span>
+<a class="tile" href="projets/chlouh.html" data-cursor-view>
+  <figure style="--ratio: 3000 / 3000; background-image: url('data:image/webp;base64,UklGRu4AAABXRUJQVlA4IOIAAAAQBgCdASoYABgAPu1qrVEppaQiqAqpMB2JQBOmWYzlsZyrSFhT+aD7j3ngj706LvxgUzWwNp26/AAA/uZf0ti+NI6B77w1fgZT2MBkVyfyLOZUlWjci1XjukGwvxGCTMIIpj06HgHDmGRB66etNngh2nBmkVR6sOnGpa7mR7fd4LiN02TzGmoxgeDYm3jvlTCZyKXRR2FwpT5XDJY+nw+bwWw04CYBDurJk7XyI4mc43YgAP8FVf5Apl3xUkin1AsnQkRe8cQsnxAOdyAfYUJGMZHV49Xa118jycz8xhgc19AA');">
+    <img src="images/projects/chlouh/rchl-salon-2400.webp" srcset="images/projects/chlouh/rchl-salon-480.webp 480w, images/projects/chlouh/rchl-salon-960.webp 960w, images/projects/chlouh/rchl-salon-1600.webp 1600w, images/projects/chlouh/rchl-salon-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Chlouh, salon" width="3000" height="3000" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Chlouh</span>
+    <span class="label tile__cat">Riad</span>
   </span>
 </a>
-<a class="work" href="projets/casa.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 1920 / 1080; background-image: url('data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZACw8aglAAhWZukyIUsEbZAA/TyDqzoEW2KD2JKt/D12VDZoyeMlQup961hTbZ/mFc9Rg8Ic39fSl7689sSa6VEpnfXkOv7uk/QxLH3RaKt+psTY7Y/LPPeouXSHzNn45U3D+k9ckqPQ0+Pyx/gpZ0xGVww1vCC1lgrSryAJeOgnt8LsAv5wAAA=');">
-  <img src="images/projects/casa/hcas-optd-6-1600.webp" srcset="images/projects/casa/hcas-optd-6-480.webp 480w, images/projects/casa/hcas-optd-6-960.webp 960w, images/projects/casa/hcas-optd-6-1600.webp 1600w" sizes="(max-width: 899px) 100vw, 62vw" alt="Casa, vue 1 sur 4" width="1920" height="1080" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">10</span>
-    <span class="work__name">Casa</span>
-    <span class="label work__cat">Hôtellerie</span>
+<a class="tile" href="projets/casa.html" data-cursor-view>
+  <figure style="--ratio: 1920 / 1080; background-image: url('data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAAAwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZACw8aglAAhWZukyIUsEbZAA/TyDqzoEW2KD2JKt/D12VDZoyeMlQup961hTbZ/mFc9Rg8Ic39fSl7689sSa6VEpnfXkOv7uk/QxLH3RaKt+psTY7Y/LPPeouXSHzNn45U3D+k9ckqPQ0+Pyx/gpZ0xGVww1vCC1lgrSryAJeOgnt8LsAv5wAAA=');">
+    <img src="images/projects/casa/hcas-optd-6-1600.webp" srcset="images/projects/casa/hcas-optd-6-480.webp 480w, images/projects/casa/hcas-optd-6-960.webp 960w, images/projects/casa/hcas-optd-6-1600.webp 1600w" sizes="(max-width: 899px) 46vw, 30vw" alt="Casa, vue 1 sur 4" width="1920" height="1080" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Casa</span>
+    <span class="label tile__cat">Hôtellerie</span>
   </span>
 </a>
-<a class="work" href="projets/cortes.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 3000 / 1579; background-image: url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JZgCdAYwmRzVYkD72UR5EAAD6bkf3HThbsWHwLkSG0809It3ymNZZf3FHMg4eOMvC72BJjAiqAo4j67wb2s+pLs3MMXathceRDi+hOkeuDr+gYcZt/VifX2Twd7U4+l7l4JnHiyjIZgXSIOPEVxL56SANTIfNCYAAAA==');">
-  <img src="images/projects/cortes/vcor-typo-2-pers-2-2400.webp" srcset="images/projects/cortes/vcor-typo-2-pers-2-480.webp 480w, images/projects/cortes/vcor-typo-2-pers-2-960.webp 960w, images/projects/cortes/vcor-typo-2-pers-2-1600.webp 1600w, images/projects/cortes/vcor-typo-2-pers-2-2400.webp 2400w" sizes="(max-width: 899px) 100vw, 62vw" alt="Cortes, vue 1 sur 3" width="3000" height="1579" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">11</span>
-    <span class="work__name">Cortes</span>
-    <span class="label work__cat">Villa</span>
+<a class="tile" href="projets/cortes.html" data-cursor-view>
+  <figure style="--ratio: 3000 / 1579; background-image: url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JZgCdAYwmRzVYkD72UR5EAAD6bkf3HThbsWHwLkSG0809It3ymNZZf3FHMg4eOMvC72BJjAiqAo4j67wb2s+pLs3MMXathceRDi+hOkeuDr+gYcZt/VifX2Twd7U4+l7l4JnHiyjIZgXSIOPEVxL56SANTIfNCYAAAA==');">
+    <img src="images/projects/cortes/vcor-typo-2-pers-2-2400.webp" srcset="images/projects/cortes/vcor-typo-2-pers-2-480.webp 480w, images/projects/cortes/vcor-typo-2-pers-2-960.webp 960w, images/projects/cortes/vcor-typo-2-pers-2-1600.webp 1600w, images/projects/cortes/vcor-typo-2-pers-2-2400.webp 2400w" sizes="(max-width: 899px) 46vw, 30vw" alt="Cortes, vue 1 sur 3" width="3000" height="1579" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Cortes</span>
+    <span class="label tile__cat">Villa</span>
   </span>
 </a>
-<a class="work" href="projets/hermes.html" data-cursor-view>
-<figure data-reveal data-parallax style="--ratio: 1280 / 853; background-image: url('data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdMoMrZ0kBmwgN7uM0gGAjS0AA/jxCotT+ZNmzk7C/3s35ZFzI9Y3FyeOCWymXgdnvFR5mG2Xe8gjbBbVuto7G0bdlxvHFRms0tFdcbA/4mxVb/d7CaEGNSyFf1nAZjSdmH03bpuatLZDPiF/V7rIScPKdKYSKrvoyL8ycSeonI5biLQO3cEy2O/idMa+hmtXpCKNwokgA');">
-  <img src="images/projects/hermes/whatsapp-image-2025-07-01-at-10-51-39-1-960.webp" srcset="images/projects/hermes/whatsapp-image-2025-07-01-at-10-51-39-1-480.webp 480w, images/projects/hermes/whatsapp-image-2025-07-01-at-10-51-39-1-960.webp 960w" sizes="(max-width: 899px) 100vw, 62vw" alt="Hermes, vue 1 sur 2" width="1280" height="853" loading="lazy" decoding="async">
-</figure>
-  <span class="work__caption">
-    <span class="work__num">12</span>
-    <span class="work__name">Hermes</span>
-    <span class="label work__cat">Riad</span>
+<a class="tile" href="projets/hermes.html" data-cursor-view>
+  <figure style="--ratio: 1280 / 853; background-image: url('data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdMoMrZ0kBmwgN7uM0gGAjS0AA/jxCotT+ZNmzk7C/3s35ZFzI9Y3FyeOCWymXgdnvFR5mG2Xe8gjbBbVuto7G0bdlxvHFRms0tFdcbA/4mxVb/d7CaEGNSyFf1nAZjSdmH03bpuatLZDPiF/V7rIScPKdKYSKrvoyL8ycSeonI5biLQO3cEy2O/idMa+hmtXpCKNwokgA');">
+    <img src="images/projects/hermes/whatsapp-image-2025-07-01-at-10-51-39-1-960.webp" srcset="images/projects/hermes/whatsapp-image-2025-07-01-at-10-51-39-1-480.webp 480w, images/projects/hermes/whatsapp-image-2025-07-01-at-10-51-39-1-960.webp 960w" sizes="(max-width: 899px) 46vw, 30vw" alt="Hermes, vue 1 sur 2" width="1280" height="853" loading="lazy" decoding="async">
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">Hermes</span>
+    <span class="label tile__cat">Riad</span>
   </span>
 </a>
+    </div>
   </div>
 </section>
 
@@ -195,8 +179,8 @@
   <div class="studio__grid">
     <p class="studio__statement" data-fade>
       Ochralab est le cabinet d'architecture de Mehdi Tolaïmate.
-      L'atelier conçoit des lieux à vivre — hôtels, riads et villas —
-      depuis Marrakech.
+      L'atelier conçoit depuis Marrakech des lieux à vivre :
+      hôtels, riads et villas.
     </p>
     <dl class="studio__details" data-fade>
       <div>
@@ -224,9 +208,9 @@
   <p class="label">Un projet, une question&nbsp;?</p>
   <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
   <div class="footer-row">
-    <span>© Ochralab — Marrakech</span>
+    <span>© Ochralab, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
-    <a href="#top">Haut de page</a>
+    <a href="#projets">Haut de page</a>
   </div>
 </section>
 <script src="assets/vendor/gsap.min.js" defer></script>

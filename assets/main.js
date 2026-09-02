@@ -6,12 +6,49 @@
   var reduced = window.matchMedia("(prefers-reduced-motion: reduce)").matches;
   if (reduced) document.documentElement.classList.add("reduced-motion");
 
-  var header = document.querySelector(".site-header");
+  var topbar = document.querySelector(".topbar");
   var onScroll = function () {
-    header.classList.toggle("is-scrolled", window.scrollY > 24);
+    if (topbar) topbar.classList.toggle("is-scrolled", window.scrollY > 24);
   };
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
+
+  /* Section courante mise en évidence dans le menu latéral.
+     Choix déterministe : la dernière section dont le haut est passé au-dessus
+     du tiers supérieur. Un IntersectionObserver retiendrait la dernière
+     section entrée, pas la bonne quand deux se chevauchent. */
+  var navLinks = document.querySelectorAll(".sidebar__nav a[data-nav]");
+  if (navLinks.length) {
+    var watched = [];
+    navLinks.forEach(function (a) {
+      var el = document.getElementById(a.dataset.nav);
+      if (el) watched.push({ link: a, el: el });
+    });
+
+    var lastActive = null;
+    function syncNav() {
+      var line = window.innerHeight * 0.35;
+      var current = watched.length ? watched[0] : null;
+      watched.forEach(function (w) {
+        if (w.el.getBoundingClientRect().top <= line) current = w;
+      });
+      // La dernière section est plus courte qu'un écran : son haut n'atteint
+      // jamais la ligne de détection. Arrivé en bas, c'est elle qui est lue.
+      var reste =
+        document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
+      if (reste <= 4 && watched.length) current = watched[watched.length - 1];
+      if (!current || current === lastActive) return;
+      lastActive = current;
+      watched.forEach(function (w) {
+        // setAttribute et non toggleAttribute : ce dernier écrirait une
+        // valeur vide, que le sélecteur [aria-current="true"] ignore.
+        if (w === current) w.link.setAttribute("aria-current", "true");
+        else w.link.removeAttribute("aria-current");
+      });
+    }
+    syncNav();
+    window.addEventListener("scroll", syncNav, { passive: true });
+  }
 
   /* Menu mobile */
   var overlay = document.querySelector(".menu-overlay");
@@ -150,6 +187,156 @@
     });
     gsap.set(cursor, { marginLeft: -6, marginTop: -6 });
   }
+
+  /* ============================================================
+     Mosaïque infinie
+     Le défilement reste natif : aucune interception de la molette.
+     Les vignettes sont réparties en colonnes, dont on égalise la hauteur
+     de cycle en répartissant l'écart sur les marges. Chaque colonne est
+     ensuite répétée quatre fois. Passé deux cycles, on retire exactement
+     un cycle à la position de défilement : le contenu étant identique,
+     le saut est invisible et la page ne finit jamais.
+     ============================================================ */
+  (function setupLoop() {
+    var section = document.querySelector(".loop");
+    if (!section) return;
+    var grid = section.querySelector(".loop__grid");
+    var originals = Array.prototype.slice.call(grid.querySelectorAll(".tile"));
+    if (!originals.length) return;
+
+    var REPEATS = 4;
+    var cycle = 0;
+    var loopTop = 0;
+    var active = false;
+
+    function teardown() {
+      section.classList.remove("is-looping");
+      grid.innerHTML = "";
+      originals.forEach(function (t) {
+        t.style.marginBottom = "";
+        grid.appendChild(t);
+      });
+      active = false;
+    }
+
+    function build() {
+      teardown();
+      var colCount = window.matchMedia("(min-width: 900px)").matches ? 3 : 2;
+      var cols = [];
+      for (var c = 0; c < colCount; c++) {
+        var el = document.createElement("div");
+        el.className = "loop__col";
+        cols.push({ el: el, tiles: [] });
+        grid.appendChild(el);
+      }
+      // Serpentin : les images hautes ne s'accumulent pas dans une colonne.
+      originals.forEach(function (tile, i) {
+        var row = Math.floor(i / colCount);
+        var idx = row % 2 === 0 ? i % colCount : colCount - 1 - (i % colCount);
+        cols[idx].el.appendChild(tile);
+        cols[idx].tiles.push(tile);
+      });
+
+      section.classList.add("is-looping");
+
+      // Chaque série vit dans un conteneur flex : à l'intérieur, les marges
+      // ne fusionnent pas. Mesurée en bloc ordinaire, la hauteur excluait la
+      // marge basse de la dernière vignette et faussait le cycle.
+      cols.forEach(function (col) {
+        var serie = document.createElement("div");
+        serie.className = "loop__set";
+        col.tiles.forEach(function (t) { serie.appendChild(t); });
+        col.el.appendChild(serie);
+        col.serie = serie;
+      });
+
+      cols.forEach(function (col) {
+        col.h = col.serie.getBoundingClientRect().height;
+      });
+      var maxH = Math.max.apply(null, cols.map(function (c) { return c.h; }));
+      cycle = Math.ceil(maxH);
+
+      cols.forEach(function (col) {
+        // L'écart se répartit sur les vignettes plutôt que de rester en bloc
+        // au bas du cycle, sinon un trou apparaîtrait dans les colonnes les
+        // plus courtes.
+        var extra = (cycle - col.h) / col.tiles.length;
+        if (extra > 0.5) {
+          col.tiles.forEach(function (t) {
+            var base = parseFloat(getComputedStyle(t).marginBottom) || 0;
+            t.style.marginBottom = base + extra + "px";
+          });
+        }
+        // Hauteur imposée : l'intervalle entre deux séries vaut exactement
+        // `cycle`, sans dérive possible au sous-pixel.
+        col.serie.style.height = cycle + "px";
+
+        for (var k = 1; k < REPEATS; k++) {
+          var copie = col.serie.cloneNode(true);
+          // Décoratif : hors lecteurs d'écran et hors parcours clavier.
+          copie.setAttribute("aria-hidden", "true");
+          copie.querySelectorAll(".tile").forEach(function (t) {
+            t.setAttribute("tabindex", "-1");
+            var img = t.querySelector("img");
+            if (img) {
+              img.setAttribute("loading", "lazy");
+              img.removeAttribute("fetchpriority");
+            }
+          });
+          col.el.appendChild(copie);
+        }
+      });
+
+      loopTop = section.getBoundingClientRect().top + window.scrollY;
+      active = cycle > 0;
+    }
+
+    /* Un clic dans le menu vers Studio ou Contact traverse la bande de
+       repositionnement pendant le défilement doux : on la suspend le temps
+       de l'animation, sinon l'utilisateur serait ramené en arrière. */
+    var suspendUntil = 0;
+    document.querySelectorAll('a[href*="#studio"], a[href*="#contact"]').forEach(
+      function (a) {
+        a.addEventListener("click", function () {
+          suspendUntil = Date.now() + 1800;
+        });
+      }
+    );
+
+    function onScroll() {
+      if (!active || !cycle) return;
+      if (Date.now() < suspendUntil) return;
+      var p = window.scrollY - loopTop;
+      // Bande haute bornée : au-delà, c'est une navigation volontaire vers
+      // Studio ou Contact, qu'il ne faut pas contrarier.
+      if (p > cycle * 2 && p < cycle * 3) {
+        // La feuille de style déclare scroll-behavior: smooth ; sans cette
+        // neutralisation le repositionnement s'animerait et la page
+        // remonterait visiblement au lieu de sauter.
+        var root = document.documentElement;
+        var memo = root.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        window.scrollTo(0, window.scrollY - cycle);
+        root.style.scrollBehavior = memo;
+      }
+    }
+
+    // Sans mouvement : mosaïque ordinaire, finie, défilement normal.
+    if (reduced) return;
+
+    function sync() {
+      build();
+    }
+    if (document.readyState === "complete") sync();
+    else window.addEventListener("load", sync);
+
+    window.addEventListener("scroll", onScroll, { passive: true });
+    var resizeTimer;
+    window.addEventListener("resize", function () {
+      clearTimeout(resizeTimer);
+      resizeTimer = setTimeout(sync, 250);
+    });
+  })();
 
   /* Recalage après chargement complet (images) */
   window.addEventListener("load", function () {

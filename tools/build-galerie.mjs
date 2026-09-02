@@ -8,11 +8,11 @@ const manifest = await loadManifest();
 const projects = manifest.projects;
 
 const DESC =
-  "Ochralab — cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.";
+  "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.";
 
-// Image du héros de la page d'accueil : façade MBK (composition minimale).
-const heroProject = projects.find((p) => p.slug === "mbk");
-const heroImg = heroProject.images.find((i) => i.base === "vmbk-facade-principale");
+// Première vignette de la mosaïque : c'est elle qui porte le LCP.
+const firstProject = projects[0];
+const firstImg = firstProject.images.find((i) => i.base === firstProject.cover);
 
 const lines = (text) =>
   text
@@ -57,17 +57,38 @@ ${preload ?? ""}
 <div class="cursor" aria-hidden="true"></div>`;
 }
 
-function header(root, current) {
-  const link = (href, label, key) =>
-    `<a href="${href}" ${current === key ? 'aria-current="page"' : ""}>${label}</a>`;
+// Menu latéral fixe sur grand écran, barre + panneau au doigt sur mobile.
+// Placement identique sur toutes les pages : une navigation qui se déplace
+// d'une page à l'autre désoriente.
+function sidebar(root) {
+  const items = [
+    ["projets", "Projets"],
+    ["studio", "Studio"],
+    ["contact", "Contact"],
+  ];
+  const navLinks = items
+    .map(
+      ([id, label]) =>
+        `      <li><a href="${root}index.html#${id}" data-nav="${id}"><span>${label}</span></a></li>`
+    )
+    .join("\n");
+  const drawerLinks = items
+    .map(([id, label]) => `  <a href="${root}index.html#${id}">${label}</a>`)
+    .join("\n");
+
   return `
-<header class="site-header">
+<aside class="sidebar">
   <a class="wordmark" href="${root}index.html">Ochralab</a>
-  <nav class="site-nav" aria-label="Navigation principale">
-    ${link(root + "index.html#projets", "Projets", "projets")}
-    ${link(root + "index.html#studio", "Studio", "studio")}
-    ${link(root + "index.html#contact", "Contact", "contact")}
+  <nav class="sidebar__nav" aria-label="Navigation principale">
+    <ul>
+${navLinks}
+    </ul>
   </nav>
+  <p class="sidebar__foot label">Marrakech<br>Maroc</p>
+</aside>
+
+<header class="topbar">
+  <a class="wordmark" href="${root}index.html">Ochralab</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
@@ -76,10 +97,8 @@ function header(root, current) {
   <button class="menu-close" aria-label="Fermer le menu">
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
-  <p class="label">Ochralab — Marrakech</p>
-  <a href="${root}index.html#projets">Projets</a>
-  <a href="${root}index.html#studio">Studio</a>
-  <a href="${root}index.html#contact">Contact</a>
+  <p class="label">Ochralab, Marrakech</p>
+${drawerLinks}
 </div>`;
 }
 
@@ -88,9 +107,9 @@ const footer = (root) => `
   <p class="label">Un projet, une question&nbsp;?</p>
   <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
   <div class="footer-row">
-    <span>© Ochralab — Marrakech</span>
+    <span>© Ochralab, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
-    <a href="#top">Haut de page</a>
+    <a href="#projets">Haut de page</a>
   </div>
 </section>
 <script src="${root}assets/vendor/gsap.min.js" defer></script>
@@ -101,73 +120,52 @@ const footer = (root) => `
 
 /* ---------------- Page d'accueil ---------------- */
 
-const worksHtml = projects
+// Liste plate : le CSS multi-colonnes suffit à produire la mosaïque, même
+// sans JavaScript. Le script ne fait que redistribuer ces mêmes vignettes
+// en colonnes qu'il peut ensuite faire boucler.
+const tilesHtml = projects
   .map((p, i) => {
     const cover = p.images.find((im) => im.base === p.cover);
-    const sizes =
-      i % 6 === 0
-        ? "100vw"
-        : "(max-width: 899px) 100vw, 62vw";
-    return `<a class="work" href="projets/${p.slug}.html" data-cursor-view>
-${figure({
-      img: cover,
-      imgPrefix: `images/projects/${p.slug}`,
-      sizes,
-      alt: altFor(p, cover, 0, p.images.length),
-    })}
-  <span class="work__caption">
-    <span class="work__num">${pad(i + 1)}</span>
-    <span class="work__name">${p.name}</span>
-    <span class="label work__cat">${p.category}</span>
+    return `<a class="tile" href="projets/${p.slug}.html" data-cursor-view>
+  <figure style="--ratio: ${cover.w} / ${cover.h}; background-image: url('${cover.lqip}');">
+    <img src="${largest(`images/projects/${p.slug}`, cover)}" srcset="${srcset(`images/projects/${p.slug}`, cover)}" sizes="(max-width: 899px) 46vw, 30vw" alt="${altFor(p, cover, 0, p.images.length)}" width="${cover.w}" height="${cover.h}" ${i < 4 ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>
+  </figure>
+  <span class="tile__caption">
+    <span class="tile__name">${p.name}</span>
+    <span class="label tile__cat">${p.category}</span>
   </span>
 </a>`;
   })
   .join("\n");
 
 const index = `${head({
-  title: "Ochralab — Architecture & design d'intérieur, Marrakech",
+  title: "Ochralab, architecture & design d'intérieur à Marrakech",
   desc: DESC,
   root: "",
   preload: `<link rel="preload" as="image" imagesrcset="${srcset(
-    `images/projects/${heroProject.slug}`,
-    heroImg
-  )}" imagesizes="100vw" fetchpriority="high">`,
+    `images/projects/${firstProject.slug}`,
+    firstImg
+  )}" imagesizes="(max-width: 899px) 46vw, 30vw" fetchpriority="high">`,
 })}
 <div class="preloader" aria-hidden="true">
   <div class="preloader__word">${"OCHRALAB".split("")
     .map((c) => `<span>${c}</span>`)
     .join("")}</div>
 </div>
-${header("", "")}
+${sidebar("")}
 <main id="main">
-<section class="hero" id="top">
-  <div class="hero__meta">
-    <span class="label">Cabinet d'architecture</span>
-    <span class="label">Marrakech, Maroc</span>
+<section class="loop" id="projets" aria-label="Projets">
+  <!-- La page s'ouvre sur la mosaïque : le titre reste lisible par les
+       lecteurs d'écran et les moteurs, sans occuper l'écran. -->
+  <h1 class="sr-only">Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech</h1>
+  <div class="loop__head">
+    <span class="label">Cabinet d'architecture, Marrakech</span>
+    <span class="label">${pad(projects.length)} projets · hôtellerie, riads, villas</span>
   </div>
-  <h1 class="display hero__title" data-lines data-onload>
-    <span class="line"><span class="line-inner">Architecture</span></span>
-    <span class="line"><span class="line-inner">&amp; <em class="swash">intérieurs</em></span></span>
-  </h1>
-  <div class="hero__figure">
-${figure({
-  img: heroImg,
-  imgPrefix: `images/projects/${heroProject.slug}`,
-  sizes: "100vw",
-  alt: altFor(heroProject, heroImg, 0, heroProject.images.length),
-  eager: true,
-  cssRatio: true,
-})}
-  </div>
-</section>
-
-<section class="section" id="projets">
-  <div class="section__head">
-    <h2 class="display section__title">Projets</h2>
-    <span class="label">${pad(projects.length)} — Hôtellerie, riads, villas</span>
-  </div>
-  <div class="works">
-${worksHtml}
+  <div class="loop__viewport">
+    <div class="loop__grid">
+${tilesHtml}
+    </div>
   </div>
 </section>
 
@@ -179,8 +177,8 @@ ${worksHtml}
   <div class="studio__grid">
     <p class="studio__statement" data-fade>
       Ochralab est le cabinet d'architecture de Mehdi Tolaïmate.
-      L'atelier conçoit des lieux à vivre — hôtels, riads et villas —
-      depuis Marrakech.
+      L'atelier conçoit depuis Marrakech des lieux à vivre :
+      hôtels, riads et villas.
     </p>
     <dl class="studio__details" data-fade>
       <div>
@@ -268,17 +266,17 @@ ${figure({
     .join("\n");
 
   const page = `${head({
-    title: `${p.name} — Ochralab`,
-    desc: `${p.name}, projet ${p.category.toLowerCase()} du cabinet Ochralab — ${p.images.length} vues.`,
+    title: `${p.name}, projet Ochralab`,
+    desc: `${p.name}, projet ${p.category.toLowerCase()} du cabinet Ochralab, ${p.images.length} vues.`,
     root: "../",
     preload: `<link rel="preload" as="image" imagesrcset="${srcset(imgPrefix, cover)}" imagesizes="100vw" fetchpriority="high">`,
   })}
-${header("../", "projets")}
+${sidebar("../")}
 <main id="main">
 <article>
 <section class="project-hero" id="top">
   <div class="project-hero__meta">
-    <span class="label">${pad(pi + 1)} — ${p.category}</span>
+    <span class="label">${p.category}</span>
     <span class="label">${pad(p.images.length)} vues</span>
   </div>
   <h1 class="display project-hero__title" data-lines data-onload>${lines(p.name)}</h1>

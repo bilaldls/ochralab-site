@@ -3,10 +3,10 @@
 <head>
 <meta charset="utf-8">
 <meta name="viewport" content="width=device-width, initial-scale=1">
-<title>Chlouh — Ochralab</title>
-<meta name="description" content="Chlouh, projet riad du cabinet Ochralab — 3 vues.">
-<meta property="og:title" content="Chlouh — Ochralab">
-<meta property="og:description" content="Chlouh, projet riad du cabinet Ochralab — 3 vues.">
+<title>Chlouh, projet Ochralab</title>
+<meta name="description" content="Chlouh, projet riad du cabinet Ochralab, 3 vues.">
+<meta property="og:title" content="Chlouh, projet Ochralab">
+<meta property="og:description" content="Chlouh, projet riad du cabinet Ochralab, 3 vues.">
 <meta property="og:type" content="website">
 <link rel="icon" type="image/svg+xml" href="../favicon.svg">
 <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
@@ -18,13 +18,20 @@
 <a class="skip-link" href="#main">Aller au contenu</a>
 <div class="cursor" aria-hidden="true"></div>
 
-<header class="site-header">
+<aside class="sidebar">
   <a class="wordmark" href="../index.html">Ochralab</a>
-  <nav class="site-nav" aria-label="Navigation principale">
-    <a href="../index.html#projets" aria-current="page">Projets</a>
-    <a href="../index.html#studio" >Studio</a>
-    <a href="../index.html#contact" >Contact</a>
+  <nav class="sidebar__nav" aria-label="Navigation principale">
+    <ul>
+      <li><a href="../index.html#projets" data-nav="projets"><span>Projets</span></a></li>
+      <li><a href="../index.html#studio" data-nav="studio"><span>Studio</span></a></li>
+      <li><a href="../index.html#contact" data-nav="contact"><span>Contact</span></a></li>
+    </ul>
   </nav>
+  <p class="sidebar__foot label">Marrakech<br>Maroc</p>
+</aside>
+
+<header class="topbar">
+  <a class="wordmark" href="../index.html">Ochralab</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
@@ -33,7 +40,7 @@
   <button class="menu-close" aria-label="Fermer le menu">
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
-  <p class="label">Ochralab — Marrakech</p>
+  <p class="label">Ochralab, Marrakech</p>
   <a href="../index.html#projets">Projets</a>
   <a href="../index.html#studio">Studio</a>
   <a href="../index.html#contact">Contact</a>
@@ -42,7 +49,7 @@
 <article>
 <section class="project-hero" id="top">
   <div class="project-hero__meta">
-    <span class="label">09 — Riad</span>
+    <span class="label">Riad</span>
     <span class="label">03 vues</span>
   </div>
   <h1 class="display project-hero__title" data-lines data-onload><span class="line"><span class="line-inner">Chlouh</span></span></h1>
@@ -80,9 +87,9 @@
   <p class="label">Un projet, une question&nbsp;?</p>
   <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
   <div class="footer-row">
-    <span>© Ochralab — Marrakech</span>
+    <span>© Ochralab, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
-    <a href="#top">Haut de page</a>
+    <a href="#projets">Haut de page</a>
   </div>
 </section>
 <script src="../assets/vendor/gsap.min.js" defer></script>

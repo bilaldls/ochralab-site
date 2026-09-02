@@ -37,6 +37,10 @@
 
   --gutter: clamp(1.25rem, 4vw, 3.5rem);
   --header-h: 4.5rem;
+  --rail: 13.5rem;
+  /* Largeur réellement disponible : le menu latéral ampute la fenêtre.
+     Les grands titres se dimensionnent là-dessus, pas sur 100vw. */
+  --content-w: 100vw;
 
   --ease-out: cubic-bezier(0.22, 1, 0.36, 1);
 }
@@ -104,6 +108,19 @@ button {
   top: 0.5rem;
 }
 
+/* Lu par les lecteurs d'écran, absent de l'écran. */
+.sr-only {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  padding: 0;
+  margin: -1px;
+  overflow: hidden;
+  clip-path: inset(50%);
+  white-space: nowrap;
+  border: 0;
+}
+
 /* ---------- Utils typographiques ---------- */
 
 .label {
@@ -158,9 +175,106 @@ html.reduced-motion .preloader {
   display: none;
 }
 
-/* ---------- Header ---------- */
+/* ---------- Menu latéral (grand écran) ---------- */
 
-.site-header {
+.sidebar {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 50;
+  width: var(--rail);
+  height: 100dvh;
+  display: none;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: var(--space-4) var(--space-3);
+  border-right: 1px solid var(--line);
+  background: var(--bg);
+}
+@media (min-width: 900px) {
+  :root {
+    --content-w: calc(100vw - var(--rail));
+  }
+  .sidebar {
+    display: flex;
+  }
+  /* Le contenu se décale de la largeur du rail, jamais dessous. */
+  body {
+    padding-left: var(--rail);
+  }
+}
+
+.wordmark {
+  font-weight: 800;
+  letter-spacing: 0.02em;
+  text-transform: uppercase;
+  font-size: 1rem;
+}
+.wordmark:hover {
+  color: var(--accent);
+}
+
+.sidebar__nav ul {
+  list-style: none;
+  margin: 0;
+  padding: 0;
+  display: flex;
+  flex-direction: column;
+  gap: var(--space-2);
+}
+.sidebar__nav a {
+  display: block;
+  font-size: 0.78rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  padding: 0.55rem 0;
+  color: var(--ink-soft);
+  transition: color 0.3s var(--ease-out);
+}
+.sidebar__nav a span {
+  position: relative;
+}
+.sidebar__nav a span::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -3px;
+  height: 1px;
+  width: 100%;
+  background: currentColor;
+  transform: scaleX(0);
+  transform-origin: right;
+  transition: transform 0.4s var(--ease-out);
+}
+.sidebar__nav a:hover,
+.sidebar__nav a:focus-visible {
+  color: var(--ink);
+}
+.sidebar__nav a:hover span::after,
+.sidebar__nav a:focus-visible span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+}
+/* Section courante : repérée par la couleur ET par le trait, jamais
+   par la couleur seule. */
+.sidebar__nav a[aria-current="true"] {
+  color: var(--ink);
+}
+.sidebar__nav a[aria-current="true"] span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  background: var(--accent);
+}
+
+.sidebar__foot {
+  margin: 0;
+  line-height: 1.5;
+}
+
+/* ---------- Barre haute (petit écran) ---------- */
+
+.topbar {
   position: fixed;
   top: 0;
   left: 0;
@@ -174,56 +288,14 @@ html.reduced-motion .preloader {
   transition: background-color 0.35s var(--ease-out),
     box-shadow 0.35s var(--ease-out);
 }
-.site-header.is-scrolled {
+.topbar.is-scrolled {
   background: color-mix(in srgb, var(--bg) 88%, transparent);
   -webkit-backdrop-filter: blur(12px);
   backdrop-filter: blur(12px);
   box-shadow: 0 1px 0 var(--line);
 }
 
-.wordmark {
-  font-weight: 800;
-  letter-spacing: 0.02em;
-  text-transform: uppercase;
-  font-size: 1rem;
-}
-.wordmark:hover {
-  color: var(--accent);
-}
-
-.site-nav {
-  display: flex;
-  gap: var(--space-4);
-}
-.site-nav a {
-  font-size: 0.78rem;
-  font-weight: 500;
-  letter-spacing: 0.14em;
-  text-transform: uppercase;
-  position: relative;
-  padding: 0.4rem 0;
-}
-.site-nav a::after {
-  content: "";
-  position: absolute;
-  left: 0;
-  bottom: 0;
-  height: 1px;
-  width: 100%;
-  background: var(--ink);
-  transform: scaleX(0);
-  transform-origin: right;
-  transition: transform 0.4s var(--ease-out);
-}
-.site-nav a:hover::after,
-.site-nav a:focus-visible::after {
-  transform: scaleX(1);
-  transform-origin: left;
-}
-
-/* Menu mobile */
 .menu-btn {
-  display: none;
   background: none;
   border: 0;
   padding: 0.75rem;
@@ -277,12 +349,11 @@ html.reduced-motion .preloader {
   margin-bottom: var(--space-3);
 }
 
-@media (max-width: 768px) {
-  .site-nav {
+/* Placée après la définition de .topbar : une règle antérieure serait
+   écrasée par `display: flex` à spécificité égale. */
+@media (min-width: 900px) {
+  .topbar {
     display: none;
-  }
-  .menu-btn {
-    display: block;
   }
 }
 
@@ -300,7 +371,7 @@ html.reduced-motion .preloader {
   margin-bottom: var(--space-5);
 }
 .hero__title {
-  font-size: clamp(2rem, 11vw, 11rem);
+  font-size: clamp(2rem, calc(var(--content-w) * 0.108), 10rem);
 }
 .hero__title .line {
   display: block;
@@ -362,82 +433,110 @@ html.reduced-motion figure[data-reveal] > img {
   font-size: clamp(2rem, 5vw, 4rem);
 }
 
-/* ---------- Index des projets ---------- */
+/* ---------- Mosaïque des projets, en boucle ----------
+   Sans JavaScript : `columns` produit déjà la mosaïque, la page défile
+   normalement. Avec JavaScript : le script redistribue ces mêmes vignettes
+   en colonnes qu'il fait tourner en boucle. */
 
-.works {
-  display: flex;
-  flex-direction: column;
-  gap: var(--space-7);
+.loop {
+  padding: var(--space-6) var(--gutter) 0;
 }
-
-.work {
-  display: block;
-  width: 100%;
-}
-.work figure {
-  aspect-ratio: var(--ratio, 3 / 2);
-}
-.work__caption {
+.loop__head {
   display: flex;
   align-items: baseline;
+  justify-content: space-between;
   gap: var(--space-2);
-  margin-top: var(--space-2);
+  border-top: 1px solid var(--line);
+  padding-top: var(--space-2);
+  margin-bottom: var(--space-4);
 }
-.work__num {
-  font-size: 0.72rem;
-  font-weight: 500;
-  color: var(--ink-soft);
-  letter-spacing: 0.1em;
+.loop__title {
+  font-size: clamp(2rem, 5vw, 4rem);
 }
-.work__name {
-  font-weight: 800;
-  text-transform: uppercase;
-  letter-spacing: -0.02em;
-  font-size: clamp(1.4rem, 3vw, 2.4rem);
-  line-height: 1;
-  transition: color 0.3s var(--ease-out);
+
+.loop__grid {
+  columns: 2;
+  column-gap: var(--space-3);
 }
-.work__cat {
-  margin-left: auto;
+@media (min-width: 900px) {
+  .loop__grid {
+    columns: 3;
+    column-gap: var(--space-4);
+  }
 }
-.work:hover .work__name,
-.work:focus-visible .work__name {
-  color: var(--accent);
+
+.tile {
+  display: block;
+  break-inside: avoid;
+  margin-bottom: var(--space-4);
 }
-.work img {
+.tile figure {
+  aspect-ratio: var(--ratio, 3 / 2);
+}
+.tile img {
   transition: transform 1.1s var(--ease-out);
 }
 @media (hover: hover) {
-  .work:hover img {
+  .tile:hover img {
     transform: scale(1.04);
   }
 }
+.tile__caption {
+  display: flex;
+  align-items: baseline;
+  gap: var(--space-2);
+  margin-top: 0.6rem;
+}
+.tile__name {
+  font-weight: 800;
+  text-transform: uppercase;
+  letter-spacing: -0.02em;
+  font-size: clamp(0.95rem, 1.6vw, 1.35rem);
+  line-height: 1;
+  transition: color 0.3s var(--ease-out);
+}
+.tile__cat {
+  margin-left: auto;
+}
+/* Colonnes étroites : la catégorie passe sous le nom plutôt que d'être
+   tronquée en bout de ligne. */
+@media (max-width: 700px) {
+  .tile__caption {
+    display: block;
+  }
+  .tile__cat {
+    display: block;
+    margin: 0.25rem 0 0;
+  }
+}
+.tile:hover .tile__name,
+.tile:focus-visible .tile__name {
+  color: var(--accent);
+}
 
-/* Rythme éditorial : largeurs alternées sur desktop */
-@media (min-width: 900px) {
-  .work:nth-child(6n + 1) {
-    width: 100%;
-  }
-  .work:nth-child(6n + 2) {
-    width: 58%;
-    align-self: flex-end;
-  }
-  .work:nth-child(6n + 3) {
-    width: 46%;
-    align-self: flex-start;
-  }
-  .work:nth-child(6n + 4) {
-    width: 70%;
-    align-self: center;
-  }
-  .work:nth-child(6n + 5) {
-    width: 52%;
-    align-self: flex-end;
-  }
-  .work:nth-child(6n + 6) {
-    width: 64%;
-    align-self: flex-start;
-  }
+/* --- Mode boucle : activé par le script uniquement ---
+   Le défilement reste natif. Le script empile des répétitions de hauteur
+   identique et repositionne discrètement la page d'un cycle exact : comme
+   le contenu est le même, le saut ne se voit pas. --- */
+
+.loop.is-looping .loop__grid {
+  columns: auto;
+  display: flex;
+  align-items: flex-start;
+  gap: var(--space-4);
+}
+.loop__col {
+  flex: 1 1 0;
+  min-width: 0;
+}
+.loop__col .tile {
+  margin-bottom: var(--space-4);
+}
+/* Conteneur flex : les marges des vignettes ne fusionnent pas avec le bord
+   du bloc, la hauteur de série est donc exacte et le cycle aussi. */
+.loop__set {
+  display: flex;
+  flex-direction: column;
 }
 
 /* ---------- Studio ---------- */
@@ -507,7 +606,7 @@ html.reduced-motion figure[data-reveal] > img {
   font-weight: 800;
   text-transform: lowercase;
   letter-spacing: -0.03em;
-  font-size: clamp(1.5rem, 6.4vw, 6rem);
+  font-size: clamp(1.5rem, calc(var(--content-w) * 0.062), 5.5rem);
   line-height: 1.1;
   margin: var(--space-4) 0 var(--space-6);
   position: relative;
@@ -560,7 +659,7 @@ html.reduced-motion figure[data-reveal] > img {
   margin-bottom: var(--space-4);
 }
 .project-hero__title {
-  font-size: clamp(2rem, 10vw, 9rem);
+  font-size: clamp(2rem, calc(var(--content-w) * 0.098), 8.5rem);
 }
 .project-hero__figure {
   margin: var(--space-5) calc(-1 * var(--gutter)) 0;
@@ -628,7 +727,7 @@ html.reduced-motion figure[data-reveal] > img {
   margin: var(--space-3) 0 var(--space-6);
 }
 .next-project__name {
-  font-size: clamp(2.5rem, 9vw, 8rem);
+  font-size: clamp(2.5rem, calc(var(--content-w) * 0.088), 7.5rem);
   transition: color 0.3s var(--ease-out);
 }
 .next-project__link:hover .next-project__name,
