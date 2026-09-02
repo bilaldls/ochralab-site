@@ -552,13 +552,24 @@ html.reduced-motion figure[data-reveal] > img {
     gap: var(--space-6);
   }
 }
-.studio__statement {
-  font-size: clamp(1.5rem, 3.2vw, 2.6rem);
-  font-weight: 500;
-  line-height: 1.25;
-  letter-spacing: -0.02em;
-  margin: 0;
-  max-width: 22ch;
+/* Notice biographique : plusieurs paragraphes, donc une taille de lecture
+   normale plutôt que le grand format à une ligne d'un statement. */
+.studio__bio .label {
+  display: block;
+  margin-bottom: var(--space-3);
+}
+.studio__bio p {
+  font-size: 1.05rem;
+  line-height: 1.65;
+  max-width: 58ch;
+  margin: 0 0 var(--space-3);
+  color: var(--ink);
+}
+.studio__bio p:last-child {
+  margin-bottom: 0;
+}
+.studio__bio strong {
+  font-weight: 800;
 }
 .studio__details {
   display: flex;
@@ -661,6 +672,37 @@ html.reduced-motion figure[data-reveal] > img {
 .project-hero__title {
   font-size: clamp(2rem, calc(var(--content-w) * 0.098), 8.5rem);
 }
+
+/* Fiche technique du projet : même échelle que la colonne de coordonnées
+   de la section Studio (dt en petites capitales, dd en texte compact). */
+.project-info {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: var(--space-3) var(--space-4);
+  margin: var(--space-4) 0 0;
+  max-width: 52rem;
+}
+@media (min-width: 768px) {
+  .project-info {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+.project-info dt {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.35rem;
+}
+.project-info dd {
+  margin: 0;
+  font-size: 0.95rem;
+  line-height: 1.4;
+  border-top: 1px solid var(--line);
+  padding-top: 0.6rem;
+}
+
 .project-hero__figure {
   margin: var(--space-5) calc(-1 * var(--gutter)) 0;
 }

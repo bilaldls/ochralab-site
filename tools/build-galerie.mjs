@@ -10,6 +10,25 @@ const projects = manifest.projects;
 const DESC =
   "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.";
 
+// Fiches techniques fournies par le studio, par slug. Champ absent = non
+// affiché : mieux vaut un champ manquant qu'une valeur inventée.
+const PROJECT_INFO = {
+  kactus: {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi et coordination des travaux"],
+    lieu: "Marrakech, Maroc",
+    projet: "Décembre 2026",
+    supTerrain: "> 1 500 m²",
+    surfaceConstruite: "> 700 m²",
+  },
+  perreaux: {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Marrakech, Maroc",
+    projet: "En cours, mars 2027",
+    supTerrain: "600 m²",
+    surfaceConstruite: "> 700 m²",
+  },
+};
+
 // Première vignette de la mosaïque : c'est elle qui porte le LCP.
 const firstProject = projects[0];
 const firstImg = firstProject.images.find((i) => i.base === firstProject.cover);
@@ -175,11 +194,13 @@ ${tilesHtml}
     <span class="label">Marrakech, Maroc</span>
   </div>
   <div class="studio__grid">
-    <p class="studio__statement" data-fade>
-      Ochralab est le cabinet d'architecture de Mehdi Tolaïmate.
-      L'atelier conçoit depuis Marrakech des lieux à vivre :
-      hôtels, riads et villas.
-    </p>
+    <div class="studio__bio" data-fade>
+      <span class="label">À propos</span>
+      <p>Né à Marrakech, j'ai construit mon identité entre Rabat et Rome, deux villes qui ont profondément influencé ma vision architecturale. En 2017, je suis revenu dans la ville ocre pour y ancrer mon activité.</p>
+      <p>Aux côtés d'Imaad Rahmouni, j'ai travaillé sur des projets résidentiels et hôteliers majeurs tels que le Hyatt Regency Taghazout, le Jadali Hotel &amp; SPA, ainsi que plusieurs réalisations à Ibiza, Saint-Tropez, Cannes et Courchevel.</p>
+      <p>En 2021, j'ai fondé <strong>OCHRA</strong> : un studio né de l'ocre de Marrakech et de l'élégance de Rome.</p>
+      <p>Ici, j'aborde l'architecture comme un champ d'exploration, un laboratoire où projets résidentiels et hôteliers, ainsi que pièces de mobilier sur mesure, prennent forme à travers une exigence de précision, de matérialité et de lumière.</p>
+    </div>
     <dl class="studio__details" data-fade>
       <div>
         <dt>Direction</dt>
@@ -245,6 +266,23 @@ const SIZES = {
   "g-item--tall": "(max-width: 899px) 100vw, 44vw",
 };
 
+function projectInfoBlock(info) {
+  if (!info) return "";
+  const rows = [
+    ["Mission", info.mission ? info.mission.join(", ") : null],
+    ["Lieu", info.lieu],
+    ["Projet", info.projet],
+    ["Sup. terrain", info.supTerrain],
+    ["Consistance", info.consistance],
+    ["Surface construite", info.surfaceConstruite],
+    ["Budget", info.budget],
+  ].filter(([, v]) => v);
+  if (!rows.length) return "";
+  return `<dl class="project-info" data-fade>
+${rows.map(([k, v]) => `  <div><dt>${k}</dt><dd>${v}</dd></div>`).join("\n")}
+</dl>`;
+}
+
 projects.forEach((p, pi) => {
   const cover = p.images.find((im) => im.base === p.cover);
   const rest = p.images.filter((im) => im !== cover);
@@ -280,6 +318,7 @@ ${sidebar("../")}
     <span class="label">${pad(p.images.length)} vues</span>
   </div>
   <h1 class="display project-hero__title" data-lines data-onload>${lines(p.name)}</h1>
+${projectInfoBlock(PROJECT_INFO[p.slug])}
   <div class="project-hero__figure">
     <figure data-reveal data-parallax style="background-image: url('${cover.lqip}');">
       <img src="${largest(imgPrefix, cover)}" srcset="${srcset(imgPrefix, cover)}" sizes="100vw" alt="${altFor(p, cover, 0, p.images.length)}" width="${cover.w}" height="${cover.h}" fetchpriority="high">
