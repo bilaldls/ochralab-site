@@ -1,0 +1,10 @@
+node_modules/
+.DS_Store
+
+# Photos sources du studio : volumineuses et hors dépôt.
+# Nom volontairement distinct de `images/` : le système de fichiers macOS
+# est insensible à la casse, un motif `Images/` masquerait aussi le dossier
+# `images/` du site, et donc toutes les photos servies.
+/_sources/
+
+*.log

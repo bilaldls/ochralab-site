@@ -1,0 +1,18 @@
+{
+  "name": "ochralab-tools",
+  "version": "1.0.0",
+  "private": true,
+  "type": "module",
+  "description": "Pipeline d'images et générateur de pages du site Ochralab.",
+  "scripts": {
+    "images": "node process-images.mjs",
+    "build": "node build-galerie.mjs",
+    "check": "node qa-check.mjs http://localhost:8741/index.html 1440"
+  },
+  "dependencies": {
+    "sharp": "^0.35.4"
+  },
+  "devDependencies": {
+    "puppeteer-core": "^25.9.0"
+  }
+}
