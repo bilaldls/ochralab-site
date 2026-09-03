@@ -22,9 +22,9 @@
   <a class="wordmark" href="../index.html">Ochralab</a>
   <nav class="sidebar__nav" aria-label="Navigation principale">
     <ul>
-      <li><a href="../index.html#projets" data-nav="projets"><span>Projets</span></a></li>
-      <li><a href="../index.html#studio" data-nav="studio"><span>Studio</span></a></li>
-      <li><a href="../index.html#contact" data-nav="contact"><span>Contact</span></a></li>
+      <li><a href="../index.html" aria-current="true"><span>Projets</span></a></li>
+      <li><a href="../studio.html" ><span>Studio</span></a></li>
+      <li><a href="../contact.html" ><span>Contact</span></a></li>
     </ul>
   </nav>
 </aside>
@@ -40,9 +40,9 @@
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
   <p class="label">Ochralab, Marrakech</p>
-  <a href="../index.html#projets">Projets</a>
-  <a href="../index.html#studio">Studio</a>
-  <a href="../index.html#contact">Contact</a>
+  <a href="../index.html">Projets</a>
+  <a href="../studio.html">Studio</a>
+  <a href="../contact.html">Contact</a>
 </div>
 <main id="main">
 <article>
@@ -52,7 +52,13 @@
     <span class="label">03 vues</span>
   </div>
   <h1 class="display project-hero__title" data-lines data-onload><span class="line"><span class="line-inner">Cortes</span></span></h1>
-
+<dl class="project-info" data-fade>
+  <div><dt>Mission</dt><dd>Architecture, Suivi de chantier</dd></div>
+  <div><dt>Lieu</dt><dd>Palmeraie, Marrakech</dd></div>
+  <div><dt>Projet</dt><dd>Livré, 2025</dd></div>
+  <div><dt>Sup. terrain</dt><dd>900 m²</dd></div>
+  <div><dt>Surface construite</dt><dd>> 480 m²</dd></div>
+</dl>
   <div class="project-hero__figure">
     <figure data-reveal data-parallax style="background-image: url('data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JZgCdAYwmRzVYkD72UR5EAAD6bkf3HThbsWHwLkSG0809It3ymNZZf3FHMg4eOMvC72BJjAiqAo4j67wb2s+pLs3MMXathceRDi+hOkeuDr+gYcZt/VifX2Twd7U4+l7l4JnHiyjIZgXSIOPEVxL56SANTIfNCYAAAA==');">
       <img src="../images/projects/cortes/vcor-typo-2-pers-2-2400.webp" srcset="../images/projects/cortes/vcor-typo-2-pers-2-480.webp 480w, ../images/projects/cortes/vcor-typo-2-pers-2-960.webp 960w, ../images/projects/cortes/vcor-typo-2-pers-2-1600.webp 1600w, ../images/projects/cortes/vcor-typo-2-pers-2-2400.webp 2400w" sizes="100vw" alt="Cortes, vue 1 sur 3" width="3000" height="1579" fetchpriority="high">
@@ -94,7 +100,7 @@
         <circle cx="16.8" cy="7.2" r="1.15" fill="currentColor"/>
       </svg>
     </a>
-    <a class="social-link" href="https://www.linkedin.com/in/mehdi-tolaimate-3446a5147/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Tolaïmate sur LinkedIn">
+    <a class="social-link" href="https://www.linkedin.com/in/mehdi-tolaimate-3446a5147/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Tolaimate sur LinkedIn">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="currentColor">in</text>
       </svg>
@@ -103,9 +109,10 @@
   <div class="footer-row">
     <span>© Ochralab, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
-    <a href="#projets">Haut de page</a>
+    <a href="#">Haut de page</a>
   </div>
 </section>
+
 <script src="../assets/vendor/gsap.min.js" defer></script>
 <script src="../assets/vendor/ScrollTrigger.min.js" defer></script>
 <script src="../assets/main.js" defer></script>

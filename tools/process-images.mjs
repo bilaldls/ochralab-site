@@ -56,6 +56,11 @@ const slugify = (s) =>
 // Les photos de téléphone (horodatage / WhatsApp) passent en fin de galerie.
 const isPhoneShot = (f) => /^20\d{6}_/.test(f) || /^WhatsApp/i.test(f);
 
+// Projets dont la galerie se lit à l'envers de l'ordre naturel des fichiers.
+// Boulokat : demandé par Bilal le 2026-09-03. Sans cette liste, retraiter
+// les photos depuis _sources/ effacerait silencieusement ce choix.
+const REVERSE_ORDER = ["boulokat"];
+
 const manifest = { generated: new Date().toISOString(), projects: [] };
 
 for (const p of PROJECTS) {
@@ -63,13 +68,14 @@ for (const p of PROJECTS) {
   const outDir = path.join(OUT, p.slug);
   await mkdir(outDir, { recursive: true });
 
-  const files = (await readdir(srcDir))
+  let files = (await readdir(srcDir))
     .filter((f) => /\.(jpe?g|png)$/i.test(f))
     .sort((a, b) => {
       const pa = isPhoneShot(a) ? 1 : 0;
       const pb = isPhoneShot(b) ? 1 : 0;
       return pa - pb || a.localeCompare(b, "en", { numeric: true });
     });
+  if (REVERSE_ORDER.includes(p.slug)) files = files.reverse();
 
   const images = [];
   for (const f of files) {

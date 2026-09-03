@@ -564,35 +564,43 @@ html.reduced-motion figure[data-reveal] > img {
   color: var(--accent);
 }
 
-/* ---------- Contact (section inversée) ---------- */
+/* ---------- Contact ----------
+   Fond clair comme le reste du site : ce n'est plus la section inversée
+   qu'elle était. Les teintes qui se mélangeaient jusqu'ici à --bg (pour
+   rester lisibles sur fond sombre) se mélangent maintenant à --ink. */
 
 .contact {
   margin-top: var(--space-7);
-  background: var(--ink);
-  color: var(--bg);
+  background: var(--bg);
+  color: var(--ink);
   padding: var(--space-7) var(--gutter) var(--space-4);
 }
 .contact .label {
-  color: color-mix(in srgb, var(--bg) 55%, transparent);
+  color: var(--ink-soft);
 }
 .contact__mail {
   display: inline-block;
   font-weight: 800;
   text-transform: lowercase;
-  letter-spacing: -0.03em;
-  font-size: clamp(1.5rem, calc(var(--content-w) * 0.062), 5.5rem);
-  line-height: 1.1;
-  margin: var(--space-4) 0 var(--space-6);
+  letter-spacing: -0.02em;
+  /* Aussi discret que les boutons Instagram / LinkedIn juste en dessous :
+     ce n'est plus la pièce maîtresse de la section. */
+  font-size: 1.05rem;
+  line-height: 1.2;
   position: relative;
+  /* Le texte reste petit ; la zone cliquable atteint quand même 44px,
+     sans agrandir l'espacement visible autour (marge négative égale). */
+  padding-block: 0.85rem;
+  margin-block: calc(var(--space-2) - 0.85rem) calc(var(--space-5) - 0.85rem);
 }
 .contact__mail::after {
   content: "";
   position: absolute;
   left: 0;
-  bottom: -0.08em;
-  height: 0.045em;
+  bottom: -0.15em;
+  height: 1px;
   width: 100%;
-  background: var(--bg);
+  background: var(--ink);
   transform: scaleX(0);
   transform-origin: right;
   transition: transform 0.5s var(--ease-out);
@@ -615,15 +623,17 @@ html.reduced-motion figure[data-reveal] > img {
   width: 44px;
   height: 44px;
   border-radius: 50%;
-  border: 1px solid color-mix(in srgb, var(--bg) 30%, transparent);
-  color: var(--bg);
+  border: 1px solid color-mix(in srgb, var(--ink) 25%, transparent);
+  color: var(--ink);
   transition: background-color 0.3s var(--ease-out),
-    border-color 0.3s var(--ease-out), transform 0.3s var(--ease-out);
+    border-color 0.3s var(--ease-out), color 0.3s var(--ease-out),
+    transform 0.3s var(--ease-out);
 }
 .social-link:hover,
 .social-link:focus-visible {
   background: var(--accent);
   border-color: var(--accent);
+  color: var(--bg);
   transform: translateY(-2px);
 }
 
@@ -632,15 +642,15 @@ html.reduced-motion figure[data-reveal] > img {
   flex-wrap: wrap;
   gap: var(--space-2);
   justify-content: space-between;
-  border-top: 1px solid color-mix(in srgb, var(--bg) 22%, transparent);
+  border-top: 1px solid var(--line);
   padding-top: var(--space-2);
   font-size: 0.78rem;
   letter-spacing: 0.1em;
   text-transform: uppercase;
-  color: color-mix(in srgb, var(--bg) 65%, transparent);
+  color: var(--ink-soft);
 }
 .footer-row a:hover {
-  color: var(--bg);
+  color: var(--ink);
 }
 
 /* ---------- Page projet ---------- */
@@ -658,6 +668,34 @@ html.reduced-motion figure[data-reveal] > img {
 }
 .project-hero__title {
   font-size: clamp(2rem, calc(var(--content-w) * 0.098), 8.5rem);
+}
+
+/* ---------- Pages Studio et Contact ----------
+   Réutilisent .project-hero / .project-hero__meta / .project-hero__title
+   tels quels pour le bandeau d'ouverture (même très grand format que les
+   pages projet, juste sans photo de couverture en dessous) : une page de
+   texte reste une page, pas une section raccourcie.
+   .page-body reprend l'écart déjà utilisé entre le héros et la galerie
+   d'un projet (--space-6) : même rythme vertical d'une page à l'autre. */
+.page-body {
+  padding: var(--space-6) var(--gutter) 0;
+}
+
+/* Teinte propre à chaque page, posée sur <body> : le menu latéral et le
+   contenu se teintent ensemble, sans quoi le rail resterait neutre à côté
+   d'un contenu recoloré. Seuls bg/ink/ligne changent ; --accent reste
+   l'unique accent du site, partagé par toutes les pages. */
+.theme-ocre {
+  --bg: #f3ecdf;
+  --ink: #211a10;
+  --ink-soft: #6d5f47;
+  --line: #e1d4bb;
+}
+.theme-terre {
+  --bg: #f1e3d6;
+  --ink: #241209;
+  --ink-soft: #7c5a44;
+  --line: #e2ccb5;
 }
 
 /* Fiche technique du projet : même échelle que la colonne de coordonnées

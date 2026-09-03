@@ -13,42 +13,10 @@
   onScroll();
   window.addEventListener("scroll", onScroll, { passive: true });
 
-  /* Section courante mise en évidence dans le menu latéral.
-     Choix déterministe : la dernière section dont le haut est passé au-dessus
-     du tiers supérieur. Un IntersectionObserver retiendrait la dernière
-     section entrée, pas la bonne quand deux se chevauchent. */
-  var navLinks = document.querySelectorAll(".sidebar__nav a[data-nav]");
-  if (navLinks.length) {
-    var watched = [];
-    navLinks.forEach(function (a) {
-      var el = document.getElementById(a.dataset.nav);
-      if (el) watched.push({ link: a, el: el });
-    });
-
-    var lastActive = null;
-    function syncNav() {
-      var line = window.innerHeight * 0.35;
-      var current = watched.length ? watched[0] : null;
-      watched.forEach(function (w) {
-        if (w.el.getBoundingClientRect().top <= line) current = w;
-      });
-      // La dernière section est plus courte qu'un écran : son haut n'atteint
-      // jamais la ligne de détection. Arrivé en bas, c'est elle qui est lue.
-      var reste =
-        document.documentElement.scrollHeight - window.scrollY - window.innerHeight;
-      if (reste <= 4 && watched.length) current = watched[watched.length - 1];
-      if (!current || current === lastActive) return;
-      lastActive = current;
-      watched.forEach(function (w) {
-        // setAttribute et non toggleAttribute : ce dernier écrirait une
-        // valeur vide, que le sélecteur [aria-current="true"] ignore.
-        if (w === current) w.link.setAttribute("aria-current", "true");
-        else w.link.removeAttribute("aria-current");
-      });
-    }
-    syncNav();
-    window.addEventListener("scroll", syncNav, { passive: true });
-  }
+  /* La page active du menu latéral est marquée à la génération
+     (aria-current posé par sidebar() dans build-galerie.mjs) : Projets,
+     Studio et Contact sont désormais trois pages, plus des ancres d'une
+     mosaïque qui défile sans fin. Aucun repérage au scroll à faire ici. */
 
   /* Menu mobile */
   var overlay = document.querySelector(".menu-overlay");
@@ -312,24 +280,13 @@
       active = cycle > 0;
     }
 
-    /* Un clic dans le menu vers Studio ou Contact traverse la bande de
-       repositionnement pendant le défilement doux : on la suspend le temps
-       de l'animation, sinon l'utilisateur serait ramené en arrière. */
-    var suspendUntil = 0;
-    document.querySelectorAll('a[href*="#studio"], a[href*="#contact"]').forEach(
-      function (a) {
-        a.addEventListener("click", function () {
-          suspendUntil = Date.now() + 1800;
-        });
-      }
-    );
-
     function onScroll() {
       if (!active || !cycle) return;
-      if (Date.now() < suspendUntil) return;
       var p = window.scrollY - loopTop;
-      // Bande haute bornée : au-delà, c'est une navigation volontaire vers
-      // Studio ou Contact, qu'il ne faut pas contrarier.
+      // Fenêtre bornée à un seul cycle : un défilement très rapide (molette
+      // à fond, touche Fin) peut dépasser directement cycle*3 en un saut,
+      // et reculer d'un cycle à cet endroit-là déplacerait la vue à un
+      // endroit qui n'a plus rien à voir avec ce que l'utilisateur regarde.
       if (p > cycle * 2 && p < cycle * 3) {
         // La feuille de style déclare scroll-behavior: smooth ; sans cette
         // neutralisation le repositionnement s'animerait et la page

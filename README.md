@@ -1,6 +1,6 @@
 # Ochralab
 
-Site portfolio de **Mehdi Tolaïmate**, architecte et designer d'intérieur à
+Site portfolio de **Mehdi Tolaimate**, architecte et designer d'intérieur à
 Marrakech. Douze projets — hôtellerie, riads, villas — et 80 photographies.
 
 Site statique : pas de serveur applicatif, pas de base de données, pas de
@@ -118,13 +118,21 @@ Contrastes vérifiés WCAG AA sur toute la palette, le plus faible à 4,71:1.
 
 ## Contenu à compléter
 
-Rien n'a été inventé. Le site fonctionne sans, mais gagnerait beaucoup à
-recevoir de Mehdi :
+⚠️ **Les fiches techniques de dix projets sont inventées.** Kactus et
+Perreaux affichent les vraies données fournies par le studio ; les dix
+autres (`PROJECT_INFO` dans `tools/build-galerie.mjs`) ont été inventées
+à la demande de Bilal le 2026-09-03, sur le même modèle, pour qu'aucune
+page projet n'affiche une fiche vide. Rien de ces dix-là n'a été confirmé
+par Mehdi (lieu, année de livraison, superficies, nombre de chambres) :
+à remplacer par les vraies valeurs avant toute mise en ligne publique.
+
+Pour le reste, rien n'a été inventé. Le site fonctionne sans, mais
+gagnerait beaucoup à recevoir de Mehdi :
 
 - **Textes de projet** — une phrase de résumé et deux ou trois paragraphes
   d'intention par projet. C'est ce qui sépare une galerie de photos d'un
   portfolio d'architecte.
-- **Fiches techniques** — année, lieu, surface, statut, maîtrise d'ouvrage.
+- **Fiches techniques réelles** — pour remplacer les dix inventées ci-dessus.
 - **Crédits photo** — le photographe, ou « rendu du studio ».
 - **Identité** — confirmer l'orthographe « Ochralab », l'adresse de contact
   publique, un téléphone, une adresse postale, les réseaux sociaux.
@@ -142,4 +150,4 @@ Deux arbitrages sur les images :
 
 ## Crédits
 
-Photographies et projets : Ochralab / Mehdi Tolaïmate. Tous droits réservés.
+Photographies et projets : Ochralab / Mehdi Tolaimate. Tous droits réservés.

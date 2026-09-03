@@ -10,8 +10,14 @@ const projects = manifest.projects;
 const DESC =
   "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaimate. Hôtels, riads et villas : douze projets choisis.";
 
-// Fiches techniques fournies par le studio, par slug. Champ absent = non
-// affiché : mieux vaut un champ manquant qu'une valeur inventée.
+// Fiches techniques par slug. Champ absent = non affiché.
+//
+// kactus et perreaux : données réelles, fournies par le studio.
+//
+// Les dix autres : inventées à la demande de Bilal (2026-09-03), sur le
+// modèle des deux premières, pour qu'aucun projet n'affiche une fiche vide.
+// Rien ici n'a été confirmé par Mehdi — remplacer par les vraies valeurs
+// avant toute mise en ligne publique du site.
 const PROJECT_INFO = {
   kactus: {
     mission: ["Architecture", "Architecture d'intérieur", "Suivi et coordination des travaux"],
@@ -26,6 +32,83 @@ const PROJECT_INFO = {
     projet: "En cours, mars 2027",
     supTerrain: "600 m²",
     surfaceConstruite: "> 700 m²",
+  },
+
+  // --- Fiches inventées à partir d'ici ---
+  boulokat: {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi et coordination des travaux"],
+    lieu: "Marrakech, Maroc",
+    projet: "Livré, 2023",
+    supTerrain: "> 2 000 m²",
+    consistance: "24 chambres",
+    surfaceConstruite: "> 1 200 m²",
+  },
+  sirayane: {
+    mission: ["Architecture", "Architecture d'intérieur"],
+    lieu: "Route de l'Ourika, Marrakech",
+    projet: "Livré, 2022",
+    supTerrain: "> 3 000 m²",
+    consistance: "18 chambres",
+    surfaceConstruite: "> 1 500 m²",
+  },
+  ilot: {
+    mission: ["Architecture", "Suivi et coordination des travaux"],
+    lieu: "Marrakech, Maroc",
+    projet: "Livré, 2021",
+    supTerrain: "800 m²",
+    consistance: "20 chambres",
+    surfaceConstruite: "> 1 800 m²",
+  },
+  casa: {
+    mission: ["Architecture", "Architecture d'intérieur"],
+    lieu: "Marrakech, Maroc",
+    projet: "Livré, 2020",
+    supTerrain: "650 m²",
+    consistance: "16 chambres",
+    surfaceConstruite: "> 1 100 m²",
+  },
+  "devils-rock": {
+    mission: ["Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Essaouira, Maroc",
+    projet: "Livré, 2023",
+    supTerrain: "1 200 m²",
+    consistance: "12 chambres",
+    surfaceConstruite: "> 900 m²",
+  },
+  chlouh: {
+    mission: ["Réhabilitation", "Architecture d'intérieur"],
+    lieu: "Médina, Marrakech",
+    projet: "Livré, 2021",
+    supTerrain: "220 m²",
+    surfaceConstruite: "> 280 m²",
+  },
+  pamur: {
+    mission: ["Réhabilitation", "Architecture d'intérieur", "Suivi de chantier"],
+    lieu: "Médina, Marrakech",
+    projet: "Livré, 2022",
+    supTerrain: "310 m²",
+    surfaceConstruite: "> 420 m²",
+  },
+  hermes: {
+    mission: ["Architecture d'intérieur"],
+    lieu: "Médina, Marrakech",
+    projet: "Livré, 2025",
+    supTerrain: "180 m²",
+    surfaceConstruite: "> 210 m²",
+  },
+  mbk: {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Palmeraie, Marrakech",
+    projet: "Livré, 2023",
+    supTerrain: "1 000 m²",
+    surfaceConstruite: "> 550 m²",
+  },
+  cortes: {
+    mission: ["Architecture", "Suivi de chantier"],
+    lieu: "Palmeraie, Marrakech",
+    projet: "Livré, 2025",
+    supTerrain: "900 m²",
+    surfaceConstruite: "> 480 m²",
   },
 };
 
@@ -54,7 +137,7 @@ function figure({ img, imgPrefix, sizes, alt, parallax = true, eager = false, cs
 </figure>`;
 }
 
-function head({ title, desc, root, preload }) {
+function head({ title, desc, root, preload, bodyClass }) {
   return `<!DOCTYPE html>
 <html lang="fr" class="no-js">
 <head>
@@ -71,7 +154,7 @@ ${preload ?? ""}
 <link rel="stylesheet" href="${root}assets/styles.css">
 <script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
 </head>
-<body>
+<body${bodyClass ? ` class="${bodyClass}"` : ""}>
 <a class="skip-link" href="#main">Aller au contenu</a>
 <div class="cursor" aria-hidden="true"></div>`;
 }
@@ -79,20 +162,25 @@ ${preload ?? ""}
 // Menu latéral fixe sur grand écran, barre + panneau au doigt sur mobile.
 // Placement identique sur toutes les pages : une navigation qui se déplace
 // d'une page à l'autre désoriente.
-function sidebar(root) {
+//
+// Projets, Studio et Contact sont trois pages distinctes (plus d'ancres :
+// la mosaïque d'accueil défile sans fin, y sauter par ancre obligeait à
+// suspendre la boucle le temps du défilement doux). `current` marque la
+// page active à la génération, sans JavaScript de repérage au scroll.
+function sidebar(root, current) {
   const items = [
-    ["projets", "Projets"],
-    ["studio", "Studio"],
-    ["contact", "Contact"],
+    ["projets", "Projets", `${root}index.html`],
+    ["studio", "Studio", `${root}studio.html`],
+    ["contact", "Contact", `${root}contact.html`],
   ];
   const navLinks = items
     .map(
-      ([id, label]) =>
-        `      <li><a href="${root}index.html#${id}" data-nav="${id}"><span>${label}</span></a></li>`
+      ([id, label, href]) =>
+        `      <li><a href="${href}" ${id === current ? 'aria-current="true"' : ""}><span>${label}</span></a></li>`
     )
     .join("\n");
   const drawerLinks = items
-    .map(([id, label]) => `  <a href="${root}index.html#${id}">${label}</a>`)
+    .map(([, label, href]) => `  <a href="${href}">${label}</a>`)
     .join("\n");
 
   return `
@@ -120,11 +208,9 @@ ${drawerLinks}
 </div>`;
 }
 
-const footer = (root) => `
-<section class="contact" id="contact">
-  <p class="label">Un projet, une question&nbsp;?</p>
-  <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
-  <div class="contact__social" data-fade>
+// Icônes des réseaux, réutilisées telles quelles par le pied de page
+// partagé et par le contenu propre de la page Contact.
+const socialLinks = `<div class="contact__social" data-fade>
     <a class="social-link" href="https://www.instagram.com/ochralab/" target="_blank" rel="noopener noreferrer" aria-label="Ochralab sur Instagram">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -132,18 +218,32 @@ const footer = (root) => `
         <circle cx="16.8" cy="7.2" r="1.15" fill="currentColor"/>
       </svg>
     </a>
-    <a class="social-link" href="https://www.linkedin.com/in/mehdi-tolaimate-3446a5147/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Tolaïmate sur LinkedIn">
+    <a class="social-link" href="https://www.linkedin.com/in/mehdi-tolaimate-3446a5147/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Tolaimate sur LinkedIn">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="currentColor">in</text>
       </svg>
     </a>
-  </div>
+  </div>`;
+
+// skipPromo : la page Contact fournit elle-même ce bloc dans son propre
+// contenu ; le répéter juste en dessous, identique, serait absurde. Elle
+// ne garde du pied de page que la ligne de copyright.
+const footer = (root, { skipPromo = false } = {}) => `
+${skipPromo ? "" : `<section class="contact" id="contact">
+  <p class="label">Un projet, une question&nbsp;?</p>
+  <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
+  ${socialLinks}
   <div class="footer-row">
     <span>© Ochralab, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
-    <a href="#projets">Haut de page</a>
+    <a href="#">Haut de page</a>
   </div>
-</section>
+</section>`}
+${skipPromo ? `<div class="footer-row page-body">
+  <span>© Ochralab, Marrakech</span>
+  <span>Architecture &amp; design d'intérieur</span>
+  <a href="#">Haut de page</a>
+</div>` : ""}
 <script src="${root}assets/vendor/gsap.min.js" defer></script>
 <script src="${root}assets/vendor/ScrollTrigger.min.js" defer></script>
 <script src="${root}assets/main.js" defer></script>
@@ -180,7 +280,7 @@ const index = `${head({
     .map((c) => `<span>${c}</span>`)
     .join("")}</div>
 </div>
-${sidebar("")}
+${sidebar("", "projets")}
 <main id="main">
 <section class="loop" id="projets" aria-label="Projets">
   <!-- La page s'ouvre sur la mosaïque : le titre reste lisible par les
@@ -192,12 +292,32 @@ ${tilesHtml}
     </div>
   </div>
 </section>
+</main>
+${footer("", { skipPromo: true })}`;
+// skipPromo : la mosaïque défile sans fin (voir assets/main.js), le bloc
+// « Un projet, une question ? » qui suivait ici ne pouvait donc jamais être
+// atteint en scrollant. Contact vit maintenant sur sa propre page.
 
-<section class="section" id="studio">
-  <div class="section__head">
-    <h2 class="display section__title">Studio</h2>
+await writeFile(path.join(SITE, "index.html"), index);
+
+/* ---------------- Page Studio ---------------- */
+
+const studioPage = `${head({
+  title: "Studio, Ochralab",
+  desc: "Le studio d'architecture et de design d'intérieur de Mehdi Tolaimate, à Marrakech.",
+  root: "",
+  bodyClass: "theme-ocre",
+})}
+${sidebar("", "studio")}
+<main id="main">
+<section class="project-hero" id="top">
+  <div class="project-hero__meta">
+    <span class="label">Studio</span>
     <span class="label">Marrakech, Maroc</span>
   </div>
+  <h1 class="display project-hero__title" data-lines data-onload>${lines("Studio")}</h1>
+</section>
+<section class="page-body">
   <div class="studio__grid">
     <div class="studio__bio" data-fade>
       <span class="label">À propos</span>
@@ -209,7 +329,7 @@ ${tilesHtml}
     <dl class="studio__details" data-fade>
       <div>
         <dt>Direction</dt>
-        <dd>Mehdi Tolaïmate, architecte</dd>
+        <dd>Mehdi Tolaimate, architecte</dd>
       </div>
       <div>
         <dt>Domaines</dt>
@@ -219,17 +339,39 @@ ${tilesHtml}
         <dt>Typologies</dt>
         <dd>Hôtellerie, riads, villas</dd>
       </div>
-      <div>
-        <dt>Contact</dt>
-        <dd><a href="mailto:ochralab@gmail.com">ochralab@gmail.com</a></dd>
-      </div>
     </dl>
   </div>
 </section>
 </main>
 ${footer("")}`;
 
-await writeFile(path.join(SITE, "index.html"), index);
+await writeFile(path.join(SITE, "studio.html"), studioPage);
+
+/* ---------------- Page Contact ---------------- */
+
+const contactPage = `${head({
+  title: "Contact, Ochralab",
+  desc: "Contacter le cabinet Ochralab à Marrakech, par email, Instagram ou LinkedIn.",
+  root: "",
+  bodyClass: "theme-terre",
+})}
+${sidebar("", "contact")}
+<main id="main">
+<section class="project-hero" id="top">
+  <div class="project-hero__meta">
+    <span class="label">Contact</span>
+    <span class="label">Un projet, une question&nbsp;?</span>
+  </div>
+  <h1 class="display project-hero__title" data-lines data-onload>${lines("Contact")}</h1>
+</section>
+<section class="page-body">
+  <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
+  ${socialLinks}
+</section>
+</main>
+${footer("", { skipPromo: true })}`;
+
+await writeFile(path.join(SITE, "contact.html"), contactPage);
 
 /* ---------------- Pages projet ---------------- */
 
@@ -314,7 +456,7 @@ ${figure({
     root: "../",
     preload: `<link rel="preload" as="image" imagesrcset="${srcset(imgPrefix, cover)}" imagesizes="100vw" fetchpriority="high">`,
   })}
-${sidebar("../")}
+${sidebar("../", "projets")}
 <main id="main">
 <article>
 <section class="project-hero" id="top">
