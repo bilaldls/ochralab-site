@@ -8,7 +8,7 @@ const manifest = await loadManifest();
 const projects = manifest.projects;
 
 const DESC =
-  "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaïmate. Hôtels, riads et villas : douze projets choisis.";
+  "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaimate. Hôtels, riads et villas : douze projets choisis.";
 
 // Fiches techniques fournies par le studio, par slug. Champ absent = non
 // affiché : mieux vaut un champ manquant qu'une valeur inventée.
@@ -103,7 +103,6 @@ function sidebar(root) {
 ${navLinks}
     </ul>
   </nav>
-  <p class="sidebar__foot label">Marrakech<br>Maroc</p>
 </aside>
 
 <header class="topbar">
@@ -125,6 +124,20 @@ const footer = (root) => `
 <section class="contact" id="contact">
   <p class="label">Un projet, une question&nbsp;?</p>
   <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
+  <div class="contact__social" data-fade>
+    <a class="social-link" href="https://www.instagram.com/ochralab/" target="_blank" rel="noopener noreferrer" aria-label="Ochralab sur Instagram">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
+        <circle cx="16.8" cy="7.2" r="1.15" fill="currentColor"/>
+      </svg>
+    </a>
+    <a class="social-link" href="https://www.linkedin.com/in/mehdi-tolaimate-3446a5147/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Tolaïmate sur LinkedIn">
+      <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
+        <text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="currentColor">in</text>
+      </svg>
+    </a>
+  </div>
   <div class="footer-row">
     <span>© Ochralab, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
@@ -145,14 +158,10 @@ const footer = (root) => `
 const tilesHtml = projects
   .map((p, i) => {
     const cover = p.images.find((im) => im.base === p.cover);
-    return `<a class="tile" href="projets/${p.slug}.html" data-cursor-view>
+    return `<a class="tile" href="projets/${p.slug}.html" data-cursor-view data-name="${p.name}">
   <figure style="--ratio: ${cover.w} / ${cover.h}; background-image: url('${cover.lqip}');">
     <img src="${largest(`images/projects/${p.slug}`, cover)}" srcset="${srcset(`images/projects/${p.slug}`, cover)}" sizes="(max-width: 899px) 46vw, 30vw" alt="${altFor(p, cover, 0, p.images.length)}" width="${cover.w}" height="${cover.h}" ${i < 4 ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>
   </figure>
-  <span class="tile__caption">
-    <span class="tile__name">${p.name}</span>
-    <span class="label tile__cat">${p.category}</span>
-  </span>
 </a>`;
   })
   .join("\n");
@@ -177,10 +186,6 @@ ${sidebar("")}
   <!-- La page s'ouvre sur la mosaïque : le titre reste lisible par les
        lecteurs d'écran et les moteurs, sans occuper l'écran. -->
   <h1 class="sr-only">Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech</h1>
-  <div class="loop__head">
-    <span class="label">Cabinet d'architecture, Marrakech</span>
-    <span class="label">${pad(projects.length)} projets · hôtellerie, riads, villas</span>
-  </div>
   <div class="loop__viewport">
     <div class="loop__grid">
 ${tilesHtml}

@@ -172,12 +172,14 @@
       xTo(e.clientX);
       yTo(e.clientY);
     });
+    // 92px et non 72 : les noms de projet composés de deux mots
+    // (« Devils Rock ») ont besoin d'un peu plus de place que « Voir ».
     document.querySelectorAll("[data-cursor-view]").forEach(function (el) {
       el.addEventListener("mouseenter", function () {
         cursor.classList.add("is-view");
-        cursor.textContent = "Voir";
-        gsap.to(cursor, { width: 72, height: 72, x: "-=0", duration: 0.3 });
-        gsap.to(cursor, { marginLeft: -36, marginTop: -36, duration: 0.3 });
+        cursor.textContent = el.dataset.name || "Voir";
+        gsap.to(cursor, { width: 92, height: 92, x: "-=0", duration: 0.3 });
+        gsap.to(cursor, { marginLeft: -46, marginTop: -46, duration: 0.3 });
       });
       el.addEventListener("mouseleave", function () {
         cursor.classList.remove("is-view");
@@ -219,22 +221,39 @@
       active = false;
     }
 
+    // Hauteur qu'une vignette occupera dans une colonne de largeur donnée,
+    // lue depuis --ratio (posé en style inline par le générateur), sa marge
+    // propre comprise. Sert à équilibrer les colonnes avant même de les
+    // remplir, plutôt que de corriger après coup.
+    function tileHeight(tile, colWidth, gapPx) {
+      var v = tile.querySelector("figure").style.getPropertyValue("--ratio");
+      var parts = v.split("/").map(function (s) { return parseFloat(s); });
+      var ratio = parts[0] && parts[1] ? parts[0] / parts[1] : 1.5;
+      return colWidth / ratio + gapPx;
+    }
+
     function build() {
       teardown();
       var colCount = window.matchMedia("(min-width: 900px)").matches ? 3 : 2;
+      var gapPx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tile-gap")) || 3;
+      var colWidth = (grid.getBoundingClientRect().width - gapPx * (colCount - 1)) / colCount;
+
       var cols = [];
       for (var c = 0; c < colCount; c++) {
         var el = document.createElement("div");
         el.className = "loop__col";
-        cols.push({ el: el, tiles: [] });
+        cols.push({ el: el, tiles: [], estH: 0 });
         grid.appendChild(el);
       }
-      // Serpentin : les images hautes ne s'accumulent pas dans une colonne.
-      originals.forEach(function (tile, i) {
-        var row = Math.floor(i / colCount);
-        var idx = row % 2 === 0 ? i % colCount : colCount - 1 - (i % colCount);
-        cols[idx].el.appendChild(tile);
-        cols[idx].tiles.push(tile);
+      // Chaque vignette rejoint la colonne actuellement la plus courte
+      // (estimée depuis son ratio, pas mesurée après coup) : les colonnes
+      // finissent à des hauteurs proches, sans avoir à les rattraper ensuite.
+      originals.forEach(function (tile) {
+        var target = cols[0];
+        cols.forEach(function (c) { if (c.estH < target.estH) target = c; });
+        target.el.appendChild(tile);
+        target.tiles.push(tile);
+        target.estH += tileHeight(tile, colWidth, gapPx);
       });
 
       section.classList.add("is-looping");
@@ -257,15 +276,17 @@
       cycle = Math.ceil(maxH);
 
       cols.forEach(function (col) {
-        // L'écart se répartit sur les vignettes plutôt que de rester en bloc
-        // au bas du cycle, sinon un trou apparaîtrait dans les colonnes les
-        // plus courtes.
-        var extra = (cycle - col.h) / col.tiles.length;
-        if (extra > 0.5) {
-          col.tiles.forEach(function (t) {
-            var base = parseFloat(getComputedStyle(t).marginBottom) || 0;
-            t.style.marginBottom = base + extra + "px";
-          });
+        // Le reliquat est déposé en un seul point, en fin de série, plutôt
+        // que réparti sur chaque vignette : avec un écart aussi resserré
+        // (--tile-gap), gonfler chaque marge briserait l'effet photos
+        // jointives. Un point de compensation unique ne se voit qu'à la
+        // couture, déjà invisible puisqu'elle est identique à chaque tour.
+        var reste = cycle - col.h;
+        if (reste > 0.5) {
+          var filler = document.createElement("div");
+          filler.setAttribute("aria-hidden", "true");
+          filler.style.height = reste + "px";
+          col.serie.appendChild(filler);
         }
         // Hauteur imposée : l'intervalle entre deux séries vaut exactement
         // `cycle`, sans dérive possible au sous-pixel.
