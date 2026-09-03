@@ -72,6 +72,15 @@ body {
   line-height: 1.6;
   -webkit-font-smoothing: antialiased;
   text-rendering: optimizeLegibility;
+  /* Colonne verticale : sur une page courte (Contact), le contenu occupe
+     la hauteur et le pied de page reste ancré en bas plutôt que de
+     flotter au milieu. */
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+}
+main {
+  flex: 1 0 auto;
 }
 
 img {
@@ -593,6 +602,49 @@ html.reduced-motion figure[data-reveal] > img {
   padding-block: 0.85rem;
   margin-block: calc(var(--space-2) - 0.85rem) calc(var(--space-5) - 0.85rem);
 }
+/* Page Contact : ici l'email EST l'information principale, il retrouve
+   une taille à sa mesure (au contraire du bloc contact des autres pages,
+   discret parce que secondaire). */
+.contact__mail--lg {
+  font-size: clamp(1.5rem, 5vw, 3rem);
+  margin-block: var(--space-2) var(--space-5);
+}
+.contact-page__note {
+  margin: 0 0 var(--space-2);
+  max-width: 42ch;
+  font-size: clamp(0.95rem, 1.6vw, 1.1rem);
+  color: var(--ink-soft);
+}
+.contact-page__info {
+  display: grid;
+  grid-template-columns: 1fr;
+  gap: var(--space-3);
+  margin: 0;
+  padding-top: var(--space-2);
+  border-top: 1px solid var(--line);
+  max-width: 30rem;
+}
+@media (min-width: 600px) {
+  .contact-page__info {
+    grid-template-columns: 1fr 1fr;
+  }
+}
+.contact-page__info dt {
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.14em;
+  text-transform: uppercase;
+  color: var(--ink-soft);
+  margin-bottom: 0.5rem;
+}
+.contact-page__info dd {
+  margin: 0;
+}
+.contact-page__social {
+  display: flex;
+  gap: var(--space-2);
+}
+
 .contact__mail::after {
   content: "";
   position: absolute;

@@ -208,10 +208,9 @@ ${drawerLinks}
 </div>`;
 }
 
-// Icônes des réseaux, réutilisées telles quelles par le pied de page
-// partagé et par le contenu propre de la page Contact.
-const socialLinks = `<div class="contact__social" data-fade>
-    <a class="social-link" href="https://www.instagram.com/ochralab/" target="_blank" rel="noopener noreferrer" aria-label="Ochralab sur Instagram">
+// Icônes des réseaux. `socialIcons` = les deux liens seuls, réutilisés
+// par le pied de page partagé (via socialLinks) et par la page Contact.
+const socialIcons = `<a class="social-link" href="https://www.instagram.com/ochralab/" target="_blank" rel="noopener noreferrer" aria-label="Ochralab sur Instagram">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
         <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -222,7 +221,9 @@ const socialLinks = `<div class="contact__social" data-fade>
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="currentColor">in</text>
       </svg>
-    </a>
+    </a>`;
+const socialLinks = `<div class="contact__social" data-fade>
+    ${socialIcons}
   </div>`;
 
 // skipPromo : la page Contact fournit elle-même ce bloc dans son propre
@@ -364,9 +365,21 @@ ${sidebar("", "contact")}
   </div>
   <h1 class="display project-hero__title" data-lines data-onload>${lines("Contact")}</h1>
 </section>
-<section class="page-body">
-  <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
-  ${socialLinks}
+<section class="page-body contact-page">
+  <p class="contact-page__note">Pour tout projet d'architecture ou d'aménagement intérieur, le plus simple est d'écrire directement au studio.</p>
+  <a class="contact__mail contact__mail--lg" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
+  <dl class="contact-page__info">
+    <div>
+      <dt>Studio</dt>
+      <dd>Marrakech, Maroc</dd>
+    </div>
+    <div>
+      <dt>Réseaux</dt>
+      <dd class="contact-page__social">
+    ${socialIcons}
+      </dd>
+    </div>
+  </dl>
 </section>
 </main>
 ${footer("", { skipPromo: true })}`;
