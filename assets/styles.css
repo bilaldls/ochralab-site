@@ -707,8 +707,16 @@ html.reduced-motion figure[data-reveal] > img {
 
 /* ---------- Page projet ---------- */
 
+/* --header-h ne compense la barre haute fixe que là où elle existe
+   (< 900px). Au-delà, la barre est masquée : réserver sa hauteur en
+   plus creusait un vide mort en tête de page. */
 .project-hero {
-  padding: calc(var(--header-h) + var(--space-6)) var(--gutter) 0;
+  padding: var(--space-6) var(--gutter) 0;
+}
+@media (max-width: 899px) {
+  .project-hero {
+    padding-top: calc(var(--header-h) + var(--space-4));
+  }
 }
 .project-hero__meta {
   display: flex;
