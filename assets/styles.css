@@ -902,9 +902,27 @@ html.reduced-motion figure[data-reveal] > img {
 
 /* ---------- Reveal helpers ---------- */
 
+/* Filet de sécurité : ces éléments partent masqués et ne sont révélés que
+   par GSAP. Si le script tarde, est bloqué ou échoue, ils resteraient
+   invisibles — titres compris. Une animation CSS à retardement les
+   ramène donc quoi qu'il arrive. GSAP, s'il tourne, pose des styles en
+   ligne bien avant l'échéance et garde la main sur la chorégraphie. */
+@keyframes ochralab-reveal-lines {
+  to {
+    transform: none;
+  }
+}
+@keyframes ochralab-reveal-fade {
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .js [data-lines] .line-inner {
   display: block;
   transform: translateY(110%);
+  animation: ochralab-reveal-lines 0.6s var(--ease-out) 3s forwards;
 }
 [data-lines] .line {
   display: block;
@@ -918,8 +936,23 @@ html.reduced-motion [data-lines] .line-inner {
 .js [data-fade] {
   opacity: 0;
   transform: translateY(24px);
+  animation: ochralab-reveal-fade 0.6s var(--ease-out) 4s forwards;
 }
 html.reduced-motion [data-fade] {
   opacity: 1 !important;
   transform: none !important;
+}
+
+/* Script mort ET mouvement réduit : ni la classe .reduced-motion (posée
+   par le script) ni GSAP ne s'appliqueront ; on neutralise tout en CSS. */
+@media (prefers-reduced-motion: reduce) {
+  .js [data-lines] .line-inner {
+    transform: none;
+    animation: none;
+  }
+  .js [data-fade] {
+    opacity: 1;
+    transform: none;
+    animation: none;
+  }
 }
