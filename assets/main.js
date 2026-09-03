@@ -50,7 +50,13 @@
     img.addEventListener("error", done);
   });
 
-  if (reduced || typeof gsap === "undefined") return;
+  if (reduced || typeof gsap === "undefined") {
+    // Pas d'animation : le préchargeur ne doit pas rester à l'écran.
+    var preFallback = document.querySelector(".preloader");
+    if (preFallback) preFallback.remove();
+    document.body.style.overflow = "";
+    return;
+  }
 
   gsap.registerPlugin(ScrollTrigger);
   gsap.defaults({ ease: "power3.out" });
@@ -65,18 +71,26 @@
     document.body.style.overflow = "hidden";
     intro
       .to(pre.querySelectorAll(".preloader__word span"), {
-        y: 0, duration: 0.7, stagger: 0.05, ease: "power4.out",
+        y: 0, duration: 0.45, stagger: 0.035, ease: "power3.out",
       })
       .to(pre.querySelectorAll(".preloader__word span"), {
-        y: "-110%", duration: 0.5, stagger: 0.03, ease: "power4.in", delay: 0.25,
+        y: "-110%", duration: 0.34, stagger: 0.02, ease: "power3.in", delay: 0.15,
       })
       .to(pre, {
-        yPercent: -100, duration: 0.7, ease: "power4.inOut",
+        yPercent: -100, duration: 0.5, ease: "power4.inOut",
         onComplete: function () {
           pre.remove();
           document.body.style.overflow = "";
         },
       });
+    // Garde-fou : si la timeline se fige (onglet en arrière-plan, rAF
+    // gelé…), le préchargeur s'efface quand même et libère le défilement.
+    setTimeout(function () {
+      if (pre && pre.isConnected) {
+        pre.remove();
+        document.body.style.overflow = "";
+      }
+    }, 2200);
   } else if (pre) {
     pre.remove();
   }

@@ -186,6 +186,23 @@ em.swash {
 html.reduced-motion .preloader {
   display: none;
 }
+/* Dernier recours : si main.js ne se charge pas du tout, rien ne retire
+   le préchargeur. Cette animation l'efface seule passé un court délai. */
+.preloader {
+  animation: ochralab-preloader-out 0.4s ease 2.5s forwards;
+}
+@keyframes ochralab-preloader-out {
+  to {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+@media (prefers-reduced-motion: reduce) {
+  .preloader {
+    animation-delay: 0.6s;
+    animation-duration: 0.01s;
+  }
+}
 
 /* ---------- Menu latéral (grand écran) ---------- */
 
