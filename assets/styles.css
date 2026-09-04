@@ -302,6 +302,28 @@ html.reduced-motion .preloader {
   background: var(--accent);
 }
 
+/* Sous-menu de filtres (Villas / Hôtels / Riads), sous « Projets ».
+   Un cran plus petit et indenté : secondaire à la navigation principale.
+   aria-current posé par main.js (état lu depuis le hash de l'URL). */
+.sidebar__nav .sidebar__filters {
+  margin: 0.4rem 0 0;
+  padding-left: 0.9rem;
+  gap: 0.35rem;
+}
+.sidebar__nav .sidebar__filters a {
+  font-size: 0.68rem;
+  padding: 0.3rem 0;
+  color: var(--ink-soft);
+}
+.sidebar__nav .sidebar__filters a[aria-current="true"] {
+  color: var(--ink);
+}
+.sidebar__nav .sidebar__filters a[aria-current="true"] span::after {
+  transform: scaleX(1);
+  transform-origin: left;
+  background: var(--accent);
+}
+
 /* ---------- Barre haute (petit écran) ---------- */
 
 .topbar {
@@ -377,6 +399,28 @@ html.reduced-motion .preloader {
 .menu-overlay .label {
   color: color-mix(in srgb, var(--bg) 55%, transparent);
   margin-bottom: var(--space-3);
+}
+
+/* Sous-menu de filtres du tiroir mobile : liste discrète sous « Projets »,
+   loin de la taille des libellés principaux. */
+.menu-overlay__filters {
+  list-style: none;
+  margin: 0.5rem 0 var(--space-3);
+  padding-left: 1rem;
+  display: flex;
+  flex-direction: column;
+  gap: 0.5rem;
+}
+.menu-overlay .menu-overlay__filters a {
+  font-weight: 500;
+  font-size: 1.05rem;
+  letter-spacing: 0.06em;
+  line-height: 1.3;
+  overflow: visible;
+  color: color-mix(in srgb, var(--bg) 65%, transparent);
+}
+.menu-overlay .menu-overlay__filters a[aria-current="true"] {
+  color: var(--bg);
 }
 
 /* Placée après la définition de .topbar : une règle antérieure serait

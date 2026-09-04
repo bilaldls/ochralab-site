@@ -159,6 +159,16 @@ ${preload ?? ""}
 <div class="cursor" aria-hidden="true"></div>`;
 }
 
+// Filtre par typologie, affiché sous « Projets » : trois catégories fixes,
+// qui correspondent aux valeurs de `category` posées sur chaque projet
+// (voir manifest.json / PROJECT_INFO). Purement cliquable : sans script,
+// ce sont des liens ordinaires vers l'accueil, non filtré.
+const CATEGORY_FILTERS = [
+  ["Villa", "Villas", "villas"],
+  ["Hôtellerie", "Hôtels", "hotels"],
+  ["Riad", "Riads", "riads"],
+];
+
 // Menu latéral fixe sur grand écran, barre + panneau au doigt sur mobile.
 // Placement identique sur toutes les pages : une navigation qui se déplace
 // d'une page à l'autre désoriente.
@@ -173,14 +183,37 @@ function sidebar(root, current) {
     ["studio", "Studio", `${root}studio.html`],
     ["contact", "Contact", `${root}contact.html`],
   ];
+  // main.js lit l'état (actif / non actif) depuis l'URL et pose
+  // aria-current au chargement : aucune des deux copies (rail, tiroir)
+  // ne le porte à la génération.
+  const filterLinksNav = CATEGORY_FILTERS.map(
+    ([cat, label, slug]) =>
+      `        <li><a href="${root}index.html#${slug}" data-filter="${cat}"><span>${label}</span></a></li>`
+  ).join("\n");
+  const filterLinksDrawer = CATEGORY_FILTERS.map(
+    ([cat, label, slug]) =>
+      `    <li><a href="${root}index.html#${slug}" data-filter="${cat}">${label}</a></li>`
+  ).join("\n");
   const navLinks = items
-    .map(
-      ([id, label, href]) =>
-        `      <li><a href="${href}" ${id === current ? 'aria-current="true"' : ""}><span>${label}</span></a></li>`
-    )
+    .map(([id, label, href]) => {
+      const current_ = id === current ? ' aria-current="true"' : "";
+      const clear = id === "projets" ? " data-filter-clear" : "";
+      const filters =
+        id === "projets"
+          ? `\n      <ul class="sidebar__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksNav}\n      </ul>`
+          : "";
+      return `      <li><a href="${href}"${current_}${clear}><span>${label}</span></a>${filters}</li>`;
+    })
     .join("\n");
   const drawerLinks = items
-    .map(([, label, href]) => `  <a href="${href}">${label}</a>`)
+    .map(([id, label, href]) => {
+      const clear = id === "projets" ? " data-filter-clear" : "";
+      const filters =
+        id === "projets"
+          ? `\n  <ul class="menu-overlay__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksDrawer}\n  </ul>`
+          : "";
+      return `  <a href="${href}"${clear}>${label}</a>${filters}`;
+    })
     .join("\n");
 
   return `
@@ -259,7 +292,7 @@ ${skipPromo ? `<div class="footer-row page-body">
 const tilesHtml = projects
   .map((p, i) => {
     const cover = p.images.find((im) => im.base === p.cover);
-    return `<a class="tile" href="projets/${p.slug}.html" data-cursor-view data-name="${p.name}">
+    return `<a class="tile" href="projets/${p.slug}.html" data-cursor-view data-name="${p.name}" data-category="${p.category}">
   <figure style="--ratio: ${cover.w} / ${cover.h}; background-image: url('${cover.lqip}');">
     <img src="${largest(`images/projects/${p.slug}`, cover)}" srcset="${srcset(`images/projects/${p.slug}`, cover)}" sizes="(max-width: 899px) 46vw, 30vw" alt="${altFor(p, cover, 0, p.images.length)}" width="${cover.w}" height="${cover.h}" ${i < 4 ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>
   </figure>

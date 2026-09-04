@@ -50,6 +50,68 @@
     img.addEventListener("error", done);
   });
 
+  /* ---------- Filtre par typologie (Villas / Hôtels / Riads) ----------
+     Indépendant de GSAP : les vignettes qui ne correspondent pas à la
+     catégorie choisie sont masquées via l'attribut natif `hidden`. Quand
+     la mosaïque boucle (plus bas), applyFilterToLoop — assignée par
+     setupLoop — reconstruit les colonnes avec les seules vignettes
+     visibles ; sinon la mise en page CSS (`columns`) se recompose seule
+     autour des vignettes masquées. L'état vit dans le hash de l'URL
+     (#villas, #hotels, #riads) et non en session : revenir sur l'accueil
+     sans hash montre toujours la galerie complète. */
+  var CATEGORY_BY_HASH = { villas: "Villa", hotels: "Hôtellerie", riads: "Riad" };
+  var HASH_BY_CATEGORY = { Villa: "villas", "Hôtellerie": "hotels", Riad: "riads" };
+  var activeCategory = null;
+  var applyFilterToLoop = null;
+  // Capturées une fois pour toutes, avant tout filtrage : la mosaïque en
+  // boucle détache du DOM les vignettes écartées (voir setupLoop plus
+  // bas), document.querySelectorAll ne les retrouverait plus ensuite.
+  var allTiles = Array.prototype.slice.call(document.querySelectorAll(".tile[data-category]"));
+
+  function setTilesVisibility() {
+    allTiles.forEach(function (t) {
+      t.hidden = !!activeCategory && t.dataset.category !== activeCategory;
+    });
+  }
+  function markActiveFilters() {
+    document.querySelectorAll("[data-filter]").forEach(function (a) {
+      a.setAttribute("aria-current", a.dataset.filter === activeCategory ? "true" : "false");
+    });
+    document.querySelectorAll("[data-filter-clear]").forEach(function (a) {
+      a.setAttribute("aria-current", activeCategory ? "false" : "true");
+    });
+  }
+  function applyFilter(category) {
+    activeCategory = category || null;
+    setTilesVisibility();
+    markActiveFilters();
+    if (applyFilterToLoop) applyFilterToLoop();
+  }
+
+  // Sur les autres pages (Studio, Contact, projet…), ces mêmes liens
+  // pointent vers l'accueil : navigation ordinaire, pas d'interception.
+  var onGallery = !!document.querySelector(".loop");
+  document.querySelectorAll("[data-filter], [data-filter-clear]").forEach(function (a) {
+    a.addEventListener("click", function (e) {
+      if (!onGallery) return;
+      e.preventDefault();
+      if (a.hasAttribute("data-filter-clear")) {
+        applyFilter(null);
+      } else {
+        var cat = a.dataset.filter;
+        applyFilter(activeCategory === cat ? null : cat);
+      }
+      // Reflète l'état réel après bascule (pas l'URL statique du lien
+      // cliqué) : un second clic sur le même filtre l'annule et doit
+      // retirer le hash, pas le remettre.
+      var newHash = activeCategory ? HASH_BY_CATEGORY[activeCategory] : "";
+      history.replaceState(null, "", newHash ? "#" + newHash : location.pathname + location.search);
+    });
+  });
+  if (onGallery) {
+    applyFilter(CATEGORY_BY_HASH[location.hash.replace("#", "")] || null);
+  }
+
   if (reduced || typeof gsap === "undefined") {
     // Pas d'animation : le préchargeur ne doit pas rester à l'écran.
     var preFallback = document.querySelector(".preloader");
@@ -193,13 +255,19 @@
     var loopTop = 0;
     var active = false;
 
+    // Sous-ensemble réellement affiché : tout si aucun filtre, sinon les
+    // seules vignettes de la catégorie choisie (voir le filtre plus haut).
+    // Les vignettes écartées restent référencées par `originals`, juste
+    // détachées du DOM le temps que le filtre change.
+    function pool() {
+      return activeCategory
+        ? originals.filter(function (t) { return t.dataset.category === activeCategory; })
+        : originals;
+    }
+
     function teardown() {
       section.classList.remove("is-looping");
       grid.innerHTML = "";
-      originals.forEach(function (t) {
-        t.style.marginBottom = "";
-        grid.appendChild(t);
-      });
       active = false;
     }
 
@@ -216,6 +284,9 @@
 
     function build() {
       teardown();
+      var items = pool();
+      if (!items.length) return; // catégorie vide : ne devrait pas arriver
+
       var colCount = window.matchMedia("(min-width: 900px)").matches ? 3 : 2;
       var gapPx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tile-gap")) || 3;
       var colWidth = (grid.getBoundingClientRect().width - gapPx * (colCount - 1)) / colCount;
@@ -230,7 +301,8 @@
       // Chaque vignette rejoint la colonne actuellement la plus courte
       // (estimée depuis son ratio, pas mesurée après coup) : les colonnes
       // finissent à des hauteurs proches, sans avoir à les rattraper ensuite.
-      originals.forEach(function (tile) {
+      items.forEach(function (tile) {
+        tile.style.marginBottom = "";
         var target = cols[0];
         cols.forEach(function (c) { if (c.estH < target.estH) target = c; });
         target.el.appendChild(tile);
@@ -328,6 +400,20 @@
       clearTimeout(resizeTimer);
       resizeTimer = setTimeout(sync, 250);
     });
+
+    // Changer de filtre change la hauteur totale : l'ancienne position de
+    // défilement n'a plus de sens, on revient en haut de la mosaïque.
+    applyFilterToLoop = function () {
+      var top = section.getBoundingClientRect().top + window.scrollY;
+      if (window.scrollY > top) {
+        var root = document.documentElement;
+        var memo = root.style.scrollBehavior;
+        root.style.scrollBehavior = "auto";
+        window.scrollTo(0, top);
+        root.style.scrollBehavior = memo;
+      }
+      sync();
+    };
   })();
 
   /* Recalage après chargement complet (images) */

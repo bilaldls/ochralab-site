@@ -22,9 +22,14 @@
   <a class="wordmark" href="index.html">Ochralab</a>
   <nav class="sidebar__nav" aria-label="Navigation principale">
     <ul>
-      <li><a href="index.html" ><span>Projets</span></a></li>
+      <li><a href="index.html" data-filter-clear><span>Projets</span></a>
+      <ul class="sidebar__filters" data-filters aria-label="Filtrer par typologie">
+        <li><a href="index.html#villas" data-filter="Villa"><span>Villas</span></a></li>
+        <li><a href="index.html#hotels" data-filter="Hôtellerie"><span>Hôtels</span></a></li>
+        <li><a href="index.html#riads" data-filter="Riad"><span>Riads</span></a></li>
+      </ul></li>
       <li><a href="studio.html" aria-current="true"><span>Studio</span></a></li>
-      <li><a href="contact.html" ><span>Contact</span></a></li>
+      <li><a href="contact.html"><span>Contact</span></a></li>
     </ul>
   </nav>
 </aside>
@@ -40,7 +45,12 @@
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
   <p class="label">Ochralab, Marrakech</p>
-  <a href="index.html">Projets</a>
+  <a href="index.html" data-filter-clear>Projets</a>
+  <ul class="menu-overlay__filters" data-filters aria-label="Filtrer par typologie">
+    <li><a href="index.html#villas" data-filter="Villa">Villas</a></li>
+    <li><a href="index.html#hotels" data-filter="Hôtellerie">Hôtels</a></li>
+    <li><a href="index.html#riads" data-filter="Riad">Riads</a></li>
+  </ul>
   <a href="studio.html">Studio</a>
   <a href="contact.html">Contact</a>
 </div>
