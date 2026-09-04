@@ -68,6 +68,17 @@
   // bas), document.querySelectorAll ne les retrouverait plus ensuite.
   var allTiles = Array.prototype.slice.call(document.querySelectorAll(".tile[data-category]"));
 
+  // Fisher-Yates : un nouvel ordre à chaque arrivée sur la galerie et à
+  // chaque changement de filtre (voir applyFilter et setupLoop plus bas).
+  function shuffle(arr) {
+    var a = arr.slice();
+    for (var i = a.length - 1; i > 0; i--) {
+      var j = Math.floor(Math.random() * (i + 1));
+      var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return a;
+  }
+
   function setTilesVisibility() {
     allTiles.forEach(function (t) {
       t.hidden = !!activeCategory && t.dataset.category !== activeCategory;
@@ -81,11 +92,22 @@
       a.setAttribute("aria-current", activeCategory ? "false" : "true");
     });
   }
+  // Repli sans mosaïque en boucle (mouvement réduit ou GSAP absent) :
+  // les vignettes vivent à plat dans .loop__grid, la mise en page CSS
+  // (`columns`) suit leur ordre DOM. On le mélange nous-mêmes ici. Avec
+  // la boucle active, setupLoop s'en charge à sa façon (voir plus bas) ;
+  // ce repli ne s'exécute donc que tant qu'applyFilterToLoop est vide.
+  function reorderTilesInDom() {
+    var grid = document.querySelector(".loop__grid");
+    if (!grid) return;
+    shuffle(allTiles).forEach(function (t) { grid.appendChild(t); });
+  }
   function applyFilter(category) {
     activeCategory = category || null;
     setTilesVisibility();
     markActiveFilters();
     if (applyFilterToLoop) applyFilterToLoop();
+    else reorderTilesInDom();
   }
 
   // Sur les autres pages (Studio, Contact, projet…), ces mêmes liens
@@ -255,14 +277,24 @@
     var loopTop = 0;
     var active = false;
 
-    // Sous-ensemble réellement affiché : tout si aucun filtre, sinon les
-    // seules vignettes de la catégorie choisie (voir le filtre plus haut).
+    // Sous-ensemble réellement affiché, dans un ordre tiré au hasard une
+    // fois par arrivée / par changement de filtre : `shuffledPool` est mis
+    // en cache et réutilisé tel quel par les reconstructions internes
+    // (redimensionnement) pour ne pas rebattre les cartes sous les yeux
+    // de quelqu'un qui n'a fait que redimensionner sa fenêtre. Seul un
+    // vrai changement de filtre (reshuffle(), plus bas) en tire un nouveau.
     // Les vignettes écartées restent référencées par `originals`, juste
     // détachées du DOM le temps que le filtre change.
-    function pool() {
-      return activeCategory
+    var shuffledPool = null;
+    function reshuffle() {
+      var items = activeCategory
         ? originals.filter(function (t) { return t.dataset.category === activeCategory; })
         : originals;
+      shuffledPool = shuffle(items);
+    }
+    function pool() {
+      if (!shuffledPool) reshuffle();
+      return shuffledPool;
     }
 
     function teardown() {
@@ -403,7 +435,10 @@
 
     // Changer de filtre change la hauteur totale : l'ancienne position de
     // défilement n'a plus de sens, on revient en haut de la mosaïque.
+    // reshuffle() d'abord : un nouveau tirage à chaque changement, pas
+    // seulement au premier chargement.
     applyFilterToLoop = function () {
+      reshuffle();
       var top = section.getBoundingClientRect().top + window.scrollY;
       if (window.scrollY > top) {
         var root = document.documentElement;
