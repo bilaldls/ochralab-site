@@ -501,9 +501,6 @@ ${figure({
     desc: `${p.name}, projet ${p.category.toLowerCase()} du cabinet Ochralab, ${p.images.length} vues.`,
     root: "../",
     preload: `<link rel="preload" as="image" imagesrcset="${srcset(imgPrefix, cover)}" imagesizes="100vw" fetchpriority="high">`,
-    // Direction artistique propre au projet : palette, accent et voix de
-    // titre définis par .theme-<slug> dans assets/styles.css.
-    bodyClass: `theme-project theme-${p.slug}`,
   })}
 ${sidebar("../", "projets")}
 <main id="main">
