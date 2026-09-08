@@ -201,13 +201,15 @@ function sidebar(root, current) {
   // main.js lit l'état (actif / non actif) depuis l'URL et pose
   // aria-current au chargement : aucune des deux copies (rail, tiroir)
   // ne le porte à la génération.
+  // data-transition-label : mot affiché par le rideau de transition
+  // (main.js). « OCHRALAB » n'est gardé que pour le lancement du site.
   const filterLinksNav = CATEGORY_FILTERS.map(
     ([cat, label, slug]) =>
-      `        <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition><span>${label}</span></a></li>`
+      `        <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition data-transition-label="${label}"><span>${label}</span></a></li>`
   ).join("\n");
   const filterLinksDrawer = CATEGORY_FILTERS.map(
     ([cat, label, slug]) =>
-      `    <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition>${label}</a></li>`
+      `    <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition data-transition-label="${label}">${label}</a></li>`
   ).join("\n");
   const navLinks = items
     .map(([id, label, href]) => {
@@ -217,7 +219,7 @@ function sidebar(root, current) {
         id === "projets"
           ? `\n      <ul class="sidebar__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksNav}\n      </ul>`
           : "";
-      return `      <li><a href="${href}"${current_}${clear} data-transition><span>${label}</span></a>${filters}</li>`;
+      return `      <li><a href="${href}"${current_}${clear} data-transition data-transition-label="${label}"><span>${label}</span></a>${filters}</li>`;
     })
     .join("\n");
   const drawerLinks = items
@@ -227,13 +229,13 @@ function sidebar(root, current) {
         id === "projets"
           ? `\n  <ul class="menu-overlay__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksDrawer}\n  </ul>`
           : "";
-      return `  <a href="${href}"${clear} data-transition>${label}</a>${filters}`;
+      return `  <a href="${href}"${clear} data-transition data-transition-label="${label}">${label}</a>${filters}`;
     })
     .join("\n");
 
   return `
 <aside class="sidebar">
-  <a class="wordmark" href="${root}index.html" data-transition>Ochralab</a>
+  <a class="wordmark" href="${root}index.html" data-transition data-transition-label="Projets">Ochralab</a>
   <nav class="sidebar__nav" aria-label="Navigation principale">
     <ul>
 ${navLinks}
@@ -242,7 +244,7 @@ ${navLinks}
 </aside>
 
 <header class="topbar">
-  <a class="wordmark" href="${root}index.html" data-transition>Ochralab</a>
+  <a class="wordmark" href="${root}index.html" data-transition data-transition-label="Projets">Ochralab</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>

@@ -141,7 +141,10 @@
     if (preFallback) preFallback.remove();
     document.documentElement.classList.remove("is-entering");
     document.body.style.overflow = "";
-    try { sessionStorage.removeItem("ochralab-transition"); } catch (e) {}
+    try {
+      sessionStorage.removeItem("ochralab-transition");
+      sessionStorage.removeItem("ochralab-transition-label");
+    } catch (e) {}
     return;
   }
 
@@ -157,10 +160,21 @@
        • au départ : un clic sur un lien [data-transition] le redéploie
          par-dessus la page avant de charger la suivante.
      Le mouvement est continu d'une page à l'autre : le rideau et le mot
-     « OCHRALAB » montent toujours vers le haut. */
+     montent toujours vers le haut. Le mot affiché est « OCHRALAB » au
+     lancement du site, puis le nom de la section cliquée (Projets,
+     Studio, Contact, Villas…). */
   var pre = document.querySelector(".preloader");
   var letters = pre ? pre.querySelectorAll(".preloader__word span") : [];
   if (pre) pre.style.animation = "none"; // on coupe le filet CSS : main.js gère
+
+  // Remplace le mot du rideau et réexpose ses lettres (une par <span>).
+  function setWord(text) {
+    var word = pre.querySelector(".preloader__word");
+    word.innerHTML = String(text).toUpperCase().split("").map(function (c) {
+      return "<span>" + (c === " " ? "&nbsp;" : c) + "</span>";
+    }).join("");
+    letters = word.querySelectorAll("span");
+  }
 
   var firstVisit = false;
   try {
@@ -187,15 +201,21 @@
     document.body.style.overflow = "hidden";
     gsap.set(pre, { yPercent: 0, visibility: "visible" });
     if (firstVisit && !cameFromClick) {
-      // Première arrivée : le mot se dévoile d'abord, rien ne l'a précédé.
+      // Lancement du site : « OCHRALAB » se dévoile d'abord.
+      setWord("Ochralab");
       gsap.set(letters, { y: "110%" });
       intro
         .to(letters, { y: 0, duration: 0.45, stagger: 0.035, ease: "power3.out" })
         .to(letters, { y: "-110%", duration: 0.34, stagger: 0.02, ease: "power3.in", delay: 0.15 })
         .to(pre, { yPercent: -100, duration: 0.5, ease: "power4.inOut", onComplete: endEnter });
     } else {
-      // Transition : le mot est déjà en place (continuité avec la page
-      // précédente), il finit sa montée et le rideau se retire.
+      // Transition : on reprend le nom de la section cliquée, déjà en
+      // place (continuité avec la page précédente) ; il finit sa montée
+      // et le rideau se retire.
+      var enterWord = "Ochralab";
+      try { enterWord = sessionStorage.getItem("ochralab-transition-label") || "Ochralab"; } catch (e) {}
+      try { sessionStorage.removeItem("ochralab-transition-label"); } catch (e) {}
+      setWord(enterWord);
       gsap.set(letters, { y: 0 });
       intro
         .to(letters, { y: "-110%", duration: 0.32, stagger: 0.022, ease: "power3.in" })
@@ -226,8 +246,13 @@
         e.preventDefault();
         leaving = true;
         var href = a.href;
-        try { sessionStorage.setItem("ochralab-transition", "1"); } catch (err) {}
+        var label = a.dataset.transitionLabel || a.textContent.trim() || "Ochralab";
+        try {
+          sessionStorage.setItem("ochralab-transition", "1");
+          sessionStorage.setItem("ochralab-transition-label", label);
+        } catch (err) {}
         document.body.style.overflow = "hidden";
+        setWord(label);
         gsap.set(pre, { visibility: "visible", opacity: 1, yPercent: -100, pointerEvents: "auto" });
         gsap.set(letters, { y: "110%" });
         var gone = false;
