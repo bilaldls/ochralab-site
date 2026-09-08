@@ -290,8 +290,13 @@ const socialLinks = `<div class="contact__social" data-fade>
 // skipPromo : la page Contact fournit elle-même ce bloc dans son propre
 // contenu ; le répéter juste en dessous, identique, serait absurde. Elle
 // ne garde du pied de page que la ligne de copyright.
-const footer = (root, { skipPromo = false } = {}) => `
-${skipPromo ? "" : `<section class="contact" id="contact">
+// minimal : uniquement la mention de copyright (page Studio).
+// skipPromo : pied de page sobre, sans le bloc « Un projet, une question ? »
+// (accueil, contact). Défaut : bloc contact complet (pages projet).
+const footer = (root, { skipPromo = false, minimal = false } = {}) => `
+${minimal ? `<div class="footer-row footer-row--slim">
+  <span>© Ochralab, Marrakech</span>
+</div>` : (skipPromo ? "" : `<section class="contact" id="contact">
   <p class="label">Un projet, une question&nbsp;?</p>
   <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
   ${socialLinks}
@@ -300,8 +305,8 @@ ${skipPromo ? "" : `<section class="contact" id="contact">
     <span>Architecture &amp; design d'intérieur</span>
     <a href="#">Haut de page</a>
   </div>
-</section>`}
-${skipPromo ? `<div class="footer-row page-body">
+</section>`)}
+${!minimal && skipPromo ? `<div class="footer-row page-body">
   <span>© Ochralab, Marrakech</span>
   <span>Architecture &amp; design d'intérieur</span>
   <a href="#">Haut de page</a>
@@ -369,10 +374,6 @@ const studioPage = `${head({
 ${sidebar("", "studio")}
 <main id="main">
 <section class="project-hero" id="top">
-  <div class="project-hero__meta">
-    <span class="label">Studio</span>
-    <span class="label">Marrakech, Maroc</span>
-  </div>
   <h1 class="display project-hero__title" data-lines data-onload>${lines("Studio")}</h1>
 </section>
 <section class="page-body">
@@ -401,7 +402,7 @@ ${sidebar("", "studio")}
   </div>
 </section>
 </main>
-${footer("")}`;
+${footer("", { minimal: true })}`;
 
 await writeFile(path.join(SITE, "studio.html"), studioPage);
 

@@ -775,6 +775,12 @@ html.reduced-motion figure[data-reveal] > img {
 .footer-row a:hover {
   color: var(--ink);
 }
+/* Pied de page réduit (Studio) : juste la mention de copyright, sous un
+   filet, à l'écart du contenu mais sans le bloc contact. */
+.footer-row--slim {
+  margin-top: var(--space-6);
+  padding: var(--space-3) var(--gutter) var(--space-4);
+}
 
 /* ---------- Page projet ---------- */
 
