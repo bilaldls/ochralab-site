@@ -12,30 +12,33 @@
 <link rel="preload" href="../assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 <link rel="preload" as="image" imagesrcset="../images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-480.webp 480w, ../images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-960.webp 960w, ../images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-1600.webp 1600w, ../images/projects/sirayane/avs-ocr-hsir-ext-facade-principale-2400.webp 2400w" imagesizes="100vw" fetchpriority="high">
 <link rel="stylesheet" href="../assets/styles.css">
-<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');try{var f=sessionStorage.getItem('ochralab-transition'),s=sessionStorage.getItem('ochralab-seen');if((f==='1')&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('is-entering')}catch(e){}</script>
 </head>
 <body>
 <a class="skip-link" href="#main">Aller au contenu</a>
 <div class="cursor" aria-hidden="true"></div>
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__word"><span>O</span><span>C</span><span>H</span><span>R</span><span>A</span><span>L</span><span>A</span><span>B</span></div>
+</div>
 
 <aside class="sidebar">
-  <a class="wordmark" href="../index.html">Ochralab</a>
+  <a class="wordmark" href="../index.html" data-transition>Ochralab</a>
   <nav class="sidebar__nav" aria-label="Navigation principale">
     <ul>
-      <li><a href="../index.html" aria-current="true" data-filter-clear><span>Projets</span></a>
+      <li><a href="../index.html" aria-current="true" data-filter-clear data-transition><span>Projets</span></a>
       <ul class="sidebar__filters" data-filters aria-label="Filtrer par typologie">
-        <li><a href="../index.html#villas" data-filter="Villa"><span>Villas</span></a></li>
-        <li><a href="../index.html#hotels" data-filter="Hôtellerie"><span>Hôtels</span></a></li>
-        <li><a href="../index.html#riads" data-filter="Riad"><span>Riads</span></a></li>
+        <li><a href="../index.html#villas" data-filter="Villa" data-transition><span>Villas</span></a></li>
+        <li><a href="../index.html#hotels" data-filter="Hôtellerie" data-transition><span>Hôtels</span></a></li>
+        <li><a href="../index.html#riads" data-filter="Riad" data-transition><span>Riads</span></a></li>
       </ul></li>
-      <li><a href="../studio.html"><span>Studio</span></a></li>
-      <li><a href="../contact.html"><span>Contact</span></a></li>
+      <li><a href="../studio.html" data-transition><span>Studio</span></a></li>
+      <li><a href="../contact.html" data-transition><span>Contact</span></a></li>
     </ul>
   </nav>
 </aside>
 
 <header class="topbar">
-  <a class="wordmark" href="../index.html">Ochralab</a>
+  <a class="wordmark" href="../index.html" data-transition>Ochralab</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
@@ -45,14 +48,14 @@
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
   <p class="label">Ochralab, Marrakech</p>
-  <a href="../index.html" data-filter-clear>Projets</a>
+  <a href="../index.html" data-filter-clear data-transition>Projets</a>
   <ul class="menu-overlay__filters" data-filters aria-label="Filtrer par typologie">
-    <li><a href="../index.html#villas" data-filter="Villa">Villas</a></li>
-    <li><a href="../index.html#hotels" data-filter="Hôtellerie">Hôtels</a></li>
-    <li><a href="../index.html#riads" data-filter="Riad">Riads</a></li>
+    <li><a href="../index.html#villas" data-filter="Villa" data-transition>Villas</a></li>
+    <li><a href="../index.html#hotels" data-filter="Hôtellerie" data-transition>Hôtels</a></li>
+    <li><a href="../index.html#riads" data-filter="Riad" data-transition>Riads</a></li>
   </ul>
-  <a href="../studio.html">Studio</a>
-  <a href="../contact.html">Contact</a>
+  <a href="../studio.html" data-transition>Studio</a>
+  <a href="../contact.html" data-transition>Contact</a>
 </div>
 <main id="main">
 <article>

@@ -158,7 +158,12 @@ em.swash {
   text-transform: none;
 }
 
-/* ---------- Preloader ---------- */
+/* ---------- Rideau de chargement / transition entre pages ----------
+   Présent sur toutes les pages. Masqué par défaut : il ne couvre l'écran
+   que pendant une transition — soit qu'on quitte la page (main.js le
+   déploie), soit qu'on y arrive via un clic de navigation (la classe
+   is-entering est posée avant le premier rendu par le script en ligne du
+   <head>). La première visite de l'accueil le déclenche aussi. */
 
 .preloader {
   position: fixed;
@@ -169,6 +174,10 @@ em.swash {
   display: flex;
   align-items: center;
   justify-content: center;
+  visibility: hidden;
+}
+html.is-entering .preloader {
+  visibility: visible;
 }
 .preloader__word {
   font-weight: 800;
@@ -187,8 +196,9 @@ html.reduced-motion .preloader {
   display: none;
 }
 /* Dernier recours : si main.js ne se charge pas du tout, rien ne retire
-   le préchargeur. Cette animation l'efface seule passé un court délai. */
-.preloader {
+   le rideau une fois affiché. Cette animation l'efface seule passé un
+   court délai (main.js la désactive dès qu'il prend la main). */
+html.is-entering .preloader {
   animation: ochralab-preloader-out 0.4s ease 2.5s forwards;
 }
 @keyframes ochralab-preloader-out {

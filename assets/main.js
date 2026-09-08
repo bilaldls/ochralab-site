@@ -135,48 +135,114 @@
   }
 
   if (reduced || typeof gsap === "undefined") {
-    // Pas d'animation : le préchargeur ne doit pas rester à l'écran.
+    // Pas d'animation : le rideau ne doit pas rester à l'écran, et les
+    // liens de navigation gardent leur comportement normal.
     var preFallback = document.querySelector(".preloader");
     if (preFallback) preFallback.remove();
+    document.documentElement.classList.remove("is-entering");
     document.body.style.overflow = "";
+    try { sessionStorage.removeItem("ochralab-transition"); } catch (e) {}
     return;
   }
 
   gsap.registerPlugin(ScrollTrigger);
   gsap.defaults({ ease: "power3.out" });
 
-  /* ---------- Preloader (index, première visite seulement) ---------- */
+  /* ---------- Rideau de chargement / transition entre pages ----------
+     Un même élément (.preloader) sert dans les deux sens :
+       • à l'arrivée : si on vient d'un clic de navigation (drapeau de
+         session) ou de la toute première visite de l'accueil, il couvre
+         déjà l'écran — classe is-entering posée avant rendu par le
+         <head> — et se retire ;
+       • au départ : un clic sur un lien [data-transition] le redéploie
+         par-dessus la page avant de charger la suivante.
+     Le mouvement est continu d'une page à l'autre : le rideau et le mot
+     « OCHRALAB » montent toujours vers le haut. */
   var pre = document.querySelector(".preloader");
-  var seen = false;
-  try { seen = sessionStorage.getItem("ochralab-seen") === "1"; } catch (e) {}
+  var letters = pre ? pre.querySelectorAll(".preloader__word span") : [];
+  if (pre) pre.style.animation = "none"; // on coupe le filet CSS : main.js gère
+
+  var firstVisit = false;
+  try {
+    firstVisit = sessionStorage.getItem("ochralab-seen") !== "1";
+    sessionStorage.setItem("ochralab-seen", "1");
+  } catch (e) {}
+  var cameFromClick = false;
+  try {
+    cameFromClick = sessionStorage.getItem("ochralab-transition") === "1";
+    sessionStorage.removeItem("ochralab-transition");
+  } catch (e) {}
+
+  var entering = document.documentElement.classList.contains("is-entering");
   var intro = gsap.timeline();
-  if (pre && !seen) {
-    try { sessionStorage.setItem("ochralab-seen", "1"); } catch (e) {}
+
+  function endEnter() {
+    document.documentElement.classList.remove("is-entering");
+    gsap.set(pre, { yPercent: -100, visibility: "hidden", pointerEvents: "none" });
+    document.body.style.overflow = "";
+    ScrollTrigger.refresh();
+  }
+
+  if (pre && entering) {
     document.body.style.overflow = "hidden";
-    intro
-      .to(pre.querySelectorAll(".preloader__word span"), {
-        y: 0, duration: 0.45, stagger: 0.035, ease: "power3.out",
-      })
-      .to(pre.querySelectorAll(".preloader__word span"), {
-        y: "-110%", duration: 0.34, stagger: 0.02, ease: "power3.in", delay: 0.15,
-      })
-      .to(pre, {
-        yPercent: -100, duration: 0.5, ease: "power4.inOut",
-        onComplete: function () {
-          pre.remove();
-          document.body.style.overflow = "";
-        },
-      });
-    // Garde-fou : si la timeline se fige (onglet en arrière-plan, rAF
-    // gelé…), le préchargeur s'efface quand même et libère le défilement.
+    gsap.set(pre, { yPercent: 0, visibility: "visible" });
+    if (firstVisit && !cameFromClick) {
+      // Première arrivée : le mot se dévoile d'abord, rien ne l'a précédé.
+      gsap.set(letters, { y: "110%" });
+      intro
+        .to(letters, { y: 0, duration: 0.45, stagger: 0.035, ease: "power3.out" })
+        .to(letters, { y: "-110%", duration: 0.34, stagger: 0.02, ease: "power3.in", delay: 0.15 })
+        .to(pre, { yPercent: -100, duration: 0.5, ease: "power4.inOut", onComplete: endEnter });
+    } else {
+      // Transition : le mot est déjà en place (continuité avec la page
+      // précédente), il finit sa montée et le rideau se retire.
+      gsap.set(letters, { y: 0 });
+      intro
+        .to(letters, { y: "-110%", duration: 0.32, stagger: 0.022, ease: "power3.in" })
+        .to(pre, { yPercent: -100, duration: 0.5, ease: "power4.inOut", onComplete: endEnter }, "-=0.14");
+    }
+    // Garde-fou : si la timeline se fige, on retire le rideau quand même.
     setTimeout(function () {
-      if (pre && pre.isConnected) {
-        pre.remove();
-        document.body.style.overflow = "";
-      }
-    }, 2200);
+      if (pre && document.documentElement.classList.contains("is-entering")) endEnter();
+    }, 1800);
   } else if (pre) {
-    pre.remove();
+    gsap.set(pre, { yPercent: -100, visibility: "hidden" });
+  }
+
+  /* ---------- Rideau au départ (clic sur un lien [data-transition]) ---------- */
+  if (pre) {
+    var leaving = false;
+    var samePath = function (u) {
+      return u.split("#")[0].split("?")[0].replace(/index\.html$/, "").replace(/\/$/, "");
+    };
+    document.querySelectorAll("a[data-transition]").forEach(function (a) {
+      a.addEventListener("click", function (e) {
+        if (
+          leaving || e.defaultPrevented || e.button !== 0 ||
+          e.metaKey || e.ctrlKey || e.shiftKey || e.altKey || a.target === "_blank"
+        ) return;
+        // Lien vers la page courante : navigation par défaut (aucun rideau).
+        if (samePath(a.href) === samePath(location.href)) return;
+        e.preventDefault();
+        leaving = true;
+        var href = a.href;
+        try { sessionStorage.setItem("ochralab-transition", "1"); } catch (err) {}
+        document.body.style.overflow = "hidden";
+        gsap.set(pre, { visibility: "visible", opacity: 1, yPercent: -100, pointerEvents: "auto" });
+        gsap.set(letters, { y: "110%" });
+        var gone = false;
+        var go = function () {
+          if (gone) return;
+          gone = true;
+          window.location.href = href;
+        };
+        gsap.timeline({ onComplete: go })
+          .to(pre, { yPercent: 0, duration: 0.42, ease: "power2.inOut" })
+          .to(letters, { y: 0, duration: 0.38, stagger: 0.028, ease: "power3.out" }, "-=0.26");
+        // Garde-fou : la navigation part quoi qu'il arrive.
+        setTimeout(go, 1100);
+      });
+    });
   }
 
   /* ---------- Révélations de lignes (héros / titres) ---------- */
@@ -184,7 +250,7 @@
     var inners = el.querySelectorAll(".line-inner");
     if (!inners.length) return;
     if (el.hasAttribute("data-onload")) {
-      intro.to(inners, { y: 0, duration: 1, stagger: 0.12, ease: "power4.out" }, pre && !seen ? "-=0.35" : 0.1);
+      intro.to(inners, { y: 0, duration: 1, stagger: 0.12, ease: "power4.out" }, entering ? "-=0.35" : 0.1);
     } else {
       gsap.to(inners, {
         y: 0, duration: 1, stagger: 0.12, ease: "power4.out",

@@ -137,7 +137,19 @@ function figure({ img, imgPrefix, sizes, alt, parallax = true, eager = false, cs
 </figure>`;
 }
 
-function head({ title, desc, root, preload, bodyClass }) {
+function head({ title, desc, root, preload, bodyClass, home = false }) {
+  // Script en ligne, avant le premier rendu : pose `is-entering` sur <html>
+  // quand on arrive via un clic de navigation (drapeau posé par main.js) —
+  // ou, sur l'accueil uniquement, à la première visite de la session. Le
+  // rideau de transition (.preloader) est alors peint plein écran dès la
+  // première frame, sans clignotement du contenu de la page derrière.
+  const enterCond = home
+    ? "f==='1'||s!=='1'"
+    : "f==='1'";
+  const boot =
+    `document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');` +
+    `try{var f=sessionStorage.getItem('ochralab-transition'),s=sessionStorage.getItem('ochralab-seen');` +
+    `if((${enterCond})&&!matchMedia('(prefers-reduced-motion:reduce)').matches)document.documentElement.classList.add('is-entering')}catch(e){}`;
   return `<!DOCTYPE html>
 <html lang="fr" class="no-js">
 <head>
@@ -152,11 +164,14 @@ function head({ title, desc, root, preload, bodyClass }) {
 <link rel="preload" href="${root}assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 ${preload ?? ""}
 <link rel="stylesheet" href="${root}assets/styles.css">
-<script>document.documentElement.classList.remove('no-js');document.documentElement.classList.add('js');</script>
+<script>${boot}</script>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
 <a class="skip-link" href="#main">Aller au contenu</a>
-<div class="cursor" aria-hidden="true"></div>`;
+<div class="cursor" aria-hidden="true"></div>
+<div class="preloader" aria-hidden="true">
+  <div class="preloader__word">${"OCHRALAB".split("").map((c) => `<span>${c}</span>`).join("")}</div>
+</div>`;
 }
 
 // Filtre par typologie, affiché sous « Projets » : trois catégories fixes,
@@ -188,11 +203,11 @@ function sidebar(root, current) {
   // ne le porte à la génération.
   const filterLinksNav = CATEGORY_FILTERS.map(
     ([cat, label, slug]) =>
-      `        <li><a href="${root}index.html#${slug}" data-filter="${cat}"><span>${label}</span></a></li>`
+      `        <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition><span>${label}</span></a></li>`
   ).join("\n");
   const filterLinksDrawer = CATEGORY_FILTERS.map(
     ([cat, label, slug]) =>
-      `    <li><a href="${root}index.html#${slug}" data-filter="${cat}">${label}</a></li>`
+      `    <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition>${label}</a></li>`
   ).join("\n");
   const navLinks = items
     .map(([id, label, href]) => {
@@ -202,7 +217,7 @@ function sidebar(root, current) {
         id === "projets"
           ? `\n      <ul class="sidebar__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksNav}\n      </ul>`
           : "";
-      return `      <li><a href="${href}"${current_}${clear}><span>${label}</span></a>${filters}</li>`;
+      return `      <li><a href="${href}"${current_}${clear} data-transition><span>${label}</span></a>${filters}</li>`;
     })
     .join("\n");
   const drawerLinks = items
@@ -212,13 +227,13 @@ function sidebar(root, current) {
         id === "projets"
           ? `\n  <ul class="menu-overlay__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksDrawer}\n  </ul>`
           : "";
-      return `  <a href="${href}"${clear}>${label}</a>${filters}`;
+      return `  <a href="${href}"${clear} data-transition>${label}</a>${filters}`;
     })
     .join("\n");
 
   return `
 <aside class="sidebar">
-  <a class="wordmark" href="${root}index.html">Ochralab</a>
+  <a class="wordmark" href="${root}index.html" data-transition>Ochralab</a>
   <nav class="sidebar__nav" aria-label="Navigation principale">
     <ul>
 ${navLinks}
@@ -227,7 +242,7 @@ ${navLinks}
 </aside>
 
 <header class="topbar">
-  <a class="wordmark" href="${root}index.html">Ochralab</a>
+  <a class="wordmark" href="${root}index.html" data-transition>Ochralab</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
@@ -304,16 +319,12 @@ const index = `${head({
   title: "Ochralab, architecture & design d'intérieur à Marrakech",
   desc: DESC,
   root: "",
+  home: true,
   preload: `<link rel="preload" as="image" imagesrcset="${srcset(
     `images/projects/${firstProject.slug}`,
     firstImg
   )}" imagesizes="(max-width: 899px) 46vw, 30vw" fetchpriority="high">`,
 })}
-<div class="preloader" aria-hidden="true">
-  <div class="preloader__word">${"OCHRALAB".split("")
-    .map((c) => `<span>${c}</span>`)
-    .join("")}</div>
-</div>
 ${sidebar("", "projets")}
 <main id="main">
 <section class="loop" id="projets" aria-label="Projets">
