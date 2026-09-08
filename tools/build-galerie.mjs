@@ -1,11 +1,22 @@
 // Générateur du site « Galerie » — minimalisme exagéré.
-import { writeFile, mkdir } from "node:fs/promises";
+import { writeFile, mkdir, readFile } from "node:fs/promises";
+import { createHash } from "node:crypto";
 import path from "node:path";
 import { loadManifest, srcset, largest, altFor, nextOf, pad } from "./lib.mjs";
 
 const SITE = path.resolve(import.meta.dirname, "..");
 const manifest = await loadManifest();
 const projects = manifest.projects;
+
+// Empreinte courte du contenu, ajoutée en ?v=… aux CSS/JS : le navigateur
+// (et le cache de GitHub Pages) recharge le fichier dès qu'il change, sans
+// jamais garder une version périmée. Ne change que si le fichier change.
+async function assetHash(rel) {
+  const buf = await readFile(path.join(SITE, rel));
+  return createHash("sha1").update(buf).digest("hex").slice(0, 8);
+}
+const CSS_V = await assetHash("assets/styles.css");
+const JS_V = await assetHash("assets/main.js");
 
 const DESC =
   "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaimate. Hôtels, riads et villas : douze projets choisis.";
@@ -163,7 +174,7 @@ function head({ title, desc, root, preload, bodyClass, home = false }) {
 <link rel="icon" type="image/svg+xml" href="${root}favicon.svg">
 <link rel="preload" href="${root}assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 ${preload ?? ""}
-<link rel="stylesheet" href="${root}assets/styles.css">
+<link rel="stylesheet" href="${root}assets/styles.css?v=${CSS_V}">
 <script>${boot}</script>
 </head>
 <body${bodyClass ? ` class="${bodyClass}"` : ""}>
@@ -297,7 +308,7 @@ ${skipPromo ? `<div class="footer-row page-body">
 </div>` : ""}
 <script src="${root}assets/vendor/gsap.min.js" defer></script>
 <script src="${root}assets/vendor/ScrollTrigger.min.js" defer></script>
-<script src="${root}assets/main.js" defer></script>
+<script src="${root}assets/main.js?v=${JS_V}" defer></script>
 </body>
 </html>`;
 
