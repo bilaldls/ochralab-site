@@ -417,10 +417,6 @@ const contactPage = `${head({
 ${sidebar("", "contact")}
 <main id="main">
 <section class="project-hero" id="top">
-  <div class="project-hero__meta">
-    <span class="label">Contact</span>
-    <span class="label">Un projet, une question&nbsp;?</span>
-  </div>
   <h1 class="display project-hero__title" data-lines data-onload>${lines("Contact")}</h1>
 </section>
 <section class="page-body contact-page">
@@ -440,7 +436,7 @@ ${sidebar("", "contact")}
   </dl>
 </section>
 </main>
-${footer("", { skipPromo: true })}`;
+${footer("", { minimal: true })}`;
 
 await writeFile(path.join(SITE, "contact.html"), contactPage);
 
