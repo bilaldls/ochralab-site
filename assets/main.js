@@ -348,13 +348,24 @@
   }
 
   /* ============================================================
-     Mosaïque infinie
+     Mosaïque infinie — ordre tiré au sort à chaque tour
      Le défilement reste natif : aucune interception de la molette.
-     Les vignettes sont réparties en colonnes, dont on égalise la hauteur
-     de cycle en répartissant l'écart sur les marges. Chaque colonne est
-     ensuite répétée quatre fois. Passé deux cycles, on retire exactement
-     un cycle à la position de défilement : le contenu étant identique,
-     le saut est invisible et la page ne finit jamais.
+     Les vignettes sont réparties en colonnes. Chaque colonne empile
+     REPEATS exemplaires d'un même cycle, tous forcés à la même hauteur.
+     Passé l'avant-dernier cycle, on retire d'un coup JUMP cycles à la
+     position de défilement : le cycle d'arrivée et celui d'où l'on part
+     sont identiques (« paire d'ancrage »), le saut ne se voit donc pas
+     et la page ne finit jamais.
+
+     Nouveau : entre deux coutures, les quatre cycles intermédiaires (ceux
+     que l'œil parcourt vraiment) reçoivent chacun un ordre indépendant,
+     tiré au sort pendant qu'ils sont hors de l'écran. La paire d'ancrage,
+     elle, est rebattue elle aussi — d'un même tirage pour ses deux cycles,
+     seule contrainte : le cycle d'où part le bond et celui où il retombe
+     doivent rester identiques l'un à l'autre, sans quoi la couture se
+     verrait — une fois remontée au-dessus de la ligne de flottaison.
+     Résultat : chaque écran de mosaïque est un agencement neuf, la
+     mosaïque ne se répète jamais, et chaque couture reste invisible.
      ============================================================ */
   (function setupLoop() {
     var section = document.querySelector(".loop");
@@ -363,46 +374,160 @@
     var originals = Array.prototype.slice.call(grid.querySelectorAll(".tile"));
     if (!originals.length) return;
 
-    var REPEATS = 4;
+    // 8 cycles empilés : cycle 0 (au chargement), ancrage 1 et 6/7,
+    // cycles indépendants rebattus 2, 3, 4 et 5. On recule de JUMP = 5
+    // cycles à la couture (du cycle 6 au cycle 1, tous deux ancrés donc
+    // identiques). Les quatre cycles du milieu, eux, sont tous distincts.
+    var REPEATS = 8;
+    var JUMP = REPEATS - 3;
+    var ANCHOR = [0, 1, REPEATS - 2, REPEATS - 1]; // cycles maintenus identiques
+    var MID = [];                                   // cycles rebattus à chaque tour
+    for (var mi = 2; mi <= REPEATS - 3; mi++) MID.push(mi);
+
+    var cols = [];        // { el, members:[tile…], baseH, sets:[loop__set…] }
     var cycle = 0;
     var loopTop = 0;
     var active = false;
+    var anchorDone = false; // paire d'ancrage déjà rebattue pour ce tour ?
+    var jumping = false;    // garde-fou de réentrance pendant le recalage
 
-    // Sous-ensemble réellement affiché, dans un ordre tiré au hasard une
-    // fois par arrivée / par changement de filtre : `shuffledPool` est mis
-    // en cache et réutilisé tel quel par les reconstructions internes
-    // (redimensionnement) pour ne pas rebattre les cartes sous les yeux
-    // de quelqu'un qui n'a fait que redimensionner sa fenêtre. Seul un
-    // vrai changement de filtre (reshuffle(), plus bas) en tire un nouveau.
-    // Les vignettes écartées restent référencées par `originals`, juste
-    // détachées du DOM le temps que le filtre change.
+    // Sous-ensemble affiché, dans un ordre tiré au hasard une fois par
+    // arrivée / changement de filtre (cache réutilisé au redimensionnement
+    // pour ne pas rebattre les cartes sous les yeux de l'utilisateur).
     var shuffledPool = null;
-    function reshuffle() {
+    function reshufflePool() {
       var items = activeCategory
         ? originals.filter(function (t) { return t.dataset.category === activeCategory; })
         : originals;
       shuffledPool = shuffle(items);
     }
     function pool() {
-      if (!shuffledPool) reshuffle();
+      if (!shuffledPool) reshufflePool();
       return shuffledPool;
     }
 
     function teardown() {
       section.classList.remove("is-looping");
       grid.innerHTML = "";
+      cols = [];
       active = false;
     }
 
     // Hauteur qu'une vignette occupera dans une colonne de largeur donnée,
-    // lue depuis --ratio (posé en style inline par le générateur), sa marge
-    // propre comprise. Sert à équilibrer les colonnes avant même de les
-    // remplir, plutôt que de corriger après coup.
+    // lue depuis --ratio (posé en style inline par le générateur), marge
+    // comprise. Sert à équilibrer les colonnes avant de les remplir.
     function tileHeight(tile, colWidth, gapPx) {
       var v = tile.querySelector("figure").style.getPropertyValue("--ratio");
       var parts = v.split("/").map(function (s) { return parseFloat(s); });
       var ratio = parts[0] && parts[1] ? parts[0] / parts[1] : 1.5;
       return colWidth / ratio + gapPx;
+    }
+
+    // Fabrique un cycle (un « loop__set ») pour une colonne, à partir des
+    // vignettes d'origine dans l'ordre demandé. decorative : le cycle est
+    // cloné (hors parcours clavier, hors lecteurs d'écran, images lazy) ;
+    // sinon il porte les vignettes réelles (cycle 0, celui qui compte pour
+    // le référencement et la première image).
+    function makeSet(orderedOriginals, decorative) {
+      var serie = document.createElement("div");
+      serie.className = "loop__set";
+      if (decorative) serie.setAttribute("aria-hidden", "true");
+      var nodes = orderedOriginals.map(function (orig) {
+        var t = decorative ? orig.cloneNode(true) : orig;
+        t.style.marginBottom = "";
+        if (decorative) {
+          t.setAttribute("tabindex", "-1");
+          var img = t.querySelector("img");
+          if (img) { img.setAttribute("loading", "lazy"); img.removeAttribute("fetchpriority"); }
+        }
+        serie.appendChild(t);
+        return t;
+      });
+      serie._src = orderedOriginals.slice(); // vignettes d'origine, pour l'identité
+      serie._nodes = nodes;                  // nœuds réels de CE cycle, en parallèle
+      return serie;
+    }
+
+    // Cran de compensation en fin de cycle : l'écart resté entre le contenu
+    // et `cycle` est déposé en un seul point (à la couture, déjà invisible)
+    // plutôt que réparti sur chaque marge, ce qui briserait l'effet
+    // « photos jointives ». Hauteur du cycle ensuite imposée au pixel.
+    function padSet(serie, fillH) {
+      var old = serie.querySelector("[data-filler]");
+      if (old) old.remove();
+      if (fillH > 0.5) {
+        var filler = document.createElement("div");
+        filler.setAttribute("aria-hidden", "true");
+        filler.setAttribute("data-filler", "1");
+        filler.style.height = fillH + "px";
+        serie.appendChild(filler);
+      }
+      serie.style.height = cycle + "px";
+    }
+
+    // Réordonne en place les vignettes d'un cycle déjà en DOM. La hauteur
+    // totale ne bouge pas (mêmes vignettes, mêmes marges) : le cran de
+    // compensation reste valable et repart simplement en dernier.
+    function applyOrder(serie, orderedOriginals) {
+      var bySrc = new Map();
+      serie._src.forEach(function (o, i) { bySrc.set(o, serie._nodes[i]); });
+      orderedOriginals.forEach(function (o) {
+        var n = bySrc.get(o);
+        if (n) serie.appendChild(n);
+      });
+      var filler = serie.querySelector("[data-filler]");
+      if (filler) serie.appendChild(filler);
+      serie._src = orderedOriginals.slice();
+      serie._nodes = orderedOriginals.map(function (o) { return bySrc.get(o); });
+    }
+
+    // Un tirage qui évite de coller la même photo de part et d'autre d'une
+    // couture inter-cycle : la première vignette diffère de `avoidFirst`
+    // (dernière du cycle du dessus) et la dernière de `avoidLast` (première
+    // du cycle du dessous). Quelques essais suffisent dès 3 vignettes ; en
+    // dessous on renvoie le dernier tirage tel quel.
+    function orderAvoiding(members, avoidFirst, avoidLast) {
+      var cand = shuffle(members);
+      for (var i = 0; i < 40; i++) {
+        var okF = !avoidFirst || cand[0] !== avoidFirst;
+        var okL = !avoidLast || cand[cand.length - 1] !== avoidLast;
+        if (okF && okL) return cand;
+        cand = shuffle(members);
+      }
+      return cand;
+    }
+
+    // Rebat les cycles `idxs` d'une colonne, dans l'ordre, chacun contraint
+    // contre ses voisins actuels : pas de photo répétée à la jointure avec
+    // le cycle du dessus, ni (si ce voisin n'est pas lui-même rebattu) avec
+    // celui du dessous. Hors écran uniquement.
+    function reshuffleRange(col, idxs) {
+      idxs.slice().sort(function (a, b) { return a - b; }).forEach(function (k) {
+        var s = col.sets[k];
+        if (!s) return;
+        var prev = col.sets[k - 1];
+        var next = col.sets[k + 1];
+        var avoidFirst = prev ? prev._src[prev._src.length - 1] : null;
+        var avoidLast = next && idxs.indexOf(k + 1) === -1 ? next._src[0] : null;
+        applyOrder(s, orderAvoiding(col.members, avoidFirst, avoidLast));
+      });
+    }
+    function reshuffleSets(indices) {
+      cols.forEach(function (col) { reshuffleRange(col, indices); });
+    }
+
+    // La paire d'ancrage doit rester identique membre à membre pour que la
+    // couture ne se voie pas : un seul tirage, appliqué à tous ses cycles.
+    // Puis on recale les cycles frais qui la bordent (2 et l'avant-dernier
+    // du milieu) contre ce nouvel ordre, pour ne pas rouvrir de doublon.
+    function reshuffleAnchor() {
+      cols.forEach(function (col) {
+        var order = shuffle(col.members);
+        ANCHOR.forEach(function (k) {
+          if (col.sets[k]) applyOrder(col.sets[k], order);
+        });
+        reshuffleRange(col, [MID[0], MID[MID.length - 1]]);
+      });
     }
 
     function build() {
@@ -414,106 +539,93 @@
       var gapPx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tile-gap")) || 3;
       var colWidth = (grid.getBoundingClientRect().width - gapPx * (colCount - 1)) / colCount;
 
-      var cols = [];
       for (var c = 0; c < colCount; c++) {
         var el = document.createElement("div");
         el.className = "loop__col";
-        cols.push({ el: el, tiles: [], estH: 0 });
+        cols.push({ el: el, members: [], estH: 0, sets: [] });
         grid.appendChild(el);
       }
-      // Chaque vignette rejoint la colonne actuellement la plus courte
-      // (estimée depuis son ratio, pas mesurée après coup) : les colonnes
-      // finissent à des hauteurs proches, sans avoir à les rattraper ensuite.
+      // Chaque vignette rejoint la colonne la plus courte (estimée depuis
+      // son ratio) : les colonnes finissent à des hauteurs proches.
       items.forEach(function (tile) {
-        tile.style.marginBottom = "";
         var target = cols[0];
-        cols.forEach(function (c) { if (c.estH < target.estH) target = c; });
-        target.el.appendChild(tile);
-        target.tiles.push(tile);
+        cols.forEach(function (col) { if (col.estH < target.estH) target = col; });
+        target.members.push(tile);
         target.estH += tileHeight(tile, colWidth, gapPx);
       });
 
       section.classList.add("is-looping");
 
-      // Chaque série vit dans un conteneur flex : à l'intérieur, les marges
-      // ne fusionnent pas. Mesurée en bloc ordinaire, la hauteur excluait la
-      // marge basse de la dernière vignette et faussait le cycle.
+      // Cycle 0 par colonne (vignettes réelles, ordre du pool), mesuré dans
+      // son conteneur flex — marges non fusionnées — pour fixer `cycle`.
       cols.forEach(function (col) {
-        var serie = document.createElement("div");
-        serie.className = "loop__set";
-        col.tiles.forEach(function (t) { serie.appendChild(t); });
-        col.el.appendChild(serie);
-        col.serie = serie;
+        var set0 = makeSet(col.members.slice(), false);
+        col.el.appendChild(set0);
+        col.sets.push(set0);
+        col.baseH = set0.getBoundingClientRect().height;
       });
+      cycle = Math.ceil(Math.max.apply(null, cols.map(function (c) { return c.baseH; })));
 
+      // Empilement : cycle 0 réel (déjà en place), le reste cloné. La paire
+      // d'ancrage part dans l'ordre du pool ; les cycles intermédiaires
+      // partent déjà mélangés (ils le seront de nouveau à chaque couture).
       cols.forEach(function (col) {
-        col.h = col.serie.getBoundingClientRect().height;
-      });
-      var maxH = Math.max.apply(null, cols.map(function (c) { return c.h; }));
-      cycle = Math.ceil(maxH);
-
-      cols.forEach(function (col) {
-        // Le reliquat est déposé en un seul point, en fin de série, plutôt
-        // que réparti sur chaque vignette : avec un écart aussi resserré
-        // (--tile-gap), gonfler chaque marge briserait l'effet photos
-        // jointives. Un point de compensation unique ne se voit qu'à la
-        // couture, déjà invisible puisqu'elle est identique à chaque tour.
-        var reste = cycle - col.h;
-        if (reste > 0.5) {
-          var filler = document.createElement("div");
-          filler.setAttribute("aria-hidden", "true");
-          filler.style.height = reste + "px";
-          col.serie.appendChild(filler);
-        }
-        // Hauteur imposée : l'intervalle entre deux séries vaut exactement
-        // `cycle`, sans dérive possible au sous-pixel.
-        col.serie.style.height = cycle + "px";
-
+        padSet(col.sets[0], cycle - col.baseH);
         for (var k = 1; k < REPEATS; k++) {
-          var copie = col.serie.cloneNode(true);
-          // Décoratif : hors lecteurs d'écran et hors parcours clavier.
-          copie.setAttribute("aria-hidden", "true");
-          copie.querySelectorAll(".tile").forEach(function (t) {
-            t.setAttribute("tabindex", "-1");
-            var img = t.querySelector("img");
-            if (img) {
-              img.setAttribute("loading", "lazy");
-              img.removeAttribute("fetchpriority");
-            }
-          });
-          col.el.appendChild(copie);
+          var anchored = ANCHOR.indexOf(k) !== -1;
+          var order = anchored ? col.members.slice() : shuffle(col.members);
+          var serie = makeSet(order, true);
+          padSet(serie, cycle - col.baseH);
+          col.sets.push(serie);
+          col.el.appendChild(serie);
         }
+        // Les cycles frais sont partis d'un simple mélange : on repasse
+        // pour écarter tout doublon de photo aux jointures inter-cycles.
+        reshuffleRange(col, MID);
       });
 
       loopTop = section.getBoundingClientRect().top + window.scrollY;
+      anchorDone = false;
+      jumping = false;
       active = cycle > 0;
     }
 
     function onScroll() {
-      if (!active || !cycle) return;
+      if (!active || !cycle || jumping) return;
       var p = window.scrollY - loopTop;
-      // Fenêtre bornée à un seul cycle : un défilement très rapide (molette
-      // à fond, touche Fin) peut dépasser directement cycle*3 en un saut,
-      // et reculer d'un cycle à cet endroit-là déplacerait la vue à un
-      // endroit qui n'a plus rien à voir avec ce que l'utilisateur regarde.
-      if (p > cycle * 2 && p < cycle * 3) {
-        // La feuille de style déclare scroll-behavior: smooth ; sans cette
-        // neutralisation le repositionnement s'animerait et la page
-        // remonterait visiblement au lieu de sauter.
+
+      // Cycle 1 passé sous la ligne de flottaison (donc aussi le cycle 0,
+      // et les cycles d'ancrage du bas sont loin devant) : on rebat la
+      // paire d'ancrage pour le tour suivant, une seule fois par tour.
+      if (!anchorDone && p > cycle * 2.4) {
+        reshuffleAnchor();
+        anchorDone = true;
+      }
+
+      // Couture : on entre dans le cycle d'où part le bond. Il est
+      // identique au cycle d'arrivée : le recul de JUMP cycles ne se voit
+      // pas. On en profite — les cycles intermédiaires sont alors tous
+      // au-dessus de l'écran — pour les rebattre avant de reculer.
+      if (p > cycle * (REPEATS - 2)) {
+        jumping = true;
+        reshuffleSets(MID);
         var root = document.documentElement;
         var memo = root.style.scrollBehavior;
+        // scroll-behavior: smooth est déclaré en CSS ; sans cette
+        // neutralisation le recalage s'animerait et se verrait.
         root.style.scrollBehavior = "auto";
-        window.scrollTo(0, window.scrollY - cycle);
+        window.scrollTo(0, window.scrollY - cycle * JUMP);
         root.style.scrollBehavior = memo;
+        anchorDone = false;
+        requestAnimationFrame(function () { jumping = false; });
       }
     }
 
-    // Sans mouvement : mosaïque ordinaire, finie, défilement normal.
+    // Sans mouvement : mosaïque ordinaire, finie, défilement normal
+    // (l'ordre a déjà été mélangé une fois par reorderTilesInDom plus haut).
     if (reduced) return;
 
-    function sync() {
-      build();
-    }
+    function sync() { build(); }
     if (document.readyState === "complete") sync();
     else window.addEventListener("load", sync);
 
@@ -524,12 +636,11 @@
       resizeTimer = setTimeout(sync, 250);
     });
 
-    // Changer de filtre change la hauteur totale : l'ancienne position de
-    // défilement n'a plus de sens, on revient en haut de la mosaïque.
-    // reshuffle() d'abord : un nouveau tirage à chaque changement, pas
-    // seulement au premier chargement.
+    // Changer de filtre change la hauteur totale : l'ancienne position n'a
+    // plus de sens, on revient en haut de la mosaïque. reshufflePool()
+    // d'abord : un nouveau tirage à chaque changement.
     applyFilterToLoop = function () {
-      reshuffle();
+      reshufflePool();
       var top = section.getBoundingClientRect().top + window.scrollY;
       if (window.scrollY > top) {
         var root = document.documentElement;
