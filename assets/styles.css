@@ -972,9 +972,6 @@ html.reduced-motion figure[data-reveal] > img {
 .g-item {
   width: 100%;
   margin: 0;
-  /* Arrivée depuis une vignette de l'accueil (#vue-NN) : la photo ne
-     se glisse pas sous la barre fixe du mobile. */
-  scroll-margin-top: calc(var(--header-h) + var(--space-2));
 }
 @media (min-width: 900px) {
   .g-item--full {

@@ -359,13 +359,11 @@ ${!minimal && skipPromo ? `<div class="footer-row page-body">
 
 // Ordre des vues d'un projet, tel que la page projet les numérote : la
 // couverture en tête (01, dans le héros), puis le reste de la galerie
-// (02, 03…). Partagé par la mosaïque et les pages projet pour que le lien
-// d'une vignette retombe exactement sur sa photo.
+// (02, 03…). Partagé par la mosaïque et les pages projet.
 function orderedViews(p) {
   const cover = p.images.find((im) => im.base === p.cover);
   return [cover, ...p.images.filter((im) => im !== cover)];
 }
-const viewId = (n) => `vue-${pad(n)}`;
 
 // Liste plate : le CSS multi-colonnes suffit à produire la mosaïque, même
 // sans JavaScript. Le script ne fait que redistribuer ces mêmes vignettes
@@ -373,16 +371,15 @@ const viewId = (n) => `vue-${pad(n)}`;
 //
 // Toutes les photos de tous les projets y figurent, pas seulement les
 // couvertures : on parcourt l'ensemble et l'on clique sur celle qui
-// accroche l'œil. La couverture mène en haut de la page projet, les autres
-// directement à leur vue (#vue-02, #vue-03…). Les quatre premières
+// accroche l'œil. Quelle que soit la photo cliquée, on arrive en haut de
+// la page projet, sur le titre et la fiche. Les quatre premières
 // couvertures restent prioritaires au chargement (LCP).
 const tilesHtml = projects
   .flatMap((p, pi) =>
     orderedViews(p).map((img, vi) => {
       const prefix = `images/projects/${p.slug}`;
-      const href = vi === 0 ? `projets/${p.slug}.html` : `projets/${p.slug}.html#${viewId(vi + 1)}`;
       const eager = vi === 0 && pi < 4;
-      return `<a class="tile" href="${href}" data-cursor-view data-name="${p.name}" data-project="${p.slug}">
+      return `<a class="tile" href="projets/${p.slug}.html" data-cursor-view data-name="${p.name}" data-project="${p.slug}">
   <figure style="--ratio: ${img.w} / ${img.h}; background-image: url('${img.lqip}');">
     <img src="${largest(prefix, img)}" srcset="${srcset(prefix, img)}" sizes="(max-width: 899px) 46vw, 30vw" alt="${altFor(p, img, vi, p.images.length)}" width="${img.w}" height="${img.h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>
   </figure>
@@ -666,10 +663,9 @@ projects.forEach((p, pi) => {
   const next = nextOf(projects, pi);
   const imgPrefix = `../images/projects/${p.slug}`;
 
-  // id="vue-NN" : cible des vignettes de la mosaïque d'accueil.
   const galleryHtml = galleryLayout(rest)
     .map(({ img, cls }, gi) => {
-      return `<div class="g-item ${cls}" id="${viewId(gi + 2)}">
+      return `<div class="g-item ${cls}">
 ${figure({
         img,
         imgPrefix,

@@ -292,19 +292,6 @@
     });
   });
 
-  /* ---------- Arrivée sur une vue précise (#vue-NN) ----------
-     Une vignette de l'accueil ouvre la page projet directement sur sa
-     photo. ScrollTrigger n'évalue ses déclencheurs qu'au `load`, qui
-     attend toutes les images : sans ce recalcul immédiat, la photo visée
-     resterait masquée par son rideau plusieurs secondes. */
-  var landing = /^#vue-\d+$/.test(location.hash) && document.getElementById(location.hash.slice(1));
-  if (landing) {
-    requestAnimationFrame(function () {
-      landing.scrollIntoView({ behavior: "instant", block: "start" });
-      ScrollTrigger.refresh();
-    });
-  }
-
   /* ---------- Curseur personnalisé ---------- */
   var cursor = document.querySelector(".cursor");
   if (cursor && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
