@@ -56,26 +56,18 @@
     if (!img.complete) fadeOnLoad(img);
   });
 
-  /* ---------- Filtre par typologie (Villas / Hôtels / Riads) ----------
-     Indépendant de GSAP : les vignettes qui ne correspondent pas à la
-     catégorie choisie sont masquées via l'attribut natif `hidden`. Quand
-     la mosaïque boucle (plus bas), applyFilterToLoop — assignée par
-     setupLoop — reconstruit les colonnes avec les seules vignettes
-     visibles ; sinon la mise en page CSS (`columns`) se recompose seule
-     autour des vignettes masquées. L'état vit dans le hash de l'URL
-     (#villas, #hotels, #riads) et non en session : revenir sur l'accueil
-     sans hash montre toujours la galerie complète. */
-  var CATEGORY_BY_HASH = { villas: "Villa", hotels: "Hôtellerie", riads: "Riad" };
-  var HASH_BY_CATEGORY = { Villa: "villas", "Hôtellerie": "hotels", Riad: "riads" };
-  var activeCategory = null;
-  var applyFilterToLoop = null;
-  // Capturées une fois pour toutes, avant tout filtrage : la mosaïque en
-  // boucle détache du DOM les vignettes écartées (voir setupLoop plus
-  // bas), document.querySelectorAll ne les retrouverait plus ensuite.
-  var allTiles = Array.prototype.slice.call(document.querySelectorAll(".tile[data-category]"));
+  /* ---------- Anciens liens filtrés (#villas, #hotels, #riads) ----------
+     Les typologies ont désormais leur propre page (liste numérotée) : un
+     ancien lien vers l'accueil filtré y est renvoyé. */
+  var CATEGORY_PAGE = { villas: "villas.html", hotels: "hotels.html", riads: "riads.html" };
+  if (document.querySelector(".loop") && CATEGORY_PAGE[location.hash.slice(1)]) {
+    location.replace(CATEGORY_PAGE[location.hash.slice(1)]);
+    return;
+  }
+  var allTiles = Array.prototype.slice.call(document.querySelectorAll(".loop .tile"));
 
-  // Fisher-Yates : un nouvel ordre à chaque arrivée sur la galerie et à
-  // chaque changement de filtre (voir applyFilter et setupLoop plus bas).
+  // Fisher-Yates : un nouvel ordre à chaque arrivée sur la galerie (voir
+  // setupLoop plus bas).
   // La mosaïque porte toutes les photos de chaque projet : on écarte
   // ensuite, autant que possible, deux photos d'un même projet qui se
   // suivraient (voir spread).
@@ -93,8 +85,8 @@
   }
   // Passe gloutonne : quand une vignette suit une photo du même projet, on
   // l'échange avec la première vignette plus loin qui n'en est pas. Si le
-  // reste n'est fait que de ce projet (filtre Riads, très dominé par les
-  // Hirondelles), on laisse tel quel : mieux vaut un doublon qu'une boucle.
+  // reste n'est fait que de ce projet, on laisse tel quel : mieux vaut un
+  // doublon qu'une boucle.
   function spread(a) {
     for (var i = 1; i < a.length; i++) {
       var prev = projectOf(a[i - 1]);
@@ -109,60 +101,12 @@
     return a;
   }
 
-  function setTilesVisibility() {
-    allTiles.forEach(function (t) {
-      t.hidden = !!activeCategory && t.dataset.category !== activeCategory;
-    });
-  }
-  function markActiveFilters() {
-    document.querySelectorAll("[data-filter]").forEach(function (a) {
-      a.setAttribute("aria-current", a.dataset.filter === activeCategory ? "true" : "false");
-    });
-    document.querySelectorAll("[data-filter-clear]").forEach(function (a) {
-      a.setAttribute("aria-current", activeCategory ? "false" : "true");
-    });
-  }
   // Repli sans mosaïque en boucle (mouvement réduit ou GSAP absent) :
   // les vignettes vivent à plat dans .loop__grid, la mise en page CSS
   // (`columns`) suit leur ordre DOM. On le mélange nous-mêmes ici. Avec
-  // la boucle active, setupLoop s'en charge à sa façon (voir plus bas) ;
-  // ce repli ne s'exécute donc que tant qu'applyFilterToLoop est vide.
-  function reorderTilesInDom() {
-    var grid = document.querySelector(".loop__grid");
-    if (!grid) return;
-    shuffle(allTiles).forEach(function (t) { grid.appendChild(t); });
-  }
-  function applyFilter(category) {
-    activeCategory = category || null;
-    setTilesVisibility();
-    markActiveFilters();
-    if (applyFilterToLoop) applyFilterToLoop();
-    else reorderTilesInDom();
-  }
-
-  // Sur les autres pages (Studio, Contact, projet…), ces mêmes liens
-  // pointent vers l'accueil : navigation ordinaire, pas d'interception.
-  var onGallery = !!document.querySelector(".loop");
-  document.querySelectorAll("[data-filter], [data-filter-clear]").forEach(function (a) {
-    a.addEventListener("click", function (e) {
-      if (!onGallery) return;
-      e.preventDefault();
-      if (a.hasAttribute("data-filter-clear")) {
-        applyFilter(null);
-      } else {
-        var cat = a.dataset.filter;
-        applyFilter(activeCategory === cat ? null : cat);
-      }
-      // Reflète l'état réel après bascule (pas l'URL statique du lien
-      // cliqué) : un second clic sur le même filtre l'annule et doit
-      // retirer le hash, pas le remettre.
-      var newHash = activeCategory ? HASH_BY_CATEGORY[activeCategory] : "";
-      history.replaceState(null, "", newHash ? "#" + newHash : location.pathname + location.search);
-    });
-  });
-  if (onGallery) {
-    applyFilter(CATEGORY_BY_HASH[location.hash.replace("#", "")] || null);
-  }
+  // la boucle active, setupLoop la reconstruit de toute façon.
+  var grid0 = document.querySelector(".loop__grid");
+  if (grid0) shuffle(allTiles).forEach(function (t) { grid0.appendChild(t); });
 
   if (reduced || typeof gsap === "undefined") {
     // Pas d'animation : le rideau ne doit pas rester à l'écran, et les
@@ -460,18 +404,12 @@
     var anchorDone = false; // paire d'ancrage déjà rebattue pour ce tour ?
     var jumping = false;    // garde-fou de réentrance pendant le recalage
 
-    // Sous-ensemble affiché, dans un ordre tiré au hasard une fois par
-    // arrivée / changement de filtre (cache réutilisé au redimensionnement
-    // pour ne pas rebattre les cartes sous les yeux de l'utilisateur).
+    // Vignettes dans un ordre tiré au hasard une fois par arrivée (cache
+    // réutilisé au redimensionnement pour ne pas rebattre les cartes sous
+    // les yeux de l'utilisateur).
     var shuffledPool = null;
-    function reshufflePool() {
-      var items = activeCategory
-        ? originals.filter(function (t) { return t.dataset.category === activeCategory; })
-        : originals;
-      shuffledPool = shuffle(items);
-    }
     function pool() {
-      if (!shuffledPool) reshufflePool();
+      if (!shuffledPool) shuffledPool = shuffle(originals);
       return shuffledPool;
     }
 
@@ -609,7 +547,7 @@
     function build() {
       teardown();
       var items = pool();
-      if (!items.length) return; // catégorie vide : ne devrait pas arriver
+      if (!items.length) return;
 
       var colCount = window.matchMedia("(min-width: 900px)").matches ? 3 : 2;
       var gapPx = parseFloat(getComputedStyle(document.documentElement).getPropertyValue("--tile-gap")) || 3;
@@ -701,7 +639,7 @@
     }
 
     // Sans mouvement : mosaïque ordinaire, finie, défilement normal
-    // (l'ordre a déjà été mélangé une fois par reorderTilesInDom plus haut).
+    // (l'ordre a déjà été mélangé une fois plus haut).
     if (reduced) return;
 
     function sync() { build(); }
@@ -715,21 +653,6 @@
       resizeTimer = setTimeout(sync, 250);
     });
 
-    // Changer de filtre change la hauteur totale : l'ancienne position n'a
-    // plus de sens, on revient en haut de la mosaïque. reshufflePool()
-    // d'abord : un nouveau tirage à chaque changement.
-    applyFilterToLoop = function () {
-      reshufflePool();
-      var top = section.getBoundingClientRect().top + window.scrollY;
-      if (window.scrollY > top) {
-        var root = document.documentElement;
-        var memo = root.style.scrollBehavior;
-        root.style.scrollBehavior = "auto";
-        window.scrollTo(0, top);
-        root.style.scrollBehavior = memo;
-      }
-      sync();
-    };
   })();
 
   /* Recalage après chargement complet (images) */

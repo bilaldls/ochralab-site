@@ -224,11 +224,12 @@ ${preload ?? ""}
 </div>`;
 }
 
-// Filtre par typologie, affiché sous « Projets » : trois catégories fixes,
-// qui correspondent aux valeurs de `category` posées sur chaque projet
-// (voir manifest.json / PROJECT_INFO). Purement cliquable : sans script,
-// ce sont des liens ordinaires vers l'accueil, non filtré.
-const CATEGORY_FILTERS = [
+// Typologies, affichées sous « Projets » : trois catégories fixes, qui
+// correspondent aux valeurs de `category` posées sur chaque projet (voir
+// manifest.json). Chacune a sa propre page, une liste numérotée de ses
+// projets (voir « Pages typologie » plus bas) : [catégorie, libellé, slug
+// = nom du fichier HTML].
+const CATEGORY_PAGES = [
   ["Villa", "Villas", "villas"],
   ["Hôtellerie", "Hôtels", "hotels"],
   ["Riad", "Riads", "riads"],
@@ -238,48 +239,42 @@ const CATEGORY_FILTERS = [
 // Placement identique sur toutes les pages : une navigation qui se déplace
 // d'une page à l'autre désoriente.
 //
-// Projets, Studio et Contact sont trois pages distinctes (plus d'ancres :
-// la mosaïque d'accueil défile sans fin, y sauter par ancre obligeait à
-// suspendre la boucle le temps du défilement doux). `current` marque la
-// page active à la génération, sans JavaScript de repérage au scroll.
+// Projets, Studio, Contact et les trois typologies sont des pages
+// distinctes. `current` (« projets », « studio », « contact » ou le slug
+// d'une typologie) marque la page active à la génération, sans JavaScript.
 function sidebar(root, current) {
   const items = [
     ["projets", "Projets", `${root}index.html`],
     ["studio", "Studio", `${root}studio.html`],
     ["contact", "Contact", `${root}contact.html`],
   ];
-  // main.js lit l'état (actif / non actif) depuis l'URL et pose
-  // aria-current au chargement : aucune des deux copies (rail, tiroir)
-  // ne le porte à la génération.
   // data-transition-label : mot affiché par le rideau de transition
   // (main.js). « OCHRA » n'est gardé que pour le lancement du site.
-  const filterLinksNav = CATEGORY_FILTERS.map(
-    ([cat, label, slug]) =>
-      `        <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition data-transition-label="${label}"><span>${label}</span></a></li>`
+  const isCurrent = (id) => (id === current ? ' aria-current="true"' : "");
+  const categoryLinksNav = CATEGORY_PAGES.map(
+    ([, label, slug]) =>
+      `        <li><a href="${root}${slug}.html"${isCurrent(slug)} data-transition data-transition-label="${label}"><span>${label}</span></a></li>`
   ).join("\n");
-  const filterLinksDrawer = CATEGORY_FILTERS.map(
-    ([cat, label, slug]) =>
-      `    <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition data-transition-label="${label}">${label}</a></li>`
+  const categoryLinksDrawer = CATEGORY_PAGES.map(
+    ([, label, slug]) =>
+      `    <li><a href="${root}${slug}.html"${isCurrent(slug)} data-transition data-transition-label="${label}">${label}</a></li>`
   ).join("\n");
   const navLinks = items
     .map(([id, label, href]) => {
-      const current_ = id === current ? ' aria-current="true"' : "";
-      const clear = id === "projets" ? " data-filter-clear" : "";
-      const filters =
+      const sub =
         id === "projets"
-          ? `\n      <ul class="sidebar__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksNav}\n      </ul>`
+          ? `\n      <ul class="sidebar__filters" aria-label="Typologies">\n${categoryLinksNav}\n      </ul>`
           : "";
-      return `      <li><a href="${href}"${current_}${clear} data-transition data-transition-label="${label}"><span>${label}</span></a>${filters}</li>`;
+      return `      <li><a href="${href}"${isCurrent(id)} data-transition data-transition-label="${label}"><span>${label}</span></a>${sub}</li>`;
     })
     .join("\n");
   const drawerLinks = items
     .map(([id, label, href]) => {
-      const clear = id === "projets" ? " data-filter-clear" : "";
-      const filters =
+      const sub =
         id === "projets"
-          ? `\n  <ul class="menu-overlay__filters" data-filters aria-label="Filtrer par typologie">\n${filterLinksDrawer}\n  </ul>`
+          ? `\n  <ul class="menu-overlay__filters" aria-label="Typologies">\n${categoryLinksDrawer}\n  </ul>`
           : "";
-      return `  <a href="${href}"${clear} data-transition data-transition-label="${label}">${label}</a>${filters}`;
+      return `  <a href="${href}"${isCurrent(id)} data-transition data-transition-label="${label}">${label}</a>${sub}`;
     })
     .join("\n");
 
@@ -387,7 +382,7 @@ const tilesHtml = projects
       const prefix = `images/projects/${p.slug}`;
       const href = vi === 0 ? `projets/${p.slug}.html` : `projets/${p.slug}.html#${viewId(vi + 1)}`;
       const eager = vi === 0 && pi < 4;
-      return `<a class="tile" href="${href}" data-cursor-view data-name="${p.name}" data-category="${p.category}" data-project="${p.slug}">
+      return `<a class="tile" href="${href}" data-cursor-view data-name="${p.name}" data-project="${p.slug}">
   <figure style="--ratio: ${img.w} / ${img.h}; background-image: url('${img.lqip}');">
     <img src="${largest(prefix, img)}" srcset="${srcset(prefix, img)}" sizes="(max-width: 899px) 46vw, 30vw" alt="${altFor(p, img, vi, p.images.length)}" width="${img.w}" height="${img.h}" ${eager ? 'fetchpriority="high"' : 'loading="lazy" decoding="async"'}>
   </figure>
@@ -550,6 +545,64 @@ ${footer("", { minimal: true })}`;
 
 await writeFile(path.join(SITE, "contact.html"), contactPage);
 
+/* ---------------- Pages typologie (Villas / Hôtels / Riads) ---------------- */
+
+// Pas de mosaïque ici : une liste numérotée, un projet par ligne — numéro,
+// nom, lieu et photo de couverture. Toute la ligne mène à la page projet.
+// Ordre : celui du manifeste, comme partout ailleurs sur le site.
+for (const [category, label, slug] of CATEGORY_PAGES) {
+  const list = projects.filter((p) => p.category === category);
+  const itemsHtml = list
+    .map((p, i) => {
+      const cover = p.images.find((im) => im.base === p.cover);
+      const lieu = PROJECT_INFO[p.slug]?.lieu;
+      return `  <li class="typo-item">
+    <a class="typo-item__link" href="projets/${p.slug}.html" data-cursor-view>
+      <span class="typo-item__num">${pad(i + 1)}</span>
+      <span class="typo-item__text">
+        <span class="display typo-item__name">${p.name}</span>${lieu ? `\n        <span class="label">${lieu}</span>` : ""}
+      </span>
+      <div class="typo-item__figure">
+${figure({
+        img: cover,
+        imgPrefix: `images/projects/${p.slug}`,
+        sizes: "(max-width: 899px) 100vw, 34vw",
+        alt: altFor(p, cover, 0, p.images.length),
+        parallax: false,
+        cssRatio: false,
+        eager: i === 0,
+      })}
+      </div>
+    </a>
+  </li>`;
+    })
+    .join("\n");
+
+  const page = `${head({
+    title: `${label}, ${BRAND}`,
+    desc: `${label} : ${list.length} projets du cabinet ${BRAND}, architecture et design d'intérieur à Marrakech.`,
+    root: "",
+  })}
+${sidebar("", slug)}
+<main id="main">
+<section class="project-hero" id="top">
+  <div class="project-hero__meta">
+    <span class="label">Projets</span>
+    <span class="label">${pad(list.length)} projets</span>
+  </div>
+  <h1 class="display project-hero__title" data-lines data-onload>${lines(label)}</h1>
+</section>
+<section class="page-body">
+<ol class="typo-list">
+${itemsHtml}
+</ol>
+</section>
+</main>
+${footer("", { skipPromo: true })}`;
+
+  await writeFile(path.join(SITE, `${slug}.html`), page);
+}
+
 /* ---------------- Pages projet ---------------- */
 
 await mkdir(path.join(SITE, "projets"), { recursive: true });
@@ -667,4 +720,4 @@ ${footer("../")}`;
   writeFile(path.join(SITE, "projets", `${p.slug}.html`), page);
 });
 
-console.log(`galerie : index + ${projects.length} pages projet générées.`);
+console.log(`galerie : index + ${CATEGORY_PAGES.length} pages typologie + ${projects.length} pages projet générées.`);

@@ -35,8 +35,10 @@ l'URL canonique dans les balises `og:` des pages générées.
 ## Structure
 
 ```
-index.html            page d'accueil
-projets/*.html        une page par projet (12)
+index.html            page d'accueil (mosaïque de toutes les photos)
+villas.html, hotels.html, riads.html
+                      une liste numérotée des projets de chaque typologie
+projets/*.html        une page par projet (15)
 assets/
   styles.css          feuille de style unique
   main.js             animations (GSAP)
