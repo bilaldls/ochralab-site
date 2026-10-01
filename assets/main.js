@@ -367,26 +367,52 @@
     cursor.style.opacity = 0;
     var xTo = gsap.quickTo(cursor, "x", { duration: 0.18, ease: "power3.out" });
     var yTo = gsap.quickTo(cursor, "y", { duration: 0.18, ease: "power3.out" });
-    window.addEventListener("mousemove", function (e) {
-      cursor.style.opacity = 1;
-      xTo(e.clientX);
-      yTo(e.clientY);
-    });
-    // 92px et non 72 : les noms de projet composés de deux mots
-    // (« Devils Rock ») ont besoin d'un peu plus de place que « Voir ».
-    document.querySelectorAll("[data-cursor-view]").forEach(function (el) {
-      el.addEventListener("mouseenter", function () {
+
+    // Survol délégué au document, et non posé vignette par vignette : la
+    // mosaïque en boucle clone ses vignettes (cloneNode ne recopie pas les
+    // écouteurs), le nom du projet disparaissait donc passé le premier
+    // tour. Ici, toute vignette présente ou à venir est couverte.
+    var hovered = null;
+    var lastX = -1, lastY = -1;
+    function setHovered(el) {
+      if (el === hovered) return;
+      hovered = el;
+      if (el) {
+        // 92px et non 72 : les noms de projet composés de deux mots
+        // (« Devils Rock ») ont besoin d'un peu plus de place que « Voir ».
         cursor.classList.add("is-view");
         cursor.textContent = el.dataset.name || "Voir";
-        gsap.to(cursor, { width: 92, height: 92, x: "-=0", duration: 0.3 });
-        gsap.to(cursor, { marginLeft: -46, marginTop: -46, duration: 0.3 });
-      });
-      el.addEventListener("mouseleave", function () {
+        gsap.to(cursor, { width: 92, height: 92, marginLeft: -46, marginTop: -46, duration: 0.16, ease: "power3.out", overwrite: "auto" });
+      } else {
         cursor.classList.remove("is-view");
         cursor.textContent = "";
-        gsap.to(cursor, { width: 12, height: 12, marginLeft: -6, marginTop: -6, duration: 0.3 });
-      });
+        gsap.to(cursor, { width: 12, height: 12, marginLeft: -6, marginTop: -6, duration: 0.16, ease: "power3.out", overwrite: "auto" });
+      }
+    }
+    function hoverAt(target) {
+      setHovered(target && target.closest ? target.closest("[data-cursor-view]") : null);
+    }
+    window.addEventListener("mousemove", function (e) {
+      cursor.style.opacity = 1;
+      lastX = e.clientX;
+      lastY = e.clientY;
+      xTo(lastX);
+      yTo(lastY);
+      hoverAt(e.target);
     });
+    document.addEventListener("mouseleave", function () { setHovered(null); });
+    // Souris immobile pendant le défilement : le navigateur ne réévalue le
+    // survol qu'une fois la page arrêtée. On relit donc l'élément sous le
+    // pointeur à chaque image, pour que le nom suive la photo qui passe.
+    var hoverQueued = false;
+    window.addEventListener("scroll", function () {
+      if (hoverQueued || lastX < 0) return;
+      hoverQueued = true;
+      requestAnimationFrame(function () {
+        hoverQueued = false;
+        hoverAt(document.elementFromPoint(lastX, lastY));
+      });
+    }, { passive: true });
     gsap.set(cursor, { marginLeft: -6, marginTop: -6 });
   }
 
