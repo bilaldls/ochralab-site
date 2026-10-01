@@ -40,14 +40,20 @@
     });
   }
 
-  /* Fondu des images au chargement (LQIP -> net) */
-  document.querySelectorAll("figure > img").forEach(function (img) {
+  /* Fondu des images au chargement (LQIP -> net)
+     Réutilisé par la mosaïque en boucle pour ses copies : cloneNode
+     recopie l'opacité 0 posée ici, mais pas l'écouteur `load`. Sans ce
+     rappel, une copie restait figée sur son aperçu flou. */
+  function fadeOnLoad(img) {
     var done = function () { img.style.opacity = 1; };
-    if (img.complete) return;
+    if (img.complete) { done(); return; }
     img.style.opacity = 0;
     img.style.transition = "opacity 0.5s ease";
     img.addEventListener("load", done);
     img.addEventListener("error", done);
+  }
+  document.querySelectorAll("figure > img").forEach(function (img) {
+    if (!img.complete) fadeOnLoad(img);
   });
 
   /* ---------- Filtre par typologie (Villas / Hôtels / Riads) ----------
@@ -70,11 +76,35 @@
 
   // Fisher-Yates : un nouvel ordre à chaque arrivée sur la galerie et à
   // chaque changement de filtre (voir applyFilter et setupLoop plus bas).
+  // La mosaïque porte toutes les photos de chaque projet : on écarte
+  // ensuite, autant que possible, deux photos d'un même projet qui se
+  // suivraient (voir spread).
   function shuffle(arr) {
     var a = arr.slice();
     for (var i = a.length - 1; i > 0; i--) {
       var j = Math.floor(Math.random() * (i + 1));
       var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+    }
+    return spread(a);
+  }
+
+  function projectOf(tile) {
+    return tile && tile.dataset ? tile.dataset.project : null;
+  }
+  // Passe gloutonne : quand une vignette suit une photo du même projet, on
+  // l'échange avec la première vignette plus loin qui n'en est pas. Si le
+  // reste n'est fait que de ce projet (filtre Riads, très dominé par les
+  // Hirondelles), on laisse tel quel : mieux vaut un doublon qu'une boucle.
+  function spread(a) {
+    for (var i = 1; i < a.length; i++) {
+      var prev = projectOf(a[i - 1]);
+      if (!prev || projectOf(a[i]) !== prev) continue;
+      for (var j = i + 1; j < a.length; j++) {
+        if (projectOf(a[j]) !== prev) {
+          var tmp = a[i]; a[i] = a[j]; a[j] = tmp;
+          break;
+        }
+      }
     }
     return a;
   }
@@ -318,6 +348,19 @@
     });
   });
 
+  /* ---------- Arrivée sur une vue précise (#vue-NN) ----------
+     Une vignette de l'accueil ouvre la page projet directement sur sa
+     photo. ScrollTrigger n'évalue ses déclencheurs qu'au `load`, qui
+     attend toutes les images : sans ce recalcul immédiat, la photo visée
+     resterait masquée par son rideau plusieurs secondes. */
+  var landing = /^#vue-\d+$/.test(location.hash) && document.getElementById(location.hash.slice(1));
+  if (landing) {
+    requestAnimationFrame(function () {
+      landing.scrollIntoView({ behavior: "instant", block: "start" });
+      ScrollTrigger.refresh();
+    });
+  }
+
   /* ---------- Curseur personnalisé ---------- */
   var cursor = document.querySelector(".cursor");
   if (cursor && window.matchMedia("(hover: hover) and (pointer: fine)").matches) {
@@ -438,7 +481,11 @@
         if (decorative) {
           t.setAttribute("tabindex", "-1");
           var img = t.querySelector("img");
-          if (img) { img.setAttribute("loading", "lazy"); img.removeAttribute("fetchpriority"); }
+          if (img) {
+            img.setAttribute("loading", "lazy");
+            img.removeAttribute("fetchpriority");
+            fadeOnLoad(img);
+          }
         }
         serie.appendChild(t);
         return t;
@@ -481,16 +528,19 @@
       serie._nodes = orderedOriginals.map(function (o) { return bySrc.get(o); });
     }
 
-    // Un tirage qui évite de coller la même photo de part et d'autre d'une
-    // couture inter-cycle : la première vignette diffère de `avoidFirst`
-    // (dernière du cycle du dessus) et la dernière de `avoidLast` (première
-    // du cycle du dessous). Quelques essais suffisent dès 3 vignettes ; en
-    // dessous on renvoie le dernier tirage tel quel.
+    // Un tirage qui évite de coller deux photos du même projet de part et
+    // d'autre d'une couture inter-cycle : la première vignette n'est pas du
+    // projet de `avoidFirst` (dernière du cycle du dessus), la dernière pas
+    // de celui de `avoidLast` (première du cycle du dessous). Quelques
+    // essais suffisent en général ; sinon on renvoie le dernier tirage.
+    function sameProject(a, b) {
+      return a === b || (!!projectOf(a) && projectOf(a) === projectOf(b));
+    }
     function orderAvoiding(members, avoidFirst, avoidLast) {
       var cand = shuffle(members);
       for (var i = 0; i < 40; i++) {
-        var okF = !avoidFirst || cand[0] !== avoidFirst;
-        var okL = !avoidLast || cand[cand.length - 1] !== avoidLast;
+        var okF = !avoidFirst || !sameProject(cand[0], avoidFirst);
+        var okL = !avoidLast || !sameProject(cand[cand.length - 1], avoidLast);
         if (okF && okL) return cand;
         cand = shuffle(members);
       }
@@ -553,6 +603,9 @@
         target.members.push(tile);
         target.estH += tileHeight(tile, colWidth, gapPx);
       });
+      // La répartition en colonnes défait l'écartement fait sur le pool
+      // entier : on le refait dans chaque colonne.
+      cols.forEach(function (col) { spread(col.members); });
 
       section.classList.add("is-looping");
 
