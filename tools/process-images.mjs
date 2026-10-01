@@ -13,35 +13,44 @@ const OUT = path.resolve(import.meta.dirname, "../images/projects");
 const WIDTHS = [480, 960, 1600, 2400];
 const QUALITY = 80;
 
-// Ordre éditorial : projets riches d'abord, catégories alternées.
+// Ordre éditorial : celui du document rempli par Mehdi (2026-10-01).
+// Les noms sont ceux qu'il a donnés ; les slugs (URL, dossiers d'images)
+// suivent ces noms, pas les noms de code des dossiers sources.
+// Pamur retiré à sa demande (dossier photos « 06 - Pamur - A ANNULER »).
 const PROJECTS = [
-  { dir: "HOT_BOULOKAT", slug: "boulokat", name: "Boulokat", category: "Hôtellerie" },
-  { dir: "HOT_SIRAYANE", slug: "sirayane", name: "Sirayane", category: "Hôtellerie" },
-  { dir: "VLA_KACTUS", slug: "kactus", name: "Kactus", category: "Villa" },
-  { dir: "VLA_PERREAUX", slug: "perreaux", name: "Perreaux", category: "Villa" },
-  { dir: "HOT_ILOT", slug: "ilot", name: "Ilot", category: "Hôtellerie" },
-  { dir: "RIA_PAMUR", slug: "pamur", name: "Pamur", category: "Riad" },
-  { dir: "HOT_DEVILS ROCK", slug: "devils-rock", name: "Devils Rock", category: "Hôtellerie" },
-  { dir: "VLA_MBK", slug: "mbk", name: "MBK", category: "Villa" },
-  { dir: "RIA_CHLOUH", slug: "chlouh", name: "Chlouh", category: "Riad" },
-  { dir: "HOT_CASA", slug: "casa", name: "Casa", category: "Hôtellerie" },
-  { dir: "VLA_CORTES", slug: "cortes", name: "Cortes", category: "Villa" },
-  { dir: "RIA_HERMES", slug: "hermes", name: "Hermes", category: "Riad" },
+  { dir: "HOT_BOULOKAT", slug: "jamaa-el-fna", name: "Jamaa el Fna Suites & SPA", category: "Hôtellerie" },
+  { dir: "HOT_SIRAYANE", slug: "sirayane", name: "Kimpton Marrakech by Sirayane", category: "Hôtellerie" },
+  { dir: "VLA_KACTUS", slug: "kactus", name: "Villa Kactus", category: "Villa" },
+  { dir: "VLA_PERREAUX", slug: "perreaux", name: "Maison Perreaux", category: "Villa" },
+  { dir: "HOT_ILOT", slug: "ilot", name: "Ilot – Hotel 4* & SPA", category: "Hôtellerie" },
+  { dir: "HOT_DEVILS ROCK", slug: "devils-rock", name: "Devils Rock Hotel", category: "Hôtellerie" },
+  { dir: "VLA_MBK", slug: "villa-mb", name: "Villa MB", category: "Villa" },
+  { dir: "RIA_CHLOUH", slug: "bab-hmer", name: "Riad Bab Hmer", category: "Riad" },
+  { dir: "HOT_CASA", slug: "clucia", name: "Hotel Clucia 4*", category: "Hôtellerie" },
+  { dir: "VLA_CORTES", slug: "cortes", name: "Villa Cortes", category: "Villa" },
+  { dir: "RIA_HERMES", slug: "hermes", name: "Riad Hermes & SPA", category: "Riad" },
+  { dir: "RIA_HIRONDELLES", slug: "hirondelles", name: "Riad des Hirondelles & SPA", category: "Riad" },
+  { dir: "HOT_TRIANON", slug: "trianon", name: "Trianon", category: "Hôtellerie" },
+  { dir: "VLA_MEDICIS", slug: "villa-medicis", name: "Villa Medicis", category: "Villa" },
+  { dir: "VLA_CLIFF HOUSE", slug: "cliff-house", name: "Cliff House", category: "Villa" },
 ];
 
 const COVERS = {
-  boulokat: "acimcom-320",
+  "jamaa-el-fna": "acimcom-206",
   sirayane: "AVS_OCR_HSIR_EXT_FACADE PRINCIPALE",
   kactus: "VKAC_MASTER_FINALE",
-  perreaux: "VPER_PERS_OPTION A_4_PISCINE",
-  ilot: "ILOT_PERS 2_FACADE PRINCIPALE",
-  pamur: "SALON_01_CAM01_1",
+  perreaux: "Gemini_Generated_Image_aajksoaajksoaajk",
+  ilot: "ILOT_FACADE",
   "devils-rock": "CHAMBRE_02_Cam01_1",
-  mbk: "VMBK_FACADE PRINCIPALE",
-  chlouh: "RCHL_SALON",
-  casa: "HCAS_OPTD_6",
-  cortes: "VCOR_TYPO 2_PERS 2",
-  hermes: "WhatsApp Image 2025-07-01 at 10.51.39",
+  "villa-mb": "Gemini_Generated_Image_ylfpwtylfpwtylfp",
+  "bab-hmer": "RCHL_SALON",
+  clucia: "HCAS_OPTD_6",
+  cortes: "Sketch-08",
+  hermes: "RHER_PERS A_PATIO",
+  hirondelles: "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-55",
+  trianon: "Mo-7.",
+  "villa-medicis": "VMED_Photo - 3",
+  "cliff-house": "4.",
 };
 
 const slugify = (s) =>
@@ -57,9 +66,9 @@ const slugify = (s) =>
 const isPhoneShot = (f) => /^20\d{6}_/.test(f) || /^WhatsApp/i.test(f);
 
 // Projets dont la galerie se lit à l'envers de l'ordre naturel des fichiers.
-// Boulokat : demandé par Bilal le 2026-09-03. Sans cette liste, retraiter
+// Jamaa el Fna (ex-Boulokat) : demandé par Bilal le 2026-09-03. Sans cette liste, retraiter
 // les photos depuis _sources/ effacerait silencieusement ce choix.
-const REVERSE_ORDER = ["boulokat"];
+const REVERSE_ORDER = ["jamaa-el-fna"];
 
 const manifest = { generated: new Date().toISOString(), projects: [] };
 
@@ -69,7 +78,7 @@ for (const p of PROJECTS) {
   await mkdir(outDir, { recursive: true });
 
   let files = (await readdir(srcDir))
-    .filter((f) => /\.(jpe?g|png)$/i.test(f))
+    .filter((f) => /\.(jpe?g|jfif|png)$/i.test(f))
     .sort((a, b) => {
       const pa = isPhoneShot(a) ? 1 : 0;
       const pb = isPhoneShot(b) ? 1 : 0;
@@ -118,8 +127,8 @@ for (const p of PROJECTS) {
   }
 
   const coverKey = COVERS[p.slug];
-  const cover =
-    images.find((i) => i.original.startsWith(coverKey)) ?? images[0];
+  const cover = images.find((i) => i.original.startsWith(coverKey));
+  if (!cover) throw new Error(`${p.slug} : couverture « ${coverKey} » introuvable`);
 
   manifest.projects.push({ ...p, dir: undefined, cover: cover.base, images });
   console.log(`${p.slug}: ${images.length} images, cover=${cover.base}`);

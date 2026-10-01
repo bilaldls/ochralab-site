@@ -1,44 +1,12 @@
 {
-  "generated": "2026-09-02T10:36:03.606Z",
+  "generated": "2026-10-01T12:05:09.625Z",
   "projects": [
     {
-      "slug": "boulokat",
-      "name": "Boulokat",
+      "slug": "jamaa-el-fna",
+      "name": "Jamaa el Fna Suites & SPA",
       "category": "Hôtellerie",
-      "cover": "acimcom-320",
+      "cover": "acimcom-206",
       "images": [
-        {
-          "original": "20250202_122420.jpg",
-          "base": "20250202-122420",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 4000,
-          "h": 3000,
-          "ratio": 1.3333,
-          "dominant": "#d8b8a8",
-          "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAwBACdASoYACAAPuVgpk2pJaOiMAwBIByJYwCw7C3LVeTqbQ3eIaXfxIAA/uXX8kkE2suL60PFwnLqVerzEruxPpLa9VcflHtSbQ5p/Vuzw0IZVFpZsMJGHazmLfm1m8JhaF6veeAAAA==",
-          "phone": true
-        },
-        {
-          "original": "20250202_122337.jpg",
-          "base": "20250202-122337",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 4000,
-          "h": 3000,
-          "ratio": 1.3333,
-          "dominant": "#c8b8b8",
-          "lqip": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAADQBQCdASoYACAAPuFYp02opSOiN/qoARAcCWIAtRraTAf5d+4OCVc1ndlwYfD3moODM2QqyLkAAP7uApEScrk6Wiwnoa+ff1QFJMEEE9AutcIgVWr0AYrPcu++rgPUNAYt85ozZYMl7F+kwHpxJ38/cjc493L+6gl8hy32jlbO9ZuPh5mRarDOi8D0bQNxJRFC6Wg/gBaab2NhVRBbkYPTbybM1xAjank4Rsp9T1TcFePGwKInOf72StbMStK4Jt+fd8iAAAA=",
-          "phone": true
-        },
         {
           "original": "20250202_120613.jpg",
           "base": "20250202-120613",
@@ -53,22 +21,6 @@
           "ratio": 1.3333,
           "dominant": "#985818",
           "lqip": "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAABwBgCdASoYACAAPulmqU2pJiQiMBgMASAdCWwAsR80NV2gADBNszOno9OYcFKwWuESfqpZkc8fjyTELiAA/uk4p5JvtTjRA77LNKF7Sl3xOhEGY9hV/gNu+UPHsQh0OgZE/L0fwbw8JjbZHknXbvnOT4uDYUoHirYdQHwliMk0LvIS3CfHH7Z59NqSNO9wzUbEPtz8GPaGMfrp8zcD9FeNcBb5KFECh/UIyjmLAtBxeTAHW23gK7DaAAA=",
-          "phone": true
-        },
-        {
-          "original": "20240219_130724.jpg",
-          "base": "20240219-130724",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 4000,
-          "h": 3000,
-          "ratio": 1.3333,
-          "dominant": "#a89888",
-          "lqip": "data:image/webp;base64,UklGRsoAAABXRUJQVlA4IL4AAABwBQCdASoYACAAPulgo02pJaMiMAwBIB0JYwCdM47B3kxS6NHZ0JR9JlrbOIDuO/ha/zhgAP0SSm9Xh5fFhrxZBBky7PU/pNKJp6/Pi8Oxtycg7gIzN04aCl4k3Ie5ceUx9u/ki+b+2Vg3JtknSnJRjipgqfFi5Rpeh0lZCbmCh2X94JkbbisDSHC66QQno1Syi2qAoEx3fxtL/0Cp79cctd96+g9X294SrZMt62Yneu4VINhM1MTVNy1foAAA",
           "phone": true
         },
         {
@@ -136,38 +88,6 @@
           "phone": true
         },
         {
-          "original": "20230803_094044.jpg",
-          "base": "20230803-094044",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 4000,
-          "h": 3000,
-          "ratio": 1.3333,
-          "dominant": "#585858",
-          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAQBQCdASoYACAAPu1krFAppSQisBgIATAdiUAXyQYlmuJ0a4Kp3SgWLfVORvmQJOgAAP6exhxqAAgalnNugM+0qbrWoqDVFCqaygam1p8pMtz9yzC/YhrXIGaiWyTcZZukqiKNJUIQNU7rKo+5RvMbCyek2AABsL0QTVwP2fmz4XK81Jm7laAu9aktwXCqsTZ7Qpdg1dIkgSJjGQAAAA==",
-          "phone": true
-        },
-        {
-          "original": "20230722_112751.jpg",
-          "base": "20230722-112751",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 4000,
-          "h": 3000,
-          "ratio": 1.3333,
-          "dominant": "#b8a888",
-          "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAADwBACdASoYACAAPu1usFCppqSiqAqpMB2JZQCsAAw2jzpKdMNu5xN9VpD8cg3YPIAA/lMUGDMB4u4YpqH7bNZEpH5bA3/ieInKAxJjzkEQxw0GqsSPg+WkJO72XlaKeoogi3Pb35lQ1eAuBvmiOFxsc1zWwdVi2fu2wF6Ix4HOzCcM6mUYWTqmSTxYBqbianIXn0GkNXcDT5Q+1+7hjC1AAAA=",
-          "phone": true
-        },
-        {
           "original": "20230722_105525.jpg",
           "base": "20230722-105525",
           "widths": [
@@ -200,62 +120,6 @@
           "phone": true
         },
         {
-          "original": "acimcom-325.jpg",
-          "base": "acimcom-325",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 1000,
-          "ratio": 1.5,
-          "dominant": "#383828",
-          "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAABQBACdASoYABAAPu1iqk2ppaQiMAgBMB2JYgCdMoADgGysCraONGFJ2ZEkAP7LwXvURATmQDQtI0dpPZfIhG1NutREr3kX1UfJiY8RBhIQuvMJUcP/korGwSgPGTRcsVsGv1u/L+afcnKcsN8a18bbAPMmu0AAAAA=",
-          "phone": false
-        },
-        {
-          "original": "acimcom-324.jpg",
-          "base": "acimcom-324",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 2250,
-          "ratio": 0.6667,
-          "dominant": "#986848",
-          "lqip": "data:image/webp;base64,UklGRvgAAABXRUJQVlA4IOwAAAAQBwCdASoYACQAPu1srVIppaQipWsxMB2JQBUfNj40QkAQPbgwPU3dgs5OEQKVfEMK3Vp0NUFBgLZgKv/EEGwS8AD5bVtPo5iLk113biZrzlNe3gubOnpHyK5xdcvL34Xomm9dVU82JfO1a81Y+rjILJiiyHmTegC6lotzFqJ2EzLabXpMMwmXUgAt4ZvOQns1jmyoWLmMbm+Es/zqe2JUuHn36WN3T4A5xDLufKlkYOnz7apHeGt8OAb5iF/x5x906LBfHw5kG1mmlpwK+nmC6KOoQuLrAPHBsS2PFVjfuGYcNw1T3SCsNGAAAA==",
-          "phone": false
-        },
-        {
-          "original": "acimcom-322.jpg",
-          "base": "acimcom-322",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 2250,
-          "ratio": 0.6667,
-          "dominant": "#785838",
-          "lqip": "data:image/webp;base64,UklGRuwAAABXRUJQVlA4IOAAAAAwBgCdASoYACQAPulUpk2pJCOiNVgMASAdCUAV4YEBax1otHV1ifcI7kT8RRHklTG/fheYwa/RRgQAAP6ob1T/2uwsFXQrDc32xgaEjG7KLFsHzzT5jlu6rN7SEx6NM7KAT8XU7YBmth4md08QP8Tw/tcAD3GqSXzXUaKyg8xRHQD2ty/5Pd1ajy6RDFWJgc/ZHm7d5AOS1LtArvXD1P3fnFYuVrq2iPXr3msDwthLJ/famWODVJukrWM4+ycycUuuJr0szhTmgcwEtkn4e3umrb7JyjMuNFG98SElD7AAAA==",
-          "phone": false
-        },
-        {
-          "original": "acimcom-320.jpg",
-          "base": "acimcom-320",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 1000,
-          "ratio": 1.5,
-          "dominant": "#684828",
-          "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgMYELUtdQzMxGcQqUJyAA/tBbY0XhdrQLrAeLRevmIj0woKqhwcFoexBV9T4VFQ0hV/+fcnuybSKoDyI8qyB6S6GetssDwZBAin2b3uCr3FbE4wWsabeDK+W+I4fe2TrZzLyUkmp+HBCRkVkBFqA6BjkVAAA=",
-          "phone": false
-        },
-        {
           "original": "acimcom-317.jpg",
           "base": "acimcom-317",
           "widths": [
@@ -267,48 +131,6 @@
           "ratio": 1.5,
           "dominant": "#684828",
           "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYgCdMoR3ACfX9plVCWddAWtAAP6o3XZGcAef7wSIWtvBx51YSBXE9zdevNyJL10ZpgeCfamJuoLkavh8bVqBseXQt1GzcUha+t7/ZsVK7Wr/AVuEVAbEOb5XABFPxIthKllsr4P1H7K5PofM0xJ5bmAAAA==",
-          "phone": false
-        },
-        {
-          "original": "acimcom-315.jpg",
-          "base": "acimcom-315",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 1000,
-          "ratio": 1.5,
-          "dominant": "#785838",
-          "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOj+ABOs2xpoTyKC3to2ugA/sBJGh6Vl4Vfux/opS0VUXifa4x9m7I7BISci+pwDYzDzJ6eipsyjZ88tEx28CLUFEeUj6g3/ILPZTEnhe70rrC/S43LhCLW+p7/fH9lKAbcqUoVle5BRcxYjEH6EL8iGliBAAA=",
-          "phone": false
-        },
-        {
-          "original": "acimcom-305-Copie.jpg",
-          "base": "acimcom-305-copie",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 1000,
-          "ratio": 1.5,
-          "dominant": "#a88858",
-          "lqip": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZACdMoADVWnznlyChRaPjzOgAPfUJ2QJSb5HT2ZEMjTE7o1AGZLZTwIO3TP787N0o6ZMsnQ8dKEf9h7lmxbyVLREMY1nwcuxEDQJvNBra35R1q4hE4E9xUpBr+TfKRbP0IEnFHgAAA==",
-          "phone": false
-        },
-        {
-          "original": "acimcom-302-Copie.jpg",
-          "base": "acimcom-302-copie",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 2250,
-          "ratio": 0.6667,
-          "dominant": "#d8a878",
-          "lqip": "data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAADQBgCdASoYACQAPu1srVCppaQipWzJMB2JagCdMsW3nHyhDZTy+eOE8L5a4mWFHuLjtE5FlUsMDLF2NZDBbQAA/q8QbFgOo3+03xmM2FevAaFKGn/XzRM3DguAFC9aui0vsAYLCK3jYqHqJ+m2EwEMeZx+L6VyDfukiiiCeu7rpt8neq53NVKJkbGF/PpDum64FtdbQcNJIThGX92XIjOdcrLc3CKdwagYF18I78HF2y5ZNDr75vchh+UpMF44uwvzuUYwL+2+N6EKb7g1RzHy5AqA+yrdgCSjYAAA",
           "phone": false
         },
         {
@@ -338,26 +160,12 @@
           "dominant": "#d8b898",
           "lqip": "data:image/webp;base64,UklGRqwAAABXRUJQVlA4IKAAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JagCdMoMYAD0HAK0TKLV5uA+gAP5XhuG81zT2ILhZzrBxDHHQcTSgatuPGoL9y2Ec4yjkoi0XX7ID/gjpVgdI+y8SzSwBmZ5VWzOHwS28RnZxzPoM12UKKv+eSDsf5S3IzbUMADQIPuLFW5KPiieObqRM9uwYymr6Rh1WFz+8ii9zHr8ihQAA",
           "phone": false
-        },
-        {
-          "original": "acimcom-34.jpg",
-          "base": "acimcom-34",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1500,
-          "h": 1000,
-          "ratio": 1.5,
-          "dominant": "#e8c8b8",
-          "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZACdMoR3ACGpngpDDkpX83037IAA/lsCrzX1K6LgLT33Ekpn9api/UFE3yWXJ/4YJhPbdaZbX+CFyBe0nS/EVlBML/7Ak9lyARaKuDBCFDJ5t8UOXykFDuGg6qDTJXtVhpv3APasof2AAAA=",
-          "phone": false
         }
       ]
     },
     {
       "slug": "sirayane",
-      "name": "Sirayane",
+      "name": "Kimpton Marrakech by Sirayane",
       "category": "Hôtellerie",
       "cover": "avs-ocr-hsir-ext-facade-principale",
       "images": [
@@ -375,38 +183,6 @@
           "ratio": 1.7778,
           "dominant": "#382818",
           "lqip": "data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAAAwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JbACdACLL3MMJECdbOPjmxkAA/tyXOM1f0SyP9aBunnAdMD3VuttxbbzBeXIK+dUYaR0QGUSVbN0WaHeTppKbnJy66kuTs0mWQRrCe6+Jt/3xPLEziF76OdpzT8o2LjVJNvHOOxZB7JRmjhJxJUzdeJWUNLhA4PfapFD0tzu+v9yuRnd2XzEFKahAAAAA",
-          "phone": false
-        },
-        {
-          "original": "AVS_OCR_HSIR_EXT_BLOC NORD_1.jpg",
-          "base": "avs-ocr-hsir-ext-bloc-nord-1",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#586888",
-          "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoYAA4APu1kqU4ppaOiMAgBMB2JQBOmUGMACSIjhjkkmWtcwAD9QSBJ3+F224S6sjfP3KUyAl14qXLoRRoledipKuBYJRp/iF4IUdDmhBjdjiW9HmqriaJJJ76BMGjAYht4zn5REuXXx7n9Yy9I+/whz1YklHRsQQ0Wlxc20fRAAAAA",
-          "phone": false
-        },
-        {
-          "original": "AVS_OCR_HSIR_EXT_CIRCULATION NORD_2.jpg",
-          "base": "avs-ocr-hsir-ext-circulation-nord-2",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#e8e8f8",
-          "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAABQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBdgBFhn91FQSZxihDhF4MwAAP7qyIshBOnFGPysiqzm6hR/ydPZdsKSsoeivIqkL7bWkKzr+BXgLgGP76CpDZQRs1mOokGrIN02meo8lrcwyK0fx6TUGiwvBEcEPqmo1HyzE6Sm0g4NbPVBySfi8B+uDdcAAAA=",
           "phone": false
         },
         {
@@ -506,22 +282,6 @@
           "phone": false
         },
         {
-          "original": "HSIR_LOBBY_01.jpg",
-          "base": "hsir-lobby-01",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3000,
-          "h": 1688,
-          "ratio": 1.7773,
-          "dominant": "#884828",
-          "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAACwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JagCdAYww5gAykX9d5Z3lFe1Rsf4AAP6pjMfF4vcpJr82D6N0QJx0JM7/DWUIaoIaKo4AEy941rzeGZmHO0AYDAgW63vSypH1rlZQgonUHCvGI+GqtPvItWVBQi4HHEjqK9F5rssJxPYsnmF3korjq1lPt69Ay8nOqrn5xtRdQXGFaBYezYvatoAAAA==",
-          "phone": false
-        },
-        {
           "original": "HSIR_LOBBY_02.jpg",
           "base": "hsir-lobby-02",
           "widths": [
@@ -557,7 +317,7 @@
     },
     {
       "slug": "kactus",
-      "name": "Kactus",
+      "name": "Villa Kactus",
       "category": "Villa",
       "cover": "vkac-master-finale",
       "images": [
@@ -575,86 +335,6 @@
           "ratio": 1.7775,
           "dominant": "#b89888",
           "lqip": "data:image/webp;base64,UklGRpQAAABXRUJQVlA4IIgAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JQBOmUI7gBKmzJMnnEeoUYAD+VWvI/K+IG2wj98Pk3AYQqHqz7RHtOom7zgYvC+cGt5OFdCh5PNS1ILDHgJbdgDX9IojFnRUPN0vOfakg+F/GGxgtDKvWzH37h+PLvlzQTBkpqNWTnQlHdhmGsAAA",
-          "phone": false
-        },
-        {
-          "original": "VKAC_OPTB_1.jpg",
-          "base": "vkac-optb-1",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#d8c8a8",
-          "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAADwBACdASoYAA4APu1iqU2ppaQiMAgBMB2JYgCdMoKCrb7YDz+DlK3rWCoR6twFYRAA/luwfaSJcZetBhKwMb9TdYksaLAJEnQiYTKX2oG2Kdrnq8TwbFKd39ByY+4Os4STp6B3pY1OWIIxhyvk0q+eIIPoPpOq1zFZQLobZdyuGAooi2bi99m0PsH/Olx4gLVmxh0kAAA=",
-          "phone": false
-        },
-        {
-          "original": "VKAC_OPTB_3.jpg",
-          "base": "vkac-optb-3",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#d8c8a8",
-          "lqip": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JagCdIExguxGXI/8LgK/m32IggAD+qKfiH4pQiyd7lcBlGopd65ZnlG+mDBin8VABAAZifENMLhhweemeMHW1dxCJlIW5+qeZS0MMzSKHKeXDbAIoQSfx5QfmmvcHfQz6oSyjBCjDwgXJJTGy+7ZJtgqwdahQI3Axy0K6JQJ2kgoHInFFvvmYq8CzlZYkaVBFzhsZxgAAAA==",
-          "phone": false
-        },
-        {
-          "original": "VKAC_OPTB_5.jpg",
-          "base": "vkac-optb-5",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#d8b898",
-          "lqip": "data:image/webp;base64,UklGRo4AAABXRUJQVlA4IIIAAAAwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JaACdMoRwABy007M+lrVOsgAA+g9P84MuM8iURYg5WoryJ+xKLUBepu/GoB7ZxjCip9SQ6VNLZGkfgwYIRzChXdCXdpsIRdTzzG5B1pKNxWyvb6ELXN2efa5OoL+ePrli4jRYyHc3QAAA",
-          "phone": false
-        },
-        {
-          "original": "VKAC_OPTB_10.jpg",
-          "base": "vkac-optb-10",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#3878a8",
-          "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAABQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JaACdMoAC9A874ToH+/V5DzzAAPsTVTMCCbTVOWkbzvFRZ4JpWZfTJeV+mNa3jPGnHRTnHGRMLhrqP/4H3+0bDZk6vr87x+K+jYy69+GyotWIYbwNU1hvokGNH1hPse+2m7rpGVaBK9369uU7/8HHjJej6E4K2LSwAA==",
-          "phone": false
-        },
-        {
-          "original": "VKAC_OPTB_11.jpg",
-          "base": "vkac-optb-11",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#080808",
-          "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAADQAwCdASoYAA4APu1iqk4ppaQiMAgBMB2JZgCdAYv+ahgLyxLye4AA/sv2D3I0sQzzC0zo9uh6eUeeJLAC+3zBAxTDJrYpgCfKmaSPliFNIKJg0zmqamL4Kq4h8c8izYjgQwTi6XM6ekrubDs41tPdJLjA7PSJd1v78upgXeEGGVOCn9b2vbtxHhETvjpsT79Lqo6gAAA=",
           "phone": false
         },
         {
@@ -690,6 +370,22 @@
           "phone": false
         },
         {
+          "original": "VKAC_SDB02_FINALE.jpg",
+          "base": "vkac-sdb02-finale",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5000,
+          "h": 3753,
+          "ratio": 1.3323,
+          "dominant": "#b89878",
+          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBACdASoYABIAPu1orFCppaQiqAqpMB2JQAAErJaQoLRS0DInrlJXruYifnF3mAD1Qb22tzh8/vtT1xv6k9xKaoa9GcTQl0hmbp4DvMxOkD+96WWBP8GW2xTb1ht4gnmfqYMCMfltu3RSJ4/Ssx9spudge7ekHcJsL0vV0N5+AEfYlGZToA3f1aKyM91vp0lNfVpPMPgtMKSa8+4AAA==",
+          "phone": false
+        },
+        {
           "original": "VKAC_SDB03_FINALE.jpg",
           "base": "vkac-sdb03-finale",
           "widths": [
@@ -708,56 +404,40 @@
     },
     {
       "slug": "perreaux",
-      "name": "Perreaux",
+      "name": "Maison Perreaux",
       "category": "Villa",
-      "cover": "vper-pers-option-a-4-piscine",
+      "cover": "gemini-generated-image-aajksoaajksoaajk",
       "images": [
         {
-          "original": "VPER_PERS_OPTION A_1_ENTREE (2).jpg",
-          "base": "vper-pers-option-a-1-entree-2",
+          "original": "Gemini_Generated_Image_aajksoaajksoaajk.jpg",
+          "base": "gemini-generated-image-aajksoaajksoaajk",
           "widths": [
             480,
             960,
             1600,
             2400
           ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#080808",
-          "lqip": "data:image/webp;base64,UklGRrAAAABXRUJQVlA4IKQAAABQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JagC7ACIhCP1V9y/jYgJAS8cAAP6a6jTGisjwY0ryxx3Dv6PQVfqobGUOkUhTYln+LpS6CI7PbDRqN3aWPKUa9gW+o9lHdbJJwcg9DMKjDE7iFk0iqelQ/2S2SrXLSrmLifQE1zT20l+n6rfbe5YldfvKxr7SKN/IEZlf1p6JbkJ/uLvNkebCiIAAAA==",
+          "w": 2730,
+          "h": 1536,
+          "ratio": 1.7773,
+          "dominant": "#d8e8e8",
+          "lqip": "data:image/webp;base64,UklGRrIAAABXRUJQVlA4IKYAAABQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JaACdMoACxBe+2TLvVDNYLt2wAP7nxIbwKC1iJQwliaaNLqgLxLNcecaBJuvYVWhK4SaD60be6324s79m7cX1xFGd3HONhKOTGy49XDiaMrzlc7Y19POKtkSp9pZt6FGy2anG8vr4SCt+kGAzrZ+cag7YxlcE3y36/jmOMs3ZphN7BdsjnDBPfq12F1AA",
           "phone": false
         },
         {
-          "original": "VPER_PERS_OPTION A_2_CLOTURE (2).jpg",
-          "base": "vper-pers-option-a-2-cloture-2",
+          "original": "Gemini_Generated_Image_sn8r3csn8r3csn8r.jpg",
+          "base": "gemini-generated-image-sn8r3csn8r3csn8r",
           "widths": [
             480,
             960,
             1600,
             2400
           ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#c8a888",
-          "lqip": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADQBACdASoYAA4APu1orU2ppqSiMAgBMB2JbACdMoRwFf/i2GFr8TuE0b+lj6CoYAD6cbmkwHh7pb0OxbAJ2Ma9TpdAMlaTfna43If1KI56/+M+mjDn/KVU2jjtuCHtEFn8YPEGnqbVSUxZuSnelhOcHXXlvBiQooG6NE9Yx7PEobxXUq8cJD5EVGrVUi/4P2ig1Z7tLfmQOM5KzSoGPBsqYDoOGaMQ6AA=",
-          "phone": false
-        },
-        {
-          "original": "VPER_PERS_OPTION A_4_PISCINE.jpg",
-          "base": "vper-pers-option-a-4-piscine",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3840,
-          "h": 2160,
-          "ratio": 1.7778,
-          "dominant": "#e8c8a8",
-          "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACQBACdASoYAA4APu1iqU2ppaQiMAgBMB2JbACdMoGvwAPC3h9e9erawOSZbxgA+NU2lhDpEzdB6B12ivdFRSsVZ/1GE2a7p+snO4tkxefVMHp2aTX/EJcz5WcJscUD1pIOq7dN2knoApFlRyM9cYUoW+J0405o60U7B58GKELlP3NZnYtKmo8tcYIggY3U2ku36Bf0iX+D/qGKviO5dGuOjyuWOpWDsI4AAA==",
+          "w": 2730,
+          "h": 1536,
+          "ratio": 1.7773,
+          "dominant": "#b88878",
+          "lqip": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABQBQCdASoYAA4APu1iqU2ppaOiMAgBMB2JaACdMoGv/qUDzAyHbRAukc9ItdST3SwJXgAA/phKpuH/HjXft/ZTeUDNTkM3wce39505rKeG+s/pR21eVxfqyNB7paQ2eS2+PtV2UcXsjebQXb5LwYgNZqtSyD6KyOJNQ9YFAm3v7oR+M7DGtHl80inzBCEBOCb1jaQpmis4JYqlT7Zyt7bJl75JjSjWdLHf0s8la1YRE99bQAA=",
           "phone": false
         },
         {
@@ -774,22 +454,6 @@
           "ratio": 1.7778,
           "dominant": "#d8c8b8",
           "lqip": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAABQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JZgCdMoRwACWdM6dhQJ8ES2QAAPa5dgJh0gSTPAL1lRqsxlf7keyM+2bd9vd/khUwXdNZN+lwxLiDHHKqt+LHZ/hj7haXykiIzsn++ZNHTxR5YjIdpyIJUkunFG/uU23QA4P8GBhLuXZh/+W2yM7GcK9BCVaHh/aFNPjn6pOCIyB5AAA=",
-          "phone": false
-        },
-        {
-          "original": "VPER_SALON_02.jpg",
-          "base": "vper-salon-02",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 4000,
-          "h": 2250,
-          "ratio": 1.7778,
-          "dominant": "#986838",
-          "lqip": "data:image/webp;base64,UklGRpwAAABXRUJQVlA4IJAAAAAwBACdASoYAA0APu1iqU2ppaOiMAgBMB2JYgCdAYxOyShRX+XttPQyStgA/r+8T8QQYCt9EgjCrkqr+KrEi1i7n4+/2uxCv8x1Uy2tfAqA6rY5PX6qOxu+zsdTcwoqBuuKlfgxXwtNOEh4jYRp7+LSxkQeZ7wovSaxxDaeHckAI+Bd7ImkS50Ce7OJ80JAAAA=",
           "phone": false
         },
         {
@@ -812,10 +476,26 @@
     },
     {
       "slug": "ilot",
-      "name": "Ilot",
+      "name": "Ilot – Hotel 4* & SPA",
       "category": "Hôtellerie",
-      "cover": "ilot-pers-2-facade-principale",
+      "cover": "ilot-facade",
       "images": [
+        {
+          "original": "ILOT_FACADE.jpg",
+          "base": "ilot-facade",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 2730,
+          "h": 1536,
+          "ratio": 1.7773,
+          "dominant": "#d8a888",
+          "lqip": "data:image/webp;base64,UklGRqYAAABXRUJQVlA4IJoAAACQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOmUGS2T/gPzud+57qAZRAXsUAA/sj1nP/6Ss3ABTczHQdRqOB890IpSZQW0mSReqdBpFbq+mQFMh4ua1LI3E/bnqnHtlH9lEfcsbq4C2+EIBeudyH6xkV5Yr2VdZpevDVsuqFs+64Vd7hDqFuDmHpMxFbx2alDktaV+90p0QAA",
+          "phone": false
+        },
         {
           "original": "ILOT_PERS 1_CHAMBRE TEMOIN.jpeg",
           "base": "ilot-pers-1-chambre-temoin",
@@ -849,21 +529,6 @@
           "phone": false
         },
         {
-          "original": "ILOT_PERS 2_FACADE PRINCIPALE.jpg",
-          "base": "ilot-pers-2-facade-principale",
-          "widths": [
-            480,
-            960,
-            1600
-          ],
-          "w": 1920,
-          "h": 1080,
-          "ratio": 1.7778,
-          "dominant": "#c8a888",
-          "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBYdg6efsrp1SIkbZ4fsAAD54yQnKtgCp7tGzhxOtnL72uoEcppyu03KczncfjrjcJgftZuUAvqwyfFpLy2VIFDkGT7F9UGQygHtIi2+QAAA",
-          "phone": false
-        },
-        {
           "original": "ILOT_PERS 2_ROOFTOP.jpeg",
           "base": "ilot-pers-2-rooftop",
           "widths": [
@@ -892,100 +557,12 @@
           "dominant": "#d8c8b8",
           "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAABQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZACdMoRwACRDHDLHVxrZAvvwAM4TY/tbj7XLc1OQZ1kfbR0/mU7QL5Vgvo3vbdfzxpIECiwj4au7jxIOnNV7uPgOhUTEyMKQjosyi+8FMjGbhv94cpaevKCulHQQZl2XA5Bl3XScK12zdoTIFbCsxYepMhQvc3Ynn8iyRAAAAA==",
           "phone": false
-        },
-        {
-          "original": "ILOT_PERS_VUE DE HAUT HALL.jpg",
-          "base": "ilot-pers-vue-de-haut-hall",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3800,
-          "h": 2703,
-          "ratio": 1.4058,
-          "dominant": "#c8a888",
-          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAADQBACdASoYABEAPu1srVCppaQiqAqpMB2JYwCsAAgdwRHRicl76t/g3fUdQLSGAAD5wXgLSFgF0C2m3DUJG9QGPzd4j1wzmuKJgObtsZ+mV7X2JzJgfhxzP8nW6LSegPLftflKR9IvIWfCx+AHHbP/FwYRwqXfrfnK4sA59bkcpRqcwMLo/ycwADTfsrHBvAwH33rj2ygp+4eIIGTgAA==",
-          "phone": false
-        }
-      ]
-    },
-    {
-      "slug": "pamur",
-      "name": "Pamur",
-      "category": "Riad",
-      "cover": "salon-01-cam01-1",
-      "images": [
-        {
-          "original": "CHAMBRE_03_Cam001_3_OPTB.jpg",
-          "base": "chambre-03-cam001-3-optb",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3000,
-          "h": 2000,
-          "ratio": 1.5,
-          "dominant": "#d8c8b8",
-          "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgA26bXpdn6YvyKr/PAAD9vnwvTenmVT2elZpQt1xJIflrLWBdR+J7IDIrFOyQTcaM350jNKj07A4AWLUKM+kOEuux6TcgNNKrI54n+j27EpD+GHnfnqek9fOB9VmZsPaM1j7hjvCr/LRx/96O2zBIQ/iDrU3Aax8EgeAAAA==",
-          "phone": false
-        },
-        {
-          "original": "CHAMBRE_03_Cam002_3.jpg",
-          "base": "chambre-03-cam002-3",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3000,
-          "h": 2000,
-          "ratio": 1.5,
-          "dominant": "#b8a898",
-          "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAAAwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgA+iGoEoYx/gvfByAJYAA4U5jKdS7jVeDeI+EqIb3WzyH52kwoVtt3tvjlJQYmxhHg+NA/TERZ1dmSg+5z7ZEcHxcn5XhVJ043F22sqCVnV9TfPop8rXBjivQcDnG4Qse/zdtrqfIH8nyK8A7EpH2Lp9+YR4GdALgAAA=",
-          "phone": false
-        },
-        {
-          "original": "COULOIR_01_Cam001_7.jpg",
-          "base": "couloir-01-cam001-7",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3000,
-          "h": 3000,
-          "ratio": 1,
-          "dominant": "#382818",
-          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBQCdASoYABgAPu1sqlEppaOiqAqpMB2JZwC9WBIvvolnknOf79x1cYtFL1pQMIKtIAD+0O3rGjorCRvuqQrY89Hnqg9nCBOhloKCbGJVMMBZ/TX66FKlH2n2rHZvmJpa9qfFDr7E9IHKwN43H5KuoAr+E8hAkN0HebyC8pFYLalsME5f62wNhBunGtiB8SMjU4Uv129CkyTsyBgAAA==",
-          "phone": false
-        },
-        {
-          "original": "SALON_01_CAM01_1.jpg",
-          "base": "salon-01-cam01-1",
-          "widths": [
-            480,
-            960,
-            1600,
-            2400
-          ],
-          "w": 3000,
-          "h": 2000,
-          "ratio": 1.5,
-          "dominant": "#a89878",
-          "lqip": "data:image/webp;base64,UklGRqQAAABXRUJQVlA4IJgAAADQAwCdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOgAt2WJchoLPHlLeAA9wu2F/a+Hk/rBI65qFol0DkZfj+SpS3Tsiedw1/19yfAQ1L3qX1RT0Xl77h0fAryD6M1vLRUXFkTqXxOcRSsUjMML5DJLIKUZM6h26KXUO/ntmgHqi3dYTH+/UE1oOw4QW8OG9M/l6FmQlfIodGgAA==",
-          "phone": false
         }
       ]
     },
     {
       "slug": "devils-rock",
-      "name": "Devils Rock",
+      "name": "Devils Rock Hotel",
       "category": "Hôtellerie",
       "cover": "chambre-02-cam01-1",
       "images": [
@@ -1056,78 +633,91 @@
       ]
     },
     {
-      "slug": "mbk",
-      "name": "MBK",
+      "slug": "villa-mb",
+      "name": "Villa MB",
       "category": "Villa",
-      "cover": "vmbk-facade-principale",
+      "cover": "gemini-generated-image-ylfpwtylfpwtylfp",
       "images": [
         {
-          "original": "Enscape_2023-08-31-23-10-58.jpg",
-          "base": "enscape-2023-08-31-23-10-58",
+          "original": "Gemini_Generated_Image_26t6dw26t6dw26t6.jfif",
+          "base": "gemini-generated-image-26t6dw26t6dw26t6",
           "widths": [
             480,
             960,
-            1600,
-            2400
+            1600
           ],
-          "w": 2560,
-          "h": 1600,
-          "ratio": 1.6,
-          "dominant": "#a8b8d8",
-          "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABwBACdASoYAA8APu1iqU2ppaOiMAgBMB2JZACdMoADXvIm/s71V2kFmZ5L0AD+i8pxGhalfxCYXFu2T9uv1ujIZKxPGxq0i/DfeLtlwqiJBecNgeafFDOCSBLmUbTy4524Yip7Y3dMrWPeamRVJ/aYI9mvVM1yIg9xd46Uj4KGMpngEOK50oUbm8gAAA==",
+          "w": 1792,
+          "h": 2390,
+          "ratio": 0.7498,
+          "dominant": "#a85838",
+          "lqip": "data:image/webp;base64,UklGRrQAAABXRUJQVlA4IKgAAADQBQCdASoYACAAPt1eqk2opSQiMAwBEBuJbACdMxx8CG0jFrDgJWTgn1l04G14XR3c8TA9OQQAAP7eyCh2Hzf/7+eDnJC5YLZ/ECB8jalh3EG/VQ50gsfzszB309vLZDWzsb11KmEDA3/2H+L2JcUA99+ZF/lh9JMQ9Lgu7QJwa6BcYnr//oc7zrUowxqrZHTBclvD4cpT75AXCwWzHOmbt1WcFEAAAAA=",
           "phone": false
         },
         {
-          "original": "Enscape_2023-08-31-23-13-32.jpg",
-          "base": "enscape-2023-08-31-23-13-32",
-          "widths": [
-            480,
-            960
-          ],
-          "w": 1000,
-          "h": 1600,
-          "ratio": 0.625,
-          "dominant": "#485878",
-          "lqip": "data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAABQBgCdASoYACYAPu10slOppqSipWgBMB2JYgC7OUFYfkoCls2C8G6XwRL/2plIL7zCU9QCxdVAWpTJwAD+uRiEuRDxt2QOyoRvuk+KqYr802kUlHSihGGoBR3chZ75L7K7WCB9GvQI8tLmHGHsLe91wPN0HqbYMuIT8y/LQDoSjPEwQLj2qvJuPfVG5tfLEorR2t69+bVjMAmah+CHhlqMt9nnEgsVR/Nk9Z8LJBYL3DIJK0kEAntrotEG8pCJR+De9fgkWKauxj/4UjMp5Xy+FMpgnI+Vep133D2+gLiEP2BOAAA=",
-          "phone": false
-        },
-        {
-          "original": "Enscape_2023-08-31-23-16-07.jpg",
-          "base": "enscape-2023-08-31-23-16-07",
+          "original": "Gemini_Generated_Image_mnls8qmnls8qmnls.jfif",
+          "base": "gemini-generated-image-mnls8qmnls8qmnls",
           "widths": [
             480,
             960,
-            1600,
-            2400
+            1600
           ],
-          "w": 2500,
-          "h": 1600,
-          "ratio": 1.5625,
-          "dominant": "#c88878",
-          "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAABQBACdASoYAA8APu1iqk4ppaQiMAgBMB2JbACdMoACjCJgILQOp2WQLGagAP5ZXKPiQSxXs0/aoyKYbXxewSqxChhBvxVvgleSbDXnXtInyO/m03gcyu9Yz8HecjgoZwUYe1UNoqjVaEOTF9mSD887tAdwVP4JC1OY5Y5UafQbJelzAMAAAA==",
+          "w": 2390,
+          "h": 1792,
+          "ratio": 1.3337,
+          "dominant": "#b86848",
+          "lqip": "data:image/webp;base64,UklGRrgAAABXRUJQVlA4IKwAAAAwBQCdASoYABIAPu1qrlCppaQiqAqpMB2JZACxH2cqmBss87osltXYpHtq2KxwdmiwuAD+w/Jtz9PAkZcydoaf1NRSLR3Cfuc7e1O01q1V3AAmSJNf0Az3NxzNla4olnFeYEhfPWe4/hdM03e7tSabg6/EBrNyyDG17XCgTQ11KAncp7jcBkG6cRqGBcBwVWr+D2BytH/Uk6hHWORL0ch6nIS+fw0YA/e5oAAA",
           "phone": false
         },
         {
-          "original": "VMBK_FACADE PRINCIPALE.jpg",
-          "base": "vmbk-facade-principale",
+          "original": "Gemini_Generated_Image_q79g54q79g54q79g.jfif",
+          "base": "gemini-generated-image-q79g54q79g54q79g",
           "widths": [
             480,
             960,
-            1600,
-            2400
+            1600
           ],
-          "w": 2560,
-          "h": 1600,
-          "ratio": 1.6,
-          "dominant": "#6878a8",
-          "lqip": "data:image/webp;base64,UklGRnYAAABXRUJQVlA4IGoAAADwAwCdASoYAA8APu1kq04ppaQiMAgBMB2JZgCdMoR4Lf/gBXbXnEfAAMqhBTKqDB6qMfwWvxsFmxzhpLLzTAVQW2aZtHkDlqqamsoE+6Howcm1n0DIFKuqhQ/2El0HaBEYc/Vbz+IIAAAA",
+          "w": 2390,
+          "h": 1792,
+          "ratio": 1.3337,
+          "dominant": "#784848",
+          "lqip": "data:image/webp;base64,UklGRqgAAABXRUJQVlA4IJwAAAAwBQCdASoYABIAPu1cq04ppKQiMBgMATAdiUATpl0QMRfpVbLBCb4wEK03b9++3GbAAAD+1LR1vjtKSjeY40bdK1ZIqQVXiGBy7jYUh7EJoaVNNF32V41yiYTkjF8gctcAZyh52KgBxB4bbj/NoVg8HqD9DGDNcU/nl83Rc6FKGvKSCltD0wKhwnspKiDcFq/i5Aku0HOtIJu/AAA=",
+          "phone": false
+        },
+        {
+          "original": "Gemini_Generated_Image_v0g6vvv0g6vvv0g6.jfif",
+          "base": "gemini-generated-image-v0g6vvv0g6vvv0g6",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1600,
+          "h": 2668,
+          "ratio": 0.5997,
+          "dominant": "#984828",
+          "lqip": "data:image/webp;base64,UklGRr4AAABXRUJQVlA4ILIAAADQBgCdASoYACgAPu1krU2ppaSiMBqqqTAdiWIAnTKDQqZqgEIRKYIGxMpmqKAeYwZmrio9KebWvfG3KspR8gAA/lRmDfJlflRuKcH9AHRTHu+E3lhXsYeAOQJ3oEqsoJoG6DcQ/ey8VsZJmcrjoAYPf3AKP0Wt7ibGuyQRVk1nnOguRLGD6B5uX9t6CJ8UhTJhDy2mo/9/grglYJ19kho8OVvH5cVbMPnVZelYYZa4gAAA",
+          "phone": false
+        },
+        {
+          "original": "Gemini_Generated_Image_ylfpwtylfpwtylfp.jfif",
+          "base": "gemini-generated-image-ylfpwtylfpwtylfp",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 2390,
+          "h": 1792,
+          "ratio": 1.3337,
+          "dominant": "#786868",
+          "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABwBACdASoYABIAPu1mq0+ppaOiMBgIATAdiWgAxOYgABRYYCc2QjxbvFm0sAD1cfiDAHIoPKxagYvOHFf7naaQ2yqIZDBsuM1+PY4NxQoSwf3ebxDXXfD5ZbSyRMHlsOize/0hjYGIOG/MHeND4C9eF+pfFWN5nuL1GQbkKP3HqiNl7ijNZ53YhEYAAA==",
           "phone": false
         }
       ]
     },
     {
-      "slug": "chlouh",
-      "name": "Chlouh",
+      "slug": "bab-hmer",
+      "name": "Riad Bab Hmer",
       "category": "Riad",
       "cover": "rchl-salon",
       "images": [
@@ -1180,8 +770,8 @@
       ]
     },
     {
-      "slug": "casa",
-      "name": "Casa",
+      "slug": "clucia",
+      "name": "Hotel Clucia 4*",
       "category": "Hôtellerie",
       "cover": "hcas-optd-6",
       "images": [
@@ -1247,28 +837,29 @@
     },
     {
       "slug": "cortes",
-      "name": "Cortes",
+      "name": "Villa Cortes",
       "category": "Villa",
-      "cover": "vcor-typo-2-pers-2",
+      "cover": "sketch-08",
       "images": [
         {
-          "original": "VCOR_TYPO 2_PERS 1.jpeg",
-          "base": "vcor-typo-2-pers-1",
+          "original": "Sketch-08.jpg",
+          "base": "sketch-08",
           "widths": [
             480,
             960,
-            1600
+            1600,
+            2400
           ],
-          "w": 1600,
-          "h": 872,
-          "ratio": 1.8349,
-          "dominant": "#181808",
-          "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAACQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JQBOkGQQWAyufUg3JhW3Ki6PIXCAA/qVnSIspi/Kf7wC3Ybjta3FrPeO5pYl7tEDiGhKspqulgzFwIlQxd+aT4YT67ZCn8AYELgUS0HAZF0HVx5bBTnKzEoXvLqMfQSHvxZLv/r6Sj3QavZO80h8pTWswYRvHsoZz4AAA",
+          "w": 3000,
+          "h": 1579,
+          "ratio": 1.8999,
+          "dominant": "#98b8e8",
+          "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAADwAwCdASoYAA0APu1Ct1apoqakGAEwHYlqAJ0BjGK19SSys+oYpHcAAP5qeaQ93gJLCZC7AAg6bqkMyBc6ag5FqrEUrAr9NHyXmv8Sxld18dyw14LomYIs7Of/bKlragEkTfPaCXTsIwbF2Rd7szVX1nWHFW7/KJm69vFj+0Q2cNm5DPD9tuQslxyzc6PgBkHmXjWAAAA=",
           "phone": false
         },
         {
-          "original": "VCOR_TYPO 2_PERS 2.jpeg",
-          "base": "vcor-typo-2-pers-2",
+          "original": "SKETCH-08[1].jpg",
+          "base": "sketch-08-1",
           "widths": [
             480,
             960,
@@ -1279,31 +870,112 @@
           "h": 1579,
           "ratio": 1.8999,
           "dominant": "#78a8d8",
-          "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JZgCdAYwmRzVYkD72UR5EAAD6bkf3HThbsWHwLkSG0809It3ymNZZf3FHMg4eOMvC72BJjAiqAo4j67wb2s+pLs3MMXathceRDi+hOkeuDr+gYcZt/VifX2Twd7U4+l7l4JnHiyjIZgXSIOPEVxL56SANTIfNCYAAAA==",
+          "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAwBACdASoYAA0APu1iqU2ppaOiMAgBMB2JZACdEf/i1/yOarEgfe8/XxAA+m5H9x04W7FJhpj4fUpAZlPl8pjWWX0PPP3Feyiq8hne5Ekn6CKiY6y01xrbO5Q4rLlTkl1qCwhZKXMGAgeXluwKVbWdF8fX1H81cW+FIxBqfNTtvC/0rBl4eqxSiIPQYQRXXC12SUAA",
           "phone": false
         },
         {
-          "original": "WhatsApp Image 2025-05-20 at 10.17.03 (2).jpeg",
-          "base": "whatsapp-image-2025-05-20-at-10-17-03-2",
+          "original": "Sketch-09.jpg",
+          "base": "sketch-09",
           "widths": [
             480,
-            960
+            960,
+            1600,
+            2400
           ],
-          "w": 1324,
-          "h": 996,
-          "ratio": 1.3293,
-          "dominant": "#d8c8b8",
-          "lqip": "data:image/webp;base64,UklGRtYAAABXRUJQVlA4IMoAAADwBQCdASoYABIAPu1sqlEppaOiqAqpMB2JYgCdMtVCmBHwaEIikzZZNxZUa9n10wNqYKb48/7gQAD9+G0HNd57RbZAm8co2iErdxsBEdqpAdx6/f1tGyPtTHw/d3lfNXw5OQMv5w9NjxR+5wdnnTw3eFbcV7S1rhuOTNRdINDpOrfZScKlRFftgjC+2NSZNmq+qShBNjj2aySCcsat7FIdSoywCPpZV7I7AA1ITzUQCRjo3zuj8X6UQMeXhHuIEnsPBekIAdsDKgAA",
-          "phone": true
+          "w": 2805,
+          "h": 2256,
+          "ratio": 1.2434,
+          "dominant": "#88b8f8",
+          "lqip": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAAAwBQCdASoYABMAPu1orlCppaQiqAqpMB2JaACdMtDBqShuyvEn+MOzH1AKZjxuvmwrAAD80jjBzx95LGj+EuMi946jh/Q7ojatWLub073Jyjvv98WO3SD5zFX5/d617ZqpC7f9Q4OalLTv8JE5ckeTjeZUW2A3Ouz5e86XDlT5nlzv7rZulk7lT2fXFl0fQ4IcvV5QygXYkixt6i7vbQrbQquRLoAxGgG1D8ffJ4AAAA==",
+          "phone": false
+        },
+        {
+          "original": "SKETCH-09[1].jpg",
+          "base": "sketch-09-1",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1930,
+          "h": 1053,
+          "ratio": 1.8329,
+          "dominant": "#181808",
+          "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAAAQBACdASoYAA0APu1iqU2ppaOiMAgBMB2JQBOgMYJTbvn0hLOa0c5koAD+pWdJfcKDGO96F0Rb+1uYy8ARgsroAuVmcDGY76+0KWDrEFOCxjm8QPEDDUp4sb2cUWIkI5YklK1apU1CUTyKusObtGzw0AGlXe9Q1vz2W+3nfNxKj3eAiqkf1PSGkj0RHYrw4PIAAA==",
+          "phone": false
+        },
+        {
+          "original": "Sketch-10.jpg",
+          "base": "sketch-10",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3000,
+          "h": 1579,
+          "ratio": 1.8999,
+          "dominant": "#68a8e8",
+          "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAABwBACdASoYAA0APu1iqU2ppaQiMAgBMB2JagCdIE3J/gPKEFoTNLILOUdqgADLJ2nZXeQjb1L5KFYy0dp/+sFNnppmd2i4ouqVd2mvmbj9TSTKwHfXnRiqss+IZ2CctO/+CrE1PTHAje1hbp0oMMhPxCXon8Z6r3re3rs8oQM9zFMMnELD0sNo/vZUAA==",
+          "phone": false
+        },
+        {
+          "original": "Sketch-11.jpg",
+          "base": "sketch-11",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3000,
+          "h": 1579,
+          "ratio": 1.8999,
+          "dominant": "#5898d8",
+          "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAADwAwCdASoYAA0APu1kqU2ppaQiMAgBMB2JbACdACHc9YLJ/SmW2KjAAMpo+AYaaYCqhU1TMtWKQT1kmjAKduoZ9vB1JGyGOxQWTSOV4+hbfYFmia5lFvG+4LC7eot76JCSOc8clgDmzLb5S6AwGj0DwHkKglLXYr9SdeCzMD6SCCIJbr9afcWMaj2HUSmaQmFC4CXRUAA=",
+          "phone": false
         }
       ]
     },
     {
       "slug": "hermes",
-      "name": "Hermes",
+      "name": "Riad Hermes & SPA",
       "category": "Riad",
-      "cover": "whatsapp-image-2025-07-01-at-10-51-39-1",
+      "cover": "rher-pers-a-patio",
       "images": [
+        {
+          "original": "COULOIR_01_Cam001_7.jpg",
+          "base": "couloir-01-cam001-7",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3000,
+          "h": 3000,
+          "ratio": 1,
+          "dominant": "#382818",
+          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAwBQCdASoYABgAPu1sqlEppaOiqAqpMB2JZwC9WBIvvolnknOf79x1cYtFL1pQMIKtIAD+0O3rGjorCRvuqQrY89Hnqg9nCBOhloKCbGJVMMBZ/TX66FKlH2n2rHZvmJpa9qfFDr7E9IHKwN43H5KuoAr+E8hAkN0HebyC8pFYLalsME5f62wNhBunGtiB8SMjU4Uv129CkyTsyBgAAA==",
+          "phone": false
+        },
+        {
+          "original": "RHER_PERS A_PATIO.png",
+          "base": "rher-pers-a-patio",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 2876,
+          "h": 1472,
+          "ratio": 1.9538,
+          "dominant": "#c8b8a8",
+          "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAABwBACdASoYAAwAPu1iqU2ppaQiMAgBMB2JZACdMoAlwRZdZh9+TJWM1ekcQADeUd/Db7USHl2EmTQE9dxymnKK53JMfeTmocuikgEWJCEKCG9ogzz+KaIDeLMiGxA1LWsesDfJcnBGy1VFtQcdfCsnGb+1SEUVTOVbLEu9zRL6PCeoJQhYJIn1TA8FIbMR+Ndo4vgA",
+          "phone": false
+        },
         {
           "original": "WhatsApp Image 2025-07-01 at 10.51.39 (1).jpeg",
           "base": "whatsapp-image-2025-07-01-at-10-51-39-1",
@@ -1331,6 +1003,759 @@
           "dominant": "#584838",
           "lqip": "data:image/webp;base64,UklGRsQAAABXRUJQVlA4ILgAAAAwBQCdASoYABQAPu1qrFEppaQiqAqpMB2JYwCdAA9kuPbwNVdCd9TtGPNVLfMKtL4OoAD+unEhZTsbkHkam9GFilNfCD+lB403iT8ArtRM7N6VBWLQ8A0n5Le/ZjArwhxrP6TH44nBOOntI0dkHxzIHDs4J9Iv8jbtmddEXh3bwhkNZmHx+/vx6X96PhE47fdd3fq2Gs01+sfHw/lnk2XLakRGc3PNvqQ6SIXHsQ1YQJYKNi1CBAAA",
           "phone": true
+        }
+      ]
+    },
+    {
+      "slug": "hirondelles",
+      "name": "Riad des Hirondelles & SPA",
+      "category": "Riad",
+      "cover": "ismailafaiyss-ochra-architects-riad-les-hirondelles-55",
+      "images": [
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-02.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-02",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3577,
+          "h": 5366,
+          "ratio": 0.6666,
+          "dominant": "#684828",
+          "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAADQBQCdASoYACQAPu1oq1GppaOiqrgKATAdiUAWhoEBkVJwzUv0Oa8JfAx3rsMkLJT0vZwt/TMAAP4S7XRJPIkS7he6mrZsrBLp75eqqebEvBrvSfFZY71sunldCik07DofwgN6mpOag7CGWaVNQV2Kb3yRrNMrkqOjmE/IjKyoZmQSqobaAeYozQor7A0bNdDB5uzhSoT4Xth/RR41VglwgAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-05.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-05",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3983,
+          "h": 5975,
+          "ratio": 0.6666,
+          "dominant": "#785838",
+          "lqip": "data:image/webp;base64,UklGRrwAAABXRUJQVlA4ILAAAABQBgCdASoYACQAPu1qq1AppiOipW5hMB2JQBWHKCpXy7BG9lDsIgY0SFb5zRNjFZBULwTU4dxFF92YAAD+895n4XfMiuAmC+zNx+rhBn6BeWv0cr4Kk6uLSw1IGeU30c21K9N7v6dtXRc8VW33HfnygdtpwwAfznwhCOSRnuMRQdOf0zIz6U9eEtwBsJyLUZKaATp5BNA04XmxBnSQWM1AB4dI7Mz61bjYBfd83wAAAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-06.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-06",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3411,
+          "h": 5116,
+          "ratio": 0.6667,
+          "dominant": "#182828",
+          "lqip": "data:image/webp;base64,UklGRvgAAABXRUJQVlA4IOwAAAAQBwCdASoYACQAPu1cp06ppKMiMBqqqTAdiWIAnTN1dNyq8+2AhCqfVHljgc6DJKGmf8pejWMch6/km4bHVEnAQAD+40Udg/o+A8OelKp7zspHSvRDY7B5a4limYVNdgXPRCg1yParpoth7OmOuIutCZZ0D0Y+ukpvyxyTTAMjrvwzgHw8uIEQzdM6cNGo+4omDOgozSnXF60aN1XDlkkK218fPS7xNjg19gOl+xAhsrNHUs3UiIubgLZChKh7oSUPdyEyqwJEVBjpPdUZkreHCBEtaWEtSkWbF4to5xuuRHEZ6owrYdKSQoUwAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-07.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-07",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3173,
+          "h": 4759,
+          "ratio": 0.6667,
+          "dominant": "#082818",
+          "lqip": "data:image/webp;base64,UklGRp4AAABXRUJQVlA4IJIAAADwBQCdASoYACQAPu1mq04ppaQiKqwBMB2JZQDOOBZti4zU/fcPmvELcfVjwZYjNABjP3TfqpBjwAD+3ChM00vGgadj4w4q9gzW5GxOxjP1x3VauCLeWxde3hg5sfoRVxcm2HWR/VODWeBguV/IyGOAo8pbEmGGgyMp/lSOn8ixJukA/m+gYmtHAsAMqtqO3qIAAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-14.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-14",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3986,
+          "h": 5979,
+          "ratio": 0.6667,
+          "dominant": "#785838",
+          "lqip": "data:image/webp;base64,UklGRswAAABXRUJQVlA4IMAAAABQBgCdASoYACQAPu1qsE8ppiUiKqoBMB2JYwC2yBDfDVTVwbSdXJ+sB83tplcpZvvK0ja4OUU0EBUCwAD81gKi5kQe8QxzJFzLgwI2pDcwjpfUH/tIJDCy7q5dwcK2/qeHe+qFRZutEqZmA6uAlR3hesVXKDjM9EEp0UG2ACObWoFgAcmCtPrctL3bYuRvEcRUgzEejUnl8Mpzx0Nd0ZsXpeiNXPGhwgMWALwUErWfZl0H0n4I6vl83UtWD+kMoAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-17.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-17",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3741,
+          "h": 5611,
+          "ratio": 0.6667,
+          "dominant": "#081818",
+          "lqip": "data:image/webp;base64,UklGRowAAABXRUJQVlA4IIAAAADwBACdASoYACQAPtlapE2oJSOiOrZoAQAbCWMAyRBYJFsi0eaFR2LLjA/Ec1kaNAAA/vGkBHKuNhI3TjY6ZKXvOXHbjY5POZfwYsakFvr5ryBKY4FRgj9wmnL8stlaRiz7JxAh1yEpeRf244novAIEZHjz6zB0nRrKi30yRjUAAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-19.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-19",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 4000,
+          "h": 6000,
+          "ratio": 0.6667,
+          "dominant": "#d8a868",
+          "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAABwBQCdASoYACQAPuVkpk2pJiOiNVgIASAciUAXZfzAInWHF16Oq+kzuRYnTHn/yBzvRqaAAP0bGXOFZPyynkggiLV2tKDyv+hull6Cz9h0+dBB82FMqZlJyrrOxVru836pzXArpwJMnUzj0hhOA7loNAr+V2aYAAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-22.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-22",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3985,
+          "h": 5978,
+          "ratio": 0.6666,
+          "dominant": "#b88858",
+          "lqip": "data:image/webp;base64,UklGRs4AAABXRUJQVlA4IMIAAABwBgCdASoYACQAPu1kpE4ppaMiMBqqqTAdiWYAnS//ND/EE3jbzy6vmlgFTg2jdL/8xwRykxLTEcf1WOgA/cwcIGNMXRd6TkO1o/XojWJkPI3RGxis7bxAEvTKD9NeC5miQLVqQwjnRj09xr/Dm+trfrgpCzPmwsJUE4cj6B9/I0t0WHg6TuETd8Q6cuHLppCs2UWyyBDMRKkClsnbCrnTXxxT2n26gmuo5wdKq8AnQL+RkDkUKcJtajpkS87AMIAAAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-25.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-25",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 4127,
+          "h": 6191,
+          "ratio": 0.6666,
+          "dominant": "#c8c8b8",
+          "lqip": "data:image/webp;base64,UklGRoYAAABXRUJQVlA4IHoAAABQBQCdASoYACQAPu1kq06ppaOiMBVaqTAdiWMAtsgubWXYOsIWWZ7PFfee6x0YB/uWEZAA/ucC7UG/bejeUbIL4xDk27z32sHTJrpgY/2hulRd2lQDuIPaHqSb/LI1wFguE2fsh4Ubv1+IQTNDxOK3ZctWCnc0YkgAAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-26.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-26",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 4000,
+          "h": 5333,
+          "ratio": 0.75,
+          "dominant": "#d8d8d8",
+          "lqip": "data:image/webp;base64,UklGRtIAAABXRUJQVlA4IMYAAABwBQCdASoYACAAPu1ur1IppiQiqAgBMB2JQBhmit02ymxJp0WQPPP3HAn3YjljM/B8wQIAAP72HOXqJv7Dde+Wji9V2th/y7Hdr6Q2Gllfe/h6v5UjbSPw7MEy7G7X6dP/9TZPFf6bWEozVvbh0Sn6OcbHB8lExRcc9cRroDetv6LC4TLi1PO+aimWzROLBhDi+c8kH09o9cPlYE1BB3BjFxLzwnuzE5WDx8n4FvPlRINZ1elgVSgpb4WxlW0EC0OYDrf4AAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-27.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-27",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3842,
+          "h": 5763,
+          "ratio": 0.6667,
+          "dominant": "#181818",
+          "lqip": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABQBQCdASoYACQAPtFQoU2oJKMiOrzIAQAaCWIAtvvWApJfNjYLG3vDNh0LZDw5qQwuxUAA/l6TTXOZeyw97lQyGmUHlqz3mRPnhkZnVsFC25BTj22/yGsvPxfABQbevk112qZ9Du2agjrFbyrR8sohIMQ3Z1ENQzkvdcPxbZSrC2VVcoPz+067jVelSvaDSc7kJ/Y4ltSiaMWdEYBjhaiNq45203JHGLSGwN/gY6QQH2lcAAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-32.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-32",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3404,
+          "h": 5106,
+          "ratio": 0.6667,
+          "dominant": "#a89898",
+          "lqip": "data:image/webp;base64,UklGRnIAAABXRUJQVlA4IGYAAAAQBQCdASoYACQAPu1usFKppiSipWmZMB2JZ2jZVdaGnArJs1reD4ximPD6cmR5TofAAP7dzDy+zfEprXPhh3dc2dZv1H9+Fb1FfddCdG8NIhmdVVE68NTOZPmDjrc2mwh7080AAAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-36.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-36",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3728,
+          "h": 5592,
+          "ratio": 0.6667,
+          "dominant": "#584838",
+          "lqip": "data:image/webp;base64,UklGRqAAAABXRUJQVlA4IJQAAAAQBgCdASoYACQAPuFaqE2opSQiNVgMARAcCWQAv2uhxs+JjbxXRVtspxWCp887J/IkwZiqCoiBDTAA/vd0JT4QZJYmgtJ4annuyOLZicvaqGJWLYjlX6rDh4i5YXLersvoREwDk2xIsR7Zf+vuHmVwbpD9SL0YvVcyqaxaAVddAiCPTAgTOhcQ5FdRryZQNMMPOAAA",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-39.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-39",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5142,
+          "h": 3428,
+          "ratio": 1.5,
+          "dominant": "#180808",
+          "lqip": "data:image/webp;base64,UklGRmAAAABXRUJQVlA4IFQAAADwAwCdASoYABAAPu1iqk4ppaQiMAgBMB2JZgCdL1yBVSVdJbiJ4xwAAP7xmoGzrZ6sJcpeGbpKDRw2pF4UhxhZj5v/5iJZcqii4MovppCEQpCTIAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-53.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-53",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3875,
+          "h": 5813,
+          "ratio": 0.6666,
+          "dominant": "#c8c8b8",
+          "lqip": "data:image/webp;base64,UklGRhwBAABXRUJQVlA4IBABAAAwBwCdASoYACQAPu1wsFOppiQipWgBMB2JYgCdM6sJGC280BrcuRTNRwdJUf7V+uA5d94k3oKu631WXAkKuHWboOAA/b3pBql1NXaydo1BvE3ttR3Z/Q3SXZTsZRRNfXhEU/+bMSODqwGVD1CcLx86BkNRxicO11tYoTvm2glu3L1uzkoxRKI1mMVCO3nvUoYdAWRqr16JNcyRGeef7T07n1Bhvgg/SV/81mic0tEybC1YyPxMzSg0uSqiIfqRM/NtLXBM/4FHuyPirVMmxCMPqSAY8J0G08LPYUuX1rbUAcaFEviNjq6MRxiV/mOc5HonKCTAbYBGQBQZLjH9YtH+FREJ+JhIlfamJR3EkAAAAA==",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-55.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-55",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5980,
+          "h": 3987,
+          "ratio": 1.4999,
+          "dominant": "#483828",
+          "lqip": "data:image/webp;base64,UklGRooAAABXRUJQVlA4IH4AAAAQBACdASoYABAAPu1kqU2ppaOiMAgBMB2JZACdABjGINX6o/kKwIN3YAD+2VwlHPcT9ug737h2P1ZYlkUDyi03rO0lQElRoEs+6xrf2IvKtIh9YEz/IiUCXx9bTufkfjiBlsmaXcdPeI8GNrtQCdpCgXVfIuAgLi0HnqZdAAA=",
+          "phone": false
+        },
+        {
+          "original": "©ISMAILAFAIYSS  - OCHRA ARCHITECTS - RIAD LES HIRONDELLES-60.jpg",
+          "base": "ismailafaiyss-ochra-architects-riad-les-hirondelles-60",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 3499,
+          "h": 5248,
+          "ratio": 0.6667,
+          "dominant": "#584838",
+          "lqip": "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAAAwBQCdASoYACQAPslSn02npSMpOqgBIBkJZAC2yDd4W9joB2ahERU7bmzzO/RV/VvBAAD+2RTdBvVzlGWTQsGlAYXhWeLMglHujUm4ViMNG1HsnemG/pMz8C+NpL8Wcil34eeZ8NnhjZeJ4wr/pDDruA/8o0Go3ddNk1x+od07d3I3fSHdx+eSFu8ZOPRCvjyhoVHStVyI7HLSlQqkHBZXdbfxFPqEY1WaDHpdAJzw1HqWjfA8p9MOAAA=",
+          "phone": false
+        }
+      ]
+    },
+    {
+      "slug": "trianon",
+      "name": "Trianon",
+      "category": "Hôtellerie",
+      "cover": "mo-7",
+      "images": [
+        {
+          "original": "Mo-7.jpg",
+          "base": "mo-7",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 8640,
+          "h": 5760,
+          "ratio": 1.5,
+          "dominant": "#5888d8",
+          "lqip": "data:image/webp;base64,UklGRrYAAABXRUJQVlA4IKoAAACQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JZgCdMoLT+z/4tg5GO0EHBaYh5IAAyzt/XgSw/ND+o0aJlXlW0N+Fpt7NTNQp73+Nf3dyqUG/NHay837+8Sl3WaSFVc7qZKYcg+ipKFIlZSnIK/uES0XecR1eUXL5EQmPZBTmes7PIW54qUztffxduAjbx9hkOg0gXf/ZeG4YvV18DpMKlyEpHdNIvZH8zgoAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-8.jpg",
+          "base": "mo-8",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5760,
+          "h": 8640,
+          "ratio": 0.6667,
+          "dominant": "#d8d8c8",
+          "lqip": "data:image/webp;base64,UklGRigBAABXRUJQVlA4IBwBAAAwBwCdASoYACQAPu1ip06ppSMiMBVdUTAdiWYAnTlBU0u+gCatxo2wn8edctYpr5ZtvGTxjtVZ66+eQFzKz5pkoTAA/mmz5lQ3g1tp69lVa1RMbnXjqSyDIZwfsHo6wJqkVgC296n2t1q7SEhyTea5uBmPkviiarMFgA0Lk2yNCcFk52/3gDB5CXQdHJ3W9OJp1yvKU4nvj/GId/x6fBKcTJcEowMkKeT32FRfDY4y8CU43aK4rQXCWaHpoRDExOmBJGLqdiOJ3mN0P6Up6C0JvihktZG8waMiY6gk1w6R2uA/UE+qFufjFp3lV80N7CkIdvSua2EBqlwcL0eF/6mKH/b2dtNcmdvznziOp+wclEu1T7vhbsc7D+AAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-11.jpg",
+          "base": "mo-11",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5605,
+          "h": 8408,
+          "ratio": 0.6666,
+          "dominant": "#a8c8e8",
+          "lqip": "data:image/webp;base64,UklGRigBAABXRUJQVlA4IBwBAACwBwCdASoYACQAPu1kq06ppaQiMBVaqTAdiWgArDlBVn4YuUztDXVQdE4VXNeUoEFm5zVF35kA730i+Ti5j6mo/Y0ywMaAAP3juIdn+hMNVC99urXI7EdjB4LwKB3nqAS1s4LNCF2LJDsRK9vrH5omABPnB9aSNVaxAOiXVZid9f86YhT2p5sP3nvSC5XKAgYjoPTWP/Vb8xPw7SRDOF37xVFrLMBAj4Z0KrX13R416q0aQN2gVoWUCuH6PibwkyU6Co+ulSGY10OKEgTEIwcJvU1Co59USy2jX9RyQ88VZLNvj13g1WVkgP3Oh9z4mgwpwkMSwbvOCW/QSVlNQtduQhxQHkB+NBss8had5lxmimwfCVYEKqBd5gAAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-19.jpg",
+          "base": "mo-19",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5760,
+          "h": 8640,
+          "ratio": 0.6667,
+          "dominant": "#b86828",
+          "lqip": "data:image/webp;base64,UklGRvAAAABXRUJQVlA4IOQAAAAwBgCdASoYACQAPu1eqlAppKOisBVaqTAdiWIArDN2yVBAA9eElCaO79mxVcezfETGwsBvJFSkDQywAPmlzzdeBXchZ1i1vKmuGSlIA2m5H/oh/fxvRUrH/f6iRrCeM69n3oFMJBk7U95xpu5DQPbHB+JmZzdE9Iv/nm31CdlvAfXAomNdw8Z7qCgjAkssOT1safD1m1te/L2obQjCqduwTQcwTxFR1ZmilaD7FygqEg5jCZX/okse3+h8pgXLvPeAnKu+suiTKbW7T7XlvllqhKGgZrFoQDgmBFgKlMeY+hEAAAA=",
+          "phone": false
+        },
+        {
+          "original": "Mo-21.jpg",
+          "base": "mo-21",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 8640,
+          "h": 5760,
+          "ratio": 1.5,
+          "dominant": "#281808",
+          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAABwBACdASoYABAAPu1iqU2ppaOiMAgBMB2JaACdMoFWVgVN5Q8LSJZiHsLwwAD8MIWLgwTcoJXAePWBct4mum0dq2xDaJLGVU5WoLtpGs2D1DjJIlia2JwctmUniMK2USDsO1XA7cdXmV8BWXkYyG13W6VPkGScsQN1PkVPockdRc6H1vw2xQFzZg17jeCVDZLi9Cy1sQiuN0MhaagAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-22.jpg",
+          "base": "mo-22",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5729,
+          "h": 8593,
+          "ratio": 0.6667,
+          "dominant": "#d8a868",
+          "lqip": "data:image/webp;base64,UklGRiIBAABXRUJQVlA4IBYBAADwBgCdASoYACQAPu1yrlGppyQiqrgIATAdiWgAnTLHAppKHTDtKXpBtLcXsjXOy6QjMBMvZxb1WET/+6locE40AP4VGBho22wqWNElVtplySysYirC+eYSuCtmBCuFaOcpOcFy0EG5/cWuU73Bno5EDe/6FerhdmmEVjD4hJnSdRjD1fjuFj0YtodzR/ZszvJxtqklePqedTXAPULGO88vUIehGpE3/XlTw4k8eLI2WRvI1WJdMjkC765ASXCrrW7DqYuvOgSa4ftwzHapWUb/1MAJKRMiB9LkdaisgnQeV5uBBqTun2WY2l8j6P2h8v7uhsaL4+JMXBsEc26ataji+0IjtlntQErTNhAqi1dcK98s7UwAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-23.jpg",
+          "base": "mo-23",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5760,
+          "h": 8640,
+          "ratio": 0.6667,
+          "dominant": "#481808",
+          "lqip": "data:image/webp;base64,UklGRvQAAABXRUJQVlA4IOgAAADQBgCdASoYACQAPu1urlIppiQipWsxMB2JZACdMrkvWCTp4VGYJqEpGDwwAglJqxHYOJrKFEPBhuvPHMooEQAA/vQkhPc6aMCXBNcw9xJgCZ+uvYH15iQMQ0r6K8VEbket2U4bo1IXd/FjTErLaYsm97E7pGIHj0ZaB30eFQeg78+VUERNF9qJ8hu9YwpYlnxrUE8bQ1bK5TUTlYHmI33vvrW8HHAnNbczK6VdZD8i/F5jCNiUzK/AUCCPviR99tOygQyVmdC5JbhZijjYSe+AVvLYsIQ0FbhEAgwNWt3k791K369yheAA",
+          "phone": false
+        },
+        {
+          "original": "Mo-33.jpg",
+          "base": "mo-33",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5760,
+          "h": 8640,
+          "ratio": 0.6667,
+          "dominant": "#88a8d8",
+          "lqip": "data:image/webp;base64,UklGRioBAABXRUJQVlA4IB4BAADwBgCdASoYACQAPu1qrVCppaQipWzJMB2JaACdMzRAkG21va3LJXzDvESg+SAXaTYg5gtIWIDRF5QfickB6RxAAP5RWCBgmX3N6ho2U3wETc5Kgqc6GifpVHIdh2/8q8m3uYbouognC7hYlWUPuRQRh8AK0yom48x9b15XW6sk0ZDLRkeNpNeje9wEWOndwjWZ+erBBX3q+17lQbrW2aUiMVHFJDqiqfY3IJHcCeTDPtjtfBKOA+985c/nPZAkBN0Jub/+fzJAYJAXUpd0EmPiU3bYMrY+xhcbXdREqKJdb5VAm6WGTQTxv0awIKiOkoDhBgZdfPpQ6sMYhy1AOfQpEN0//nsP32RMecEriczARFILwgqq15WcV7b5xoAA",
+          "phone": false
+        },
+        {
+          "original": "Mo-57.jpg",
+          "base": "mo-57",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5760,
+          "h": 8640,
+          "ratio": 0.6667,
+          "dominant": "#a89888",
+          "lqip": "data:image/webp;base64,UklGRsAAAABXRUJQVlA4ILQAAABwBgCdASoYACQAPu1wrlGppqQiqrgIATAdiUAW4CgqyAfg3bKrgfC+JRMqx9ROwhxllZxk3uEWNo6cugAA/vEUyucpJXWsQ4fsgO/H7NA6rBux60Fp5qy/UzfEmcz6X0JFV/DTiKoIXtI1JuFZbLRSAvZn8dhAGhBUyCrdSlFNu+z2CCTgrL2tpK8YEb1vyjzEZHXFOaI/9foM9cJ7GpM+s5rLOwBXSuilXA6EsiEuohWrEAA=",
+          "phone": false
+        },
+        {
+          "original": "Mo-62.jpg",
+          "base": "mo-62",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 8640,
+          "h": 5760,
+          "ratio": 1.5,
+          "dominant": "#b89878",
+          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAQBQCdASoYABAAPu1iqU2ppaOiMAgBMB2JYgCdMoR4N1/tv8Btx3OeP/3sue9ettqAAP5gJ1NMJnSd6RhVcI6ZeUQU+rku+s0ZlXSJlnsRvtOd+ZTulQ+jZ0yKpZWYNXdmv3dkIkIfQsG161o7zpy6+I2aq7WzpVOWw0HY1MNNusXFvdsfopPEZiXJ5EJ5KYMhovQX2gVcoNiYZaSAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-64.jpg",
+          "base": "mo-64",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 8622,
+          "h": 5748,
+          "ratio": 1.5,
+          "dominant": "#a89888",
+          "lqip": "data:image/webp;base64,UklGRqoAAABXRUJQVlA4IJ4AAAAQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JQBOmUBDAAVv1irlzuE6TAAD94p2F9qMzdwENQfBnfsyUw5bPUdnFG1OOVJICrVLeuatyJmmw7IygBYkoL0jvKQI59gdAHQWH84EcJq8VkvGwtzCdz6Vbcpcnxjx0nP+q4nxv9rrU1d8XckiwQcvsBXSx6cQ3lyvJz0bgZKoFT8w2EoAAAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-68.jpg",
+          "base": "mo-68",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5641,
+          "h": 8461,
+          "ratio": 0.6667,
+          "dominant": "#d8c8b8",
+          "lqip": "data:image/webp;base64,UklGRtQAAABXRUJQVlA4IMgAAADwBACdASoYACQAPu10slOppqSipWgBMB2JYwC45FDZthXcShr+nVuVKn7QR/S8tyAA/sf4X6wSbOk9+DiB2otkVBwUh3O9CXhE8j2kul0Et2TwNfS/Fu3pBITABkgy0JkBma2VwRMxQFWxH3S1LS3if9ELyV0RQ6wbZkYpaJkLZq6k1PKgKg2obKoqKTTVc+Jqibfhzokv+qs0vZl1mnMLvlvaGdFaFf47oCyM4NKnVqvysRKDwsluGiDLjKy7rP5ncEdzXnjgAA==",
+          "phone": false
+        },
+        {
+          "original": "Mo-84.jpg",
+          "base": "mo-84",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 6112,
+          "h": 9168,
+          "ratio": 0.6667,
+          "dominant": "#e8d8b8",
+          "lqip": "data:image/webp;base64,UklGRgYBAABXRUJQVlA4IPoAAABwBgCdASoYACQAPu1srlIppaQiqrgIATAdiWQAtsgitknaEaWc9U/foKp0LhvhXW83SQhbU6t6JFLc0QAA/ucpiUG+yA3RpZrGYwgt6tFFb08y9xDZg63TRzVs4uG3Gda7pdMckU9XvyMaGA+NOT7foNi4Xm4fGo1aS2aHxWD9f2l71xrC5R1nMh+vBqb1CmDun/c9yJYXIMd39qeKKhbQU+chmftE6ln2lVk795vs9/hJYjBgTqPtEt7Zkdr/kkMKQN7pHl552gYbP235VVtNCaVz1nnkNCw4wmdA4PJbsbZM4JOawUKtJY17TDPg49WqPg5gU6PjAAAA",
+          "phone": false
+        },
+        {
+          "original": "Mo-89.jpg",
+          "base": "mo-89",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 8578,
+          "h": 5719,
+          "ratio": 1.4999,
+          "dominant": "#382818",
+          "lqip": "data:image/webp;base64,UklGRqIAAABXRUJQVlA4IJYAAABQBACdASoYABAAPu1iqU2ppaOiMAgBMB2JYgCdACG+UQ3N33lnaZT0Y9gAAP5Zf97vGitMsY61VoSkMXCZrgq5vN2nwCPlmcLRk8Yd0DE4BTvyM87PNvsrWuyGdeAL/wtN5LClZsc2PFKVqTb2wdRy5YV0pOYkCvQvICvDMq4hLmpWEj+T4p2wTAuSSWrGjxTNqcnskAA=",
+          "phone": false
+        },
+        {
+          "original": "Mo-131.jpg",
+          "base": "mo-131",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5760,
+          "h": 8640,
+          "ratio": 0.6667,
+          "dominant": "#98b8d8",
+          "lqip": "data:image/webp;base64,UklGRugAAABXRUJQVlA4INwAAABQBgCdASoYACQAPu1eqU6ppKOiMBVdUTAdiWQAvmiqOMMpF4T2Jne5jNCmdfd3oWtcnL31aSWBUM6DmAD+wx3bBDz2Qu7KlRwlSbkTSIkJ5UY1TIlhAQ/m7TJQB1JsKAkjDpsfg+H8DdtU7U6xHnHZkNSQCtARjRRuLVmDLfXI6t2jnpMq1dyk06vNEQSvpF8exRe2KHfqqVdFUoY59Z76oF7uwfc+EjjLK3PyO7Ykl+bEwriFm1L8sRjD/g7BlD8O20R24Wc4xjsSXMbCFihoaGtv0ZJTKWLaAAAA",
+          "phone": false
+        },
+        {
+          "original": "Mo-134.jpg",
+          "base": "mo-134",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 5351,
+          "h": 8027,
+          "ratio": 0.6666,
+          "dominant": "#b8d8f8",
+          "lqip": "data:image/webp;base64,UklGRjwBAABXRUJQVlA4IDABAABwBwCdASoYACQAPu1qrVCppaQipWzJMB2JbACdMoQQFog/5doFV0TtrQN03B6QonPjpTUbWFvyF7WwPR03CigujYsJAAD+7TSZozKYQop5Yset5WARx/03V8fPOlx01Lvj2ttJPDBOSs3BK2unDKlnZL6duORPkLg9SHkVydjhji41LEozUJwFSykpJHra8MbeGpfIYNTAPGt6Yj+LIqbWTCNKW+Rp7+A7gsqAF4cMUNv7E6hyg6aYwkcFC6QmUD/mFAtVzUrZY63KhDiVoZY0IsOCVg6UHZljhxp9qfcJl4XCdumaOPvxguAfrrDMQNuUrytGAc7iCue6rtOHosQ3rCuxumLyVx0HCfWk2hT+pw+X58wMPSQhS2rmU8fxnN6t6hXBNXbHA1ZfgIcLF6AA",
+          "phone": false
+        }
+      ]
+    },
+    {
+      "slug": "villa-medicis",
+      "name": "Villa Medicis",
+      "category": "Villa",
+      "cover": "vmed-photo-3",
+      "images": [
+        {
+          "original": "VMED__Photo - 3 (3).jpg",
+          "base": "vmed-photo-3-3",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#080808",
+          "lqip": "data:image/webp;base64,UklGRnQAAABXRUJQVlA4IGgAAAAwBACdASoYAA4APu1iqk4ppaQiMAgBMB2JQBadBD4Vza/qg7gqPmYegmAA/tB/5ouxUYMPJbVca8AGts9tsTjD8ZBVWYiDM8CgV4iCtMkJ5vsxAqalg/tZeHE5kkAycnrgX/5UjAuSAA==",
+          "phone": false
+        },
+        {
+          "original": "VMED__Photo - 3 (4).jpg",
+          "base": "vmed-photo-3-4",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#283808",
+          "lqip": "data:image/webp;base64,UklGRoIAAABXRUJQVlA4IHYAAABQBACdASoYAA4APu1iqk2ppaQiMAgBMB2JQBOkBvk/wFfVmb+a5ZgV676AAP7QGCUnjZ+b36uxu6j668CTLI6WEYZ4UgxJ8AbNOqIxnLAjMYuvv4f/7/FMGEeQkwZvprcwKOamJh3ACVyDnCPoDUBGt3E4KXwA",
+          "phone": false
+        },
+        {
+          "original": "VMED__Photo - 3.jpg",
+          "base": "vmed-photo-3",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#080808",
+          "lqip": "data:image/webp;base64,UklGRoQAAABXRUJQVlA4IHgAAACQAwCdASoYAA4APu1iqU2ppaOiMAgBMB2JQBdkBLhW8BLdB4ecAP7XLPn5lrkuttvn+epHtS4L8OE/CECvP5bP0AoM9Cw5RgMrUZMv5QX/0H5VQry/9amqQ/crBiggzK86ibF37mcycgGVExckA9upRDL0krsAAAA=",
+          "phone": false
+        },
+        {
+          "original": "VMED_INT_Photo - 4 (2).jpg",
+          "base": "vmed-int-photo-4-2",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#887858",
+          "lqip": "data:image/webp;base64,UklGRnwAAABXRUJQVlA4IHAAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOgBDiRQYQdtiu4Gg5rQAD+o2cB7Slm/KUay22yUJnMwgWSWSPPJKjWw5GGfrWAD6gyvtbf2h/BeJdGwc4aZ49/REyh9Wjmu+ajAyHy6FPtfjei2wAA",
+          "phone": false
+        },
+        {
+          "original": "VMED_INT_Photo - 4.jpg",
+          "base": "vmed-int-photo-4",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#887858",
+          "lqip": "data:image/webp;base64,UklGRoAAAABXRUJQVlA4IHQAAADQAwCdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOgBDiRO5e5RFOTdhAA/nkVFjxjE72FRjhQxiniTN6yzXNshyeeYhJdpEPs7qop5FhepdDnKnwgPoMSAIqEH/8m9AQNHI3z/r/J5kWQJtRMqqqueYD7ZuoAAA==",
+          "phone": false
+        },
+        {
+          "original": "VMED_Photo - 2.jpg",
+          "base": "vmed-photo-2",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#7898a8",
+          "lqip": "data:image/webp;base64,UklGRpIAAABXRUJQVlA4IIYAAADQAwCdASoYAA4APu1iqU2ppaOiMAgBMB2JZgCdIExCb6O8NDt+sSAA+4fI+6pBN5eZCuxkzknsjbuF++aAufRNe7E1qUclXNUe4kO0sCkZ6nDZofM3vZa/sSEK+/Y29Ie26TBRAkgIPq/Sh5nN7M/5xguB7EHtW6tCa8kacNkZnCjZONAAAA==",
+          "phone": false
+        },
+        {
+          "original": "VMED_Photo - 3.jpg",
+          "base": "vmed-photo-3",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1920,
+          "h": 1080,
+          "ratio": 1.7778,
+          "dominant": "#080808",
+          "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAAAQBACdASoYAA4APu1kqk4ppaQiMAgBMB2JYgCdAB6MiShIEwFf9rw4IAD+4Z6QblGPe6ZXz/y4rDBp6ZNOUW681+/YceR+zfhp43OQ7AviMUUGk+ffqj0RevwmVD30D6p63gLZ0JOfO9aGqnUVcMhbA9LYnQ5MyeRqKXVjKTlp9UoAAAA=",
+          "phone": false
+        }
+      ]
+    },
+    {
+      "slug": "cliff-house",
+      "name": "Cliff House",
+      "category": "Villa",
+      "cover": "4",
+      "images": [
+        {
+          "original": "1.jpeg",
+          "base": "1",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 1600,
+          "h": 900,
+          "ratio": 1.7778,
+          "dominant": "#e8d8c8",
+          "lqip": "data:image/webp;base64,UklGRpoAAABXRUJQVlA4II4AAAAwBACdASoYAA0APu1mqk4ppaOiMAgBMB2JZgCdMoACN7+5PHOy8zCCUMAA9jazu6O4BgGjWUpy3IrqHZAGiT5VFxWqJnMIoeb2A/zt9K+8mA1ysirB4mkHoauTT8rfXkwop60lIi6awx+9nDXNjzha5PY1JMe06ZFm5+kM5i5w75oAymTLePiHhECoAAAA",
+          "phone": false
+        },
+        {
+          "original": "2.jpeg",
+          "base": "2",
+          "widths": [
+            480,
+            960
+          ],
+          "w": 1365,
+          "h": 768,
+          "ratio": 1.7773,
+          "dominant": "#d8d8d8",
+          "lqip": "data:image/webp;base64,UklGRpgAAABXRUJQVlA4IIwAAAAQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOgBDpij4tLFRuMv4EYAAD+ta1LP2ZYqDnwlv2Ye4m4t9Mexx+SkpxPPEeMjDuogPmT9DLUh+f/ydaFL0AIDCYpsWYHW57qpNjI7/0vn9rQ4hy5yip0kG+Q4aS6ufrZqICu3vNc7WUL9X4WnmEsf1xAAA==",
+          "phone": false
+        },
+        {
+          "original": "3.jpeg",
+          "base": "3",
+          "widths": [
+            480,
+            960
+          ],
+          "w": 1024,
+          "h": 576,
+          "ratio": 1.7778,
+          "dominant": "#d8c8b8",
+          "lqip": "data:image/webp;base64,UklGRq4AAABXRUJQVlA4IKIAAACwBACdASoYAA4APu1iqU2ppaOiMAgBMB2JZgCdMoADZgsME/4c8ZiYX1x35YfQAPyLRj/RXFi5e5syZxaGjCKlZXvrWdgTOkpfl5nywK4R0DaeRjlFuSK41oGIrzEMORlieSo2QERrBbuApRRV4Q7ZDNyiyG+SBYex0BTcICoJfENQqQhyeh3QEP6OZacpHRLu0lc7cQ+gjhcTXLgIAUcAAAA=",
+          "phone": false
+        },
+        {
+          "original": "4.jpeg",
+          "base": "4",
+          "widths": [
+            480,
+            960
+          ],
+          "w": 1365,
+          "h": 768,
+          "ratio": 1.7773,
+          "dominant": "#b8d8e8",
+          "lqip": "data:image/webp;base64,UklGRsYAAABXRUJQVlA4ILoAAACQBACdASoYAA4APu1iqU2ppaOiMAgBMB2JQBOkCYwVowNkwKhQIl5VB0c1lwAA/pmAuw3BG9NUFUrNgm3gmmjVBibno1A4e+4AhIOmN77L9y8cyyL/58WaIzX8QQaJcM+oPaYhTMtWQLM4Yy8gmHqyDwzoLfeQaLfDAIuG1lwrMwKXbB1nIUorampsys6Gxy6G6b9fPzj/1XgLqg5r2B46e+4s/nBpKaZ7fpdtyYq9cGvizE7smUqoAAA=",
+          "phone": false
+        },
+        {
+          "original": "7.png",
+          "base": "7",
+          "widths": [
+            480,
+            960,
+            1600,
+            2400
+          ],
+          "w": 2649,
+          "h": 1354,
+          "ratio": 1.9564,
+          "dominant": "#784828",
+          "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABwBACdASoYAAwAPu1kqU4ppaOiMAgBMB2JZgCdMoRwACTBeiBLZpJ2QA+YAAD+ufKQl4gtbvygsdVbLhw3ueKiF0k7aLPe4OmTtMnnW6qNTT3n/lzFVAed0QlcSwFIhwFttJT3HAP2kc4tv9HHLxZLYb5rKDZD4Cs7kBjYEHNDwlb6oAA=",
+          "phone": false
+        },
+        {
+          "original": "8.png",
+          "base": "8",
+          "widths": [
+            480,
+            960,
+            1600
+          ],
+          "w": 2252,
+          "h": 1526,
+          "ratio": 1.4758,
+          "dominant": "#081818",
+          "lqip": "data:image/webp;base64,UklGRpAAAABXRUJQVlA4IIQAAABwBACdASoYABAAPu1iqk2ppaQiMAgBMB2JQBOmXkBfkkHsWcOjqkivu3sgRAD+fl5cJuqixFnc7n6wsTaoHOyJUIG35npIbkKpBNVbWAuUdboM0SpAq8y134TtONegn/iQaRlXRiLU27n2judY2QSLgBp06IO7thtPTtxLqZMAIAQQAAA=",
+          "phone": false
         }
       ]
     }

@@ -1,7 +1,9 @@
-# Ochralab
+# OCHRA
 
 Site portfolio de **Mehdi Tolaimate**, architecte et designer d'intérieur à
-Marrakech. Douze projets — hôtellerie, riads, villas — et 80 photographies.
+Marrakech. Quinze projets — hôtellerie, riads, villas — et 105 photographies.
+Le studio s'appelle **OCHRA** ; le domaine, l'email et Instagram gardent
+« ochralab ».
 
 Site statique : pas de serveur applicatif, pas de base de données, pas de
 dépendance à installer pour l'afficher. Le HTML est généré à partir des
@@ -118,36 +120,22 @@ Contrastes vérifiés WCAG AA sur toute la palette, le plus faible à 4,71:1.
 
 ## Contenu à compléter
 
-⚠️ **Les fiches techniques de dix projets sont inventées.** Kactus et
-Perreaux affichent les vraies données fournies par le studio ; les dix
-autres (`PROJECT_INFO` dans `tools/build-galerie.mjs`) ont été inventées
-à la demande de Bilal le 2026-09-03, sur le même modèle, pour qu'aucune
-page projet n'affiche une fiche vide. Rien de ces dix-là n'a été confirmé
-par Mehdi (lieu, année de livraison, superficies, nombre de chambres) :
-à remplacer par les vraies valeurs avant toute mise en ligne publique.
+Fiches techniques, noms de projets, coordonnées et encadré Studio viennent
+du document rempli par Mehdi le 2026-10-01 (`PROJECT_INFO` dans
+`tools/build-galerie.mjs`). Les cases qu'il a laissées vides ou marquées
+« NA » ne sont pas affichées ; rien n'est inventé.
 
-Pour le reste, rien n'a été inventé. Le site fonctionne sans, mais
-gagnerait beaucoup à recevoir de Mehdi :
+Manque encore :
 
 - **Textes de projet** — une phrase de résumé et deux ou trois paragraphes
   d'intention par projet. C'est ce qui sépare une galerie de photos d'un
   portfolio d'architecte.
-- **Fiches techniques réelles** — pour remplacer les dix inventées ci-dessus.
 - **Crédits photo** — le photographe, ou « rendu du studio ».
-- **Identité** — confirmer l'orthographe « Ochralab », l'adresse de contact
-  publique, un téléphone, une adresse postale, les réseaux sociaux.
+- **Villa 14 et Villa 17** — fiches remplies, mais aucune photo fournie :
+  absentes du site.
 - **Nom de domaine** — nécessaire pour les URL canoniques et les aperçus
   de partage.
 
-Deux arbitrages sur les images :
-
-- **Boulokat** mélange des photos professionnelles (`acimcom-*`) et des
-  prises de vue au téléphone. Les secondes sont reléguées en fin de galerie ;
-  elles gagneraient à être retirées, un portfolio se jugeant sur sa photo
-  la plus faible.
-- **Hermes** n'a que 2 photos, **Chlouh** et **Cortes** 3, contre 23 pour
-  Boulokat. Soit on complète, soit on assume le déséquilibre.
-
 ## Crédits
 
-Photographies et projets : Ochralab / Mehdi Tolaimate. Tous droits réservés.
+Photographies et projets : OCHRA / Mehdi Tolaimate. Tous droits réservés.

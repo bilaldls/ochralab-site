@@ -1,4 +1,4 @@
-/* OCHRALAB — Galerie : chorégraphie GSAP */
+/* OCHRA — Galerie : chorégraphie GSAP */
 (function () {
   document.documentElement.classList.remove("no-js");
   document.documentElement.classList.add("js");
@@ -160,7 +160,7 @@
        • au départ : un clic sur un lien [data-transition] le redéploie
          par-dessus la page avant de charger la suivante.
      Le mouvement est continu d'une page à l'autre : le rideau et le mot
-     montent toujours vers le haut. Le mot affiché est « OCHRALAB » au
+     montent toujours vers le haut. Le mot affiché est « OCHRA » au
      lancement du site, puis le nom de la section cliquée (Projets,
      Studio, Contact, Villas…). */
   var pre = document.querySelector(".preloader");
@@ -201,8 +201,8 @@
     document.body.style.overflow = "hidden";
     gsap.set(pre, { yPercent: 0, visibility: "visible" });
     if (firstVisit && !cameFromClick) {
-      // Lancement du site : « OCHRALAB » se dévoile d'abord.
-      setWord("Ochralab");
+      // Lancement du site : « OCHRA » se dévoile d'abord.
+      setWord("Ochra");
       gsap.set(letters, { y: "110%" });
       intro
         .to(letters, { y: 0, duration: 0.45, stagger: 0.035, ease: "power3.out" })
@@ -212,8 +212,8 @@
       // Transition : on reprend le nom de la section cliquée, déjà en
       // place (continuité avec la page précédente) ; il finit sa montée
       // et le rideau se retire.
-      var enterWord = "Ochralab";
-      try { enterWord = sessionStorage.getItem("ochralab-transition-label") || "Ochralab"; } catch (e) {}
+      var enterWord = "Ochra";
+      try { enterWord = sessionStorage.getItem("ochralab-transition-label") || "Ochra"; } catch (e) {}
       try { sessionStorage.removeItem("ochralab-transition-label"); } catch (e) {}
       setWord(enterWord);
       gsap.set(letters, { y: 0 });
@@ -246,7 +246,7 @@
         e.preventDefault();
         leaving = true;
         var href = a.href;
-        var label = a.dataset.transitionLabel || a.textContent.trim() || "Ochralab";
+        var label = a.dataset.transitionLabel || a.textContent.trim() || "Ochra";
         try {
           sessionStorage.setItem("ochralab-transition", "1");
           sessionStorage.setItem("ochralab-transition-label", label);

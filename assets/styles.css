@@ -611,6 +611,14 @@ html.reduced-motion figure[data-reveal] > img {
 .studio__bio p:last-child {
   margin-bottom: 0;
 }
+/* Deux versions du même texte, anglais puis français : un filet et un
+   large écart marquent le passage d'une langue à l'autre. */
+.studio__lang + .studio__lang,
+.studio__details + .studio__details {
+  margin-top: var(--space-5);
+  padding-top: var(--space-4);
+  border-top: 1px solid var(--line);
+}
 .studio__bio strong {
   font-weight: 800;
 }
@@ -635,6 +643,7 @@ html.reduced-motion figure[data-reveal] > img {
 }
 /* Liens en ligne : zone tactile portée à 44px sans déplacer le texte. */
 .studio__details a,
+.contact-page__info dd a:not(.social-link),
 .footer-row a {
   display: inline-block;
   padding-block: 0.75rem;
@@ -710,6 +719,9 @@ html.reduced-motion figure[data-reveal] > img {
 }
 .contact-page__info dd {
   margin: 0;
+}
+.contact-page__info dd a:not(.social-link):hover {
+  color: var(--accent);
 }
 .contact-page__social {
   display: flex;

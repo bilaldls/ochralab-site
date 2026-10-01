@@ -18,108 +18,147 @@ async function assetHash(rel) {
 const CSS_V = await assetHash("assets/styles.css");
 const JS_V = await assetHash("assets/main.js");
 
+// Nom officiel choisi par Mehdi (2026-10-01) : « OCHRA ». Le domaine,
+// l'adresse email et le compte Instagram gardent « ochralab ».
+const BRAND = "OCHRA";
+const EMAIL = "contact@ochralab.com";
+const PHONE = { display: "05 25 19 07 22", href: "tel:+212525190722" };
+const ADDRESS = "48 rue de Yougoslavie, bureau 405, Marrakech";
+
 const DESC =
-  "Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaimate. Hôtels, riads et villas : douze projets choisis.";
+  `${BRAND}, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaimate. Hôtels, riads et villas : ${projects.length} projets choisis.`;
+
+// Les noms de projets contiennent des « & » : échappés une fois pour
+// toutes, ils ne sont utilisés que dans du HTML.
+const escapeHtml = (t) =>
+  t.replace(/&/g, "&amp;").replace(/</g, "&lt;").replace(/>/g, "&gt;").replace(/"/g, "&quot;");
+for (const p of projects) p.name = escapeHtml(p.name);
 
 // Fiches techniques par slug. Champ absent = non affiché.
 //
-// kactus et perreaux : données réelles, fournies par le studio.
-//
-// Les dix autres : inventées à la demande de Bilal (2026-09-03), sur le
-// modèle des deux premières, pour qu'aucun projet n'affiche une fiche vide.
-// Rien ici n'a été confirmé par Mehdi — remplacer par les vraies valeurs
-// avant toute mise en ligne publique du site.
+// Source : document « Ochralab-informations-a-renseigner.docx » rempli par
+// Mehdi (2026-10-01). Les cases laissées vides ou marquées « NA », « — »
+// ne sont pas affichées. Rien n'est inventé.
 const PROJECT_INFO = {
+  "jamaa-el-fna": {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi et coordination des travaux"],
+    lieu: "Marrakech, Maroc",
+    projet: "Livré, 2023",
+    consistance: "13 chambres",
+  },
+  sirayane: {
+    mission: ["Concept", "Master plan", "Architecture", "Suivi de chantier"],
+    lieu: "Route d'Amezmiz, Marrakech",
+    projet: "En cours",
+    supTerrain: "12 000 m²",
+    consistance: "63 chambres",
+    surfaceConstruite: "> 5 000 m²",
+    maitreOuvrage: "Sirayane Hospitality",
+  },
   kactus: {
     mission: ["Architecture", "Architecture d'intérieur", "Suivi et coordination des travaux"],
     lieu: "Marrakech, Maroc",
-    projet: "Décembre 2026",
-    supTerrain: "> 1 500 m²",
-    surfaceConstruite: "> 700 m²",
+    projet: "En cours",
+    supTerrain: "1 500 m²",
+    consistance: "6 chambres",
+    surfaceConstruite: "770 m²",
+    maitreOuvrage: "Klucsar Invest",
   },
   perreaux: {
     mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
     lieu: "Marrakech, Maroc",
-    projet: "En cours, mars 2027",
+    projet: "En cours",
     supTerrain: "600 m²",
     surfaceConstruite: "> 700 m²",
   },
-
-  // --- Fiches inventées à partir d'ici ---
-  boulokat: {
-    mission: ["Architecture", "Architecture d'intérieur", "Suivi et coordination des travaux"],
-    lieu: "Marrakech, Maroc",
-    projet: "Livré, 2023",
-    supTerrain: "> 2 000 m²",
-    consistance: "24 chambres",
-    surfaceConstruite: "> 1 200 m²",
-  },
-  sirayane: {
-    mission: ["Architecture", "Architecture d'intérieur"],
-    lieu: "Route de l'Ourika, Marrakech",
-    projet: "Livré, 2022",
-    supTerrain: "> 3 000 m²",
-    consistance: "18 chambres",
-    surfaceConstruite: "> 1 500 m²",
-  },
   ilot: {
-    mission: ["Architecture", "Suivi et coordination des travaux"],
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
     lieu: "Marrakech, Maroc",
-    projet: "Livré, 2021",
+    projet: "En cours",
     supTerrain: "800 m²",
-    consistance: "20 chambres",
+    consistance: "100 chambres",
     surfaceConstruite: "> 1 800 m²",
-  },
-  casa: {
-    mission: ["Architecture", "Architecture d'intérieur"],
-    lieu: "Marrakech, Maroc",
-    projet: "Livré, 2020",
-    supTerrain: "650 m²",
-    consistance: "16 chambres",
-    surfaceConstruite: "> 1 100 m²",
   },
   "devils-rock": {
     mission: ["Architecture d'intérieur", "Suivi des travaux"],
-    lieu: "Essaouira, Maroc",
-    projet: "Livré, 2023",
-    supTerrain: "1 200 m²",
-    consistance: "12 chambres",
-    surfaceConstruite: "> 900 m²",
+    lieu: "Taghazout, Maroc",
+    projet: "En cours",
+    consistance: "50 chambres",
   },
-  chlouh: {
-    mission: ["Réhabilitation", "Architecture d'intérieur"],
-    lieu: "Médina, Marrakech",
-    projet: "Livré, 2021",
-    supTerrain: "220 m²",
-    surfaceConstruite: "> 280 m²",
-  },
-  pamur: {
-    mission: ["Réhabilitation", "Architecture d'intérieur", "Suivi de chantier"],
-    lieu: "Médina, Marrakech",
-    projet: "Livré, 2022",
-    supTerrain: "310 m²",
-    surfaceConstruite: "> 420 m²",
-  },
-  hermes: {
-    mission: ["Architecture d'intérieur"],
-    lieu: "Médina, Marrakech",
-    projet: "Livré, 2025",
-    supTerrain: "180 m²",
-    surfaceConstruite: "> 210 m²",
-  },
-  mbk: {
+  "villa-mb": {
     mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
     lieu: "Palmeraie, Marrakech",
     projet: "Livré, 2023",
-    supTerrain: "1 000 m²",
+    supTerrain: "600 m²",
+    consistance: "4 chambres",
     surfaceConstruite: "> 550 m²",
+    maitreOuvrage: "Client privé",
+  },
+  "bab-hmer": {
+    mission: ["Réhabilitation", "Architecture d'intérieur"],
+    lieu: "Médina, Marrakech",
+    projet: "En cours",
+    supTerrain: "125 m²",
+    consistance: "6 chambres",
+    surfaceConstruite: "> 250 m²",
+    maitreOuvrage: "Client privé",
+  },
+  clucia: {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Casablanca, Maroc",
+    projet: "En cours",
+    consistance: "110 chambres",
+    maitreOuvrage: "Centralucia SARL",
   },
   cortes: {
     mission: ["Architecture", "Suivi de chantier"],
+    lieu: "Route de l'Ourika, Marrakech",
+    projet: "En cours",
+    supTerrain: "> 10 000 m²",
+    consistance: "7 villas",
+    surfaceConstruite: "> 5 000 m²",
+    maitreOuvrage: "Client privé",
+  },
+  hermes: {
+    mission: ["Réhabilitation", "Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Médina, Marrakech",
+    projet: "En cours",
+    consistance: "17 chambres",
+    surfaceConstruite: "> 700 m²",
+    maitreOuvrage: "Client privé",
+  },
+  hirondelles: {
+    mission: ["Réhabilitation", "Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Médina, Marrakech",
+    projet: "2026",
+    consistance: "6 chambres",
+    surfaceConstruite: "> 300 m²",
+    maitreOuvrage: "Client privé",
+  },
+  trianon: {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
     lieu: "Palmeraie, Marrakech",
-    projet: "Livré, 2025",
-    supTerrain: "900 m²",
-    surfaceConstruite: "> 480 m²",
+    projet: "2026",
+    supTerrain: "> 10 000 m²",
+    consistance: "60 chambres",
+    surfaceConstruite: "> 4 500 m²",
+    maitreOuvrage: "Client privé",
+  },
+  "villa-medicis": {
+    mission: ["Architecture"],
+    lieu: "Bouskoura, Casablanca",
+    consistance: "6 chambres",
+    surfaceConstruite: "> 700 m²",
+    maitreOuvrage: "Client privé",
+  },
+  "cliff-house": {
+    mission: ["Architecture", "Architecture d'intérieur", "Suivi des travaux"],
+    lieu: "Cabo Negro, Maroc",
+    projet: "En cours",
+    supTerrain: "> 2 500 m²",
+    consistance: "6 chambres",
+    surfaceConstruite: "> 700 m²",
+    maitreOuvrage: "Client privé",
   },
 };
 
@@ -181,7 +220,7 @@ ${preload ?? ""}
 <a class="skip-link" href="#main">Aller au contenu</a>
 <div class="cursor" aria-hidden="true"></div>
 <div class="preloader" aria-hidden="true">
-  <div class="preloader__word">${"OCHRALAB".split("").map((c) => `<span>${c}</span>`).join("")}</div>
+  <div class="preloader__word">${BRAND.split("").map((c) => `<span>${c}</span>`).join("")}</div>
 </div>`;
 }
 
@@ -213,7 +252,7 @@ function sidebar(root, current) {
   // aria-current au chargement : aucune des deux copies (rail, tiroir)
   // ne le porte à la génération.
   // data-transition-label : mot affiché par le rideau de transition
-  // (main.js). « OCHRALAB » n'est gardé que pour le lancement du site.
+  // (main.js). « OCHRA » n'est gardé que pour le lancement du site.
   const filterLinksNav = CATEGORY_FILTERS.map(
     ([cat, label, slug]) =>
       `        <li><a href="${root}index.html#${slug}" data-filter="${cat}" data-transition data-transition-label="${label}"><span>${label}</span></a></li>`
@@ -246,7 +285,7 @@ function sidebar(root, current) {
 
   return `
 <aside class="sidebar">
-  <a class="wordmark" href="${root}index.html" data-transition data-transition-label="Projets">Ochralab</a>
+  <a class="wordmark" href="${root}index.html" data-transition data-transition-label="Projets">${BRAND}</a>
   <nav class="sidebar__nav" aria-label="Navigation principale">
     <ul>
 ${navLinks}
@@ -255,7 +294,7 @@ ${navLinks}
 </aside>
 
 <header class="topbar">
-  <a class="wordmark" href="${root}index.html" data-transition data-transition-label="Projets">Ochralab</a>
+  <a class="wordmark" href="${root}index.html" data-transition data-transition-label="Projets">${BRAND}</a>
   <button class="menu-btn" aria-expanded="false" aria-label="Ouvrir le menu">
     <svg width="26" height="16" viewBox="0 0 26 16" fill="none" aria-hidden="true"><path d="M0 1h26M0 8h26M0 15h26" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
@@ -264,14 +303,14 @@ ${navLinks}
   <button class="menu-close" aria-label="Fermer le menu">
     <svg width="22" height="22" viewBox="0 0 22 22" fill="none" aria-hidden="true"><path d="M1 1l20 20M21 1L1 21" stroke="currentColor" stroke-width="1.6"/></svg>
   </button>
-  <p class="label">Ochralab, Marrakech</p>
+  <p class="label">${BRAND}, Marrakech</p>
 ${drawerLinks}
 </div>`;
 }
 
 // Icônes des réseaux. `socialIcons` = les deux liens seuls, réutilisés
 // par le pied de page partagé (via socialLinks) et par la page Contact.
-const socialIcons = `<a class="social-link" href="https://www.instagram.com/ochralab/" target="_blank" rel="noopener noreferrer" aria-label="Ochralab sur Instagram">
+const socialIcons = `<a class="social-link" href="https://www.instagram.com/ochralab/" target="_blank" rel="noopener noreferrer" aria-label="${BRAND} sur Instagram">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
         <rect x="3" y="3" width="18" height="18" rx="5" fill="none" stroke="currentColor" stroke-width="1.6"/>
         <circle cx="12" cy="12" r="4.2" fill="none" stroke="currentColor" stroke-width="1.6"/>
@@ -280,7 +319,11 @@ const socialIcons = `<a class="social-link" href="https://www.instagram.com/ochr
     </a>
     <a class="social-link" href="https://www.linkedin.com/in/mehdi-tolaimate-3446a5147/" target="_blank" rel="noopener noreferrer" aria-label="Mehdi Tolaimate sur LinkedIn">
       <svg viewBox="0 0 24 24" width="20" height="20" aria-hidden="true">
-        <text x="12" y="16.5" text-anchor="middle" font-size="13" font-weight="700" font-family="Arial, Helvetica, sans-serif" fill="currentColor">in</text>
+        <g fill="currentColor" transform="translate(12 12) scale(1.25) translate(-12 -12)">
+          <circle cx="7" cy="7.5" r="1.45"/>
+          <rect x="5.8" y="9.8" width="2.4" height="8"/>
+          <path d="M10.6 9.8h2.3v1.1c.45-.75 1.35-1.3 2.65-1.3 2.3 0 3.05 1.45 3.05 3.65v4.55h-2.4v-4.1c0-1.05-.25-1.9-1.35-1.9s-1.85.85-1.85 1.9v4.1h-2.4z"/>
+        </g>
       </svg>
     </a>`;
 const socialLinks = `<div class="contact__social" data-fade>
@@ -295,19 +338,19 @@ const socialLinks = `<div class="contact__social" data-fade>
 // (accueil, contact). Défaut : bloc contact complet (pages projet).
 const footer = (root, { skipPromo = false, minimal = false } = {}) => `
 ${minimal ? `<div class="footer-row footer-row--slim">
-  <span>© Ochralab, Marrakech</span>
+  <span>© ${BRAND}, Marrakech</span>
 </div>` : (skipPromo ? "" : `<section class="contact" id="contact">
   <p class="label">Un projet, une question&nbsp;?</p>
-  <a class="contact__mail" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
+  <a class="contact__mail" href="mailto:${EMAIL}">${EMAIL}</a>
   ${socialLinks}
   <div class="footer-row">
-    <span>© Ochralab, Marrakech</span>
+    <span>© ${BRAND}, Marrakech</span>
     <span>Architecture &amp; design d'intérieur</span>
     <a href="#">Haut de page</a>
   </div>
 </section>`)}
 ${!minimal && skipPromo ? `<div class="footer-row page-body">
-  <span>© Ochralab, Marrakech</span>
+  <span>© ${BRAND}, Marrakech</span>
   <span>Architecture &amp; design d'intérieur</span>
   <a href="#">Haut de page</a>
 </div>` : ""}
@@ -334,7 +377,7 @@ const tilesHtml = projects
   .join("\n");
 
 const index = `${head({
-  title: "Ochralab, architecture & design d'intérieur à Marrakech",
+  title: `${BRAND}, architecture &amp; design d'intérieur à Marrakech`,
   desc: DESC,
   root: "",
   home: true,
@@ -348,7 +391,7 @@ ${sidebar("", "projets")}
 <section class="loop" id="projets" aria-label="Projets">
   <!-- La page s'ouvre sur la mosaïque : le titre reste lisible par les
        lecteurs d'écran et les moteurs, sans occuper l'écran. -->
-  <h1 class="sr-only">Ochralab, cabinet d'architecture et de design d'intérieur à Marrakech</h1>
+  <h1 class="sr-only">${BRAND}, cabinet d'architecture et de design d'intérieur à Marrakech</h1>
   <div class="loop__viewport">
     <div class="loop__grid">
 ${tilesHtml}
@@ -366,7 +409,7 @@ await writeFile(path.join(SITE, "index.html"), index);
 /* ---------------- Page Studio ---------------- */
 
 const studioPage = `${head({
-  title: "Studio, Ochralab",
+  title: `Studio, ${BRAND}`,
   desc: "Le studio d'architecture et de design d'intérieur de Mehdi Tolaimate, à Marrakech.",
   root: "",
   bodyClass: "theme-ocre",
@@ -379,26 +422,69 @@ ${sidebar("", "studio")}
 <section class="page-body">
   <div class="studio__grid">
     <div class="studio__bio" data-fade>
-      <span class="label">À propos</span>
-      <p>Né à Marrakech, j'ai construit mon identité entre Rabat et Rome, deux villes qui ont profondément influencé ma vision architecturale. En 2017, je suis revenu dans la ville ocre pour y ancrer mon activité.</p>
-      <p>Aux côtés d'Imaad Rahmouni, j'ai travaillé sur des projets résidentiels et hôteliers majeurs tels que le Hyatt Regency Taghazout, le Jadali Hotel &amp; SPA, ainsi que plusieurs réalisations à Ibiza, Saint-Tropez, Cannes et Courchevel.</p>
-      <p>En 2021, j'ai fondé <strong>OCHRA</strong> : un studio né de l'ocre de Marrakech et de l'élégance de Rome.</p>
-      <p>Ici, j'aborde l'architecture comme un champ d'exploration, un laboratoire où projets résidentiels et hôteliers, ainsi que pièces de mobilier sur mesure, prennent forme à travers une exigence de précision, de matérialité et de lumière.</p>
+      <!-- Version anglaise d'abord, puis le texte original en français. -->
+      <div class="studio__lang" lang="en">
+        <span class="label">About</span>
+        <p>Born in Marrakech, I shaped my identity between Rabat and Rome, two cities that have profoundly influenced my architectural vision. In 2017, I returned to the Ochre City to establish my practice there.</p>
+        <p>Alongside Imaad Rahmouni, I worked on major residential and hospitality projects such as the Hyatt Regency Taghazout and the Jadali Hotel &amp; SPA, as well as several projects in Ibiza, Saint-Tropez, Cannes and Courchevel.</p>
+        <p>In 2021, I founded <strong>OCHRA</strong>: a studio born from the ochre of Marrakech and the elegance of Rome.</p>
+        <p>Here, I approach architecture as a field of exploration, a laboratory where residential and hospitality projects, as well as bespoke furniture pieces, take shape through a commitment to precision, materiality and light.</p>
+      </div>
+      <div class="studio__lang" lang="fr">
+        <span class="label">À propos</span>
+        <p>Né à Marrakech, j'ai construit mon identité entre Rabat et Rome, deux villes qui ont profondément influencé ma vision architecturale. En 2017, je suis revenu dans la ville ocre pour y ancrer mon activité.</p>
+        <p>Aux côtés d'Imaad Rahmouni, j'ai travaillé sur des projets résidentiels et hôteliers majeurs tels que le Hyatt Regency Taghazout, le Jadali Hotel &amp; SPA, ainsi que plusieurs réalisations à Ibiza, Saint-Tropez, Cannes et Courchevel.</p>
+        <p>En 2021, j'ai fondé <strong>OCHRA</strong> : un studio né de l'ocre de Marrakech et de l'élégance de Rome.</p>
+        <p>Ici, j'aborde l'architecture comme un champ d'exploration, un laboratoire où projets résidentiels et hôteliers, ainsi que pièces de mobilier sur mesure, prennent forme à travers une exigence de précision, de matérialité et de lumière.</p>
+      </div>
     </div>
-    <dl class="studio__details" data-fade>
-      <div>
-        <dt>Direction</dt>
-        <dd>Mehdi Tolaimate, architecte</dd>
-      </div>
-      <div>
-        <dt>Domaines</dt>
-        <dd>Architecture, design d'intérieur</dd>
-      </div>
-      <div>
-        <dt>Typologies</dt>
-        <dd>Hôtellerie, riads, villas</dd>
-      </div>
-    </dl>
+    <div class="studio__aside" data-fade>
+      <!-- Même ordre que la notice : anglais, puis français. -->
+      <dl class="studio__details" lang="en">
+        <div>
+          <dt>Led by</dt>
+          <dd>Mehdi Tolaimate, architect</dd>
+        </div>
+        <div>
+          <dt>Fields</dt>
+          <dd>Architecture, interior design</dd>
+        </div>
+        <div>
+          <dt>Project types</dt>
+          <dd>Hospitality, riads, villas, residential, other</dd>
+        </div>
+        <div>
+          <dt>Founded</dt>
+          <dd>2021</dd>
+        </div>
+        <div>
+          <dt>Education</dt>
+          <dd>ENA Rabat, La Sapienza Rome</dd>
+        </div>
+      </dl>
+      <dl class="studio__details" lang="fr">
+        <div>
+          <dt>Direction</dt>
+          <dd>Mehdi Tolaimate, architecte</dd>
+        </div>
+        <div>
+          <dt>Domaines</dt>
+          <dd>Architecture, design d'intérieur</dd>
+        </div>
+        <div>
+          <dt>Typologies</dt>
+          <dd>Hôtellerie, riads, villas, résidentiel, divers</dd>
+        </div>
+        <div>
+          <dt>Fondation</dt>
+          <dd>2021</dd>
+        </div>
+        <div>
+          <dt>Formation</dt>
+          <dd>ENA Rabat, La Sapienza Rome</dd>
+        </div>
+      </dl>
+    </div>
   </div>
 </section>
 </main>
@@ -409,8 +495,8 @@ await writeFile(path.join(SITE, "studio.html"), studioPage);
 /* ---------------- Page Contact ---------------- */
 
 const contactPage = `${head({
-  title: "Contact, Ochralab",
-  desc: "Contacter le cabinet Ochralab à Marrakech, par email, Instagram ou LinkedIn.",
+  title: `Contact, ${BRAND}`,
+  desc: `Contacter le cabinet ${BRAND} à Marrakech, par email, téléphone, Instagram ou LinkedIn.`,
   root: "",
   bodyClass: "theme-terre",
 })}
@@ -421,11 +507,15 @@ ${sidebar("", "contact")}
 </section>
 <section class="page-body contact-page">
   <p class="contact-page__note">Pour tout projet d'architecture ou d'aménagement intérieur, le plus simple est d'écrire directement au studio.</p>
-  <a class="contact__mail contact__mail--lg" href="mailto:ochralab@gmail.com">ochralab@gmail.com</a>
+  <a class="contact__mail contact__mail--lg" href="mailto:${EMAIL}">${EMAIL}</a>
   <dl class="contact-page__info">
     <div>
+      <dt>Téléphone</dt>
+      <dd><a href="${PHONE.href}">${PHONE.display}</a></dd>
+    </div>
+    <div>
       <dt>Studio</dt>
-      <dd>Marrakech, Maroc</dd>
+      <dd>${ADDRESS}</dd>
     </div>
     <div>
       <dt>Réseaux</dt>
@@ -489,6 +579,7 @@ function projectInfoBlock(info) {
     ["Sup. terrain", info.supTerrain],
     ["Consistance", info.consistance],
     ["Surface construite", info.surfaceConstruite],
+    ["Maître d'ouvrage", info.maitreOuvrage],
     ["Budget", info.budget],
   ].filter(([, v]) => v);
   if (!rows.length) return "";
@@ -518,8 +609,8 @@ ${figure({
     .join("\n");
 
   const page = `${head({
-    title: `${p.name}, projet Ochralab`,
-    desc: `${p.name}, projet ${p.category.toLowerCase()} du cabinet Ochralab, ${p.images.length} vues.`,
+    title: `${p.name}, projet ${BRAND}`,
+    desc: `${p.name}, projet ${p.category.toLowerCase()} du cabinet ${BRAND}, ${p.images.length} vues.`,
     root: "../",
     preload: `<link rel="preload" as="image" imagesrcset="${srcset(imgPrefix, cover)}" imagesizes="100vw" fetchpriority="high">`,
   })}
