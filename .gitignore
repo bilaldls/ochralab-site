@@ -7,4 +7,15 @@ node_modules/
 # `images/` du site, et donc toutes les photos servies.
 /_sources/
 
+# Fichiers de travail et documents du client, hors site public.
+# Le dépôt est public : tout fichier committé est publié.
+/Images - photos /
+/fiches-projets/
+/.claude/
+/*.pdf
+/*.docx
+/DEPLOIEMENT.md
+/CONTEXTE-COWORK.md
+/CONTEXTE-SITE-ET-DEPLOIEMENT.md
+
 *.log
