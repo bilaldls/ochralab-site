@@ -25,6 +25,13 @@ const EMAIL = "contact@ochralab.com";
 const PHONE = { display: "05 25 19 07 22", href: "tel:+212525190722" };
 const ADDRESS = "48 rue de Yougoslavie, bureau 405, Marrakech";
 
+// Adresse publique du site (GitHub Pages, domaine www.ochralab.com). Sert aux
+// balises canonical et Open Graph, qui exigent des adresses absolues.
+const SITE_URL = "https://www.ochralab.com";
+// Image d'aperçu des partages (WhatsApp, LinkedIn…) : JPEG 1200 × 630, le
+// WebP étant mal lu par ces services.
+const OG_IMAGE = { src: "images/og-ochralab.jpg", w: 1200, h: 630 };
+
 const DESC =
   `${BRAND}, cabinet d'architecture et de design d'intérieur à Marrakech, dirigé par Mehdi Tolaimate. Hôtels, riads et villas : ${projects.length} projets choisis.`;
 
@@ -187,7 +194,9 @@ function figure({ img, imgPrefix, sizes, alt, parallax = true, eager = false, cs
 </figure>`;
 }
 
-function head({ title, desc, root, preload, bodyClass, home = false }) {
+// `path` : chemin de la page depuis la racine du site ("" pour l'accueil).
+function head({ title, desc, root, path: pagePath, preload, bodyClass, home = false }) {
+  const url = `${SITE_URL}/${pagePath}`;
   // Script en ligne, avant le premier rendu : pose `is-entering` sur <html>
   // quand on arrive via un clic de navigation (drapeau posé par main.js) —
   // ou, sur l'accueil uniquement, à la première visite de la session. Le
@@ -210,6 +219,14 @@ function head({ title, desc, root, preload, bodyClass, home = false }) {
 <meta property="og:title" content="${title}">
 <meta property="og:description" content="${desc}">
 <meta property="og:type" content="website">
+<link rel="canonical" href="${url}">
+<meta property="og:url" content="${url}">
+<meta property="og:site_name" content="${BRAND}">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:image" content="${SITE_URL}/${OG_IMAGE.src}">
+<meta property="og:image:width" content="${OG_IMAGE.w}">
+<meta property="og:image:height" content="${OG_IMAGE.h}">
+<meta name="twitter:card" content="summary_large_image">
 <link rel="icon" type="image/svg+xml" href="${root}favicon.svg">
 <link rel="preload" href="${root}assets/fonts/archivo-var.woff2" as="font" type="font/woff2" crossorigin>
 ${preload ?? ""}
@@ -392,6 +409,7 @@ const index = `${head({
   title: `${BRAND}, architecture &amp; design d'intérieur à Marrakech`,
   desc: DESC,
   root: "",
+  path: "",
   home: true,
   preload: `<link rel="preload" as="image" imagesrcset="${srcset(
     `images/projects/${firstProject.slug}`,
@@ -424,6 +442,7 @@ const studioPage = `${head({
   title: `Studio, ${BRAND}`,
   desc: "Le studio d'architecture et de design d'intérieur de Mehdi Tolaimate, à Marrakech.",
   root: "",
+  path: "studio.html",
   bodyClass: "theme-ocre",
 })}
 ${sidebar("", "studio")}
@@ -510,6 +529,7 @@ const contactPage = `${head({
   title: `Contact, ${BRAND}`,
   desc: `Contacter le cabinet ${BRAND} à Marrakech, par email, téléphone, Instagram ou LinkedIn.`,
   root: "",
+  path: "contact.html",
   bodyClass: "theme-terre",
 })}
 ${sidebar("", "contact")}
@@ -579,6 +599,7 @@ ${figure({
     title: `${label}, ${BRAND}`,
     desc: `${label} : ${list.length} projets du cabinet ${BRAND}, architecture et design d'intérieur à Marrakech.`,
     root: "",
+    path: `${slug}.html`,
   })}
 ${sidebar("", slug)}
 <main id="main">
@@ -681,6 +702,7 @@ ${figure({
     title: `${p.name}, projet ${BRAND}`,
     desc: `${p.name}, projet ${p.category.toLowerCase()} du cabinet ${BRAND}, ${p.images.length} vues.`,
     root: "../",
+    path: `projets/${p.slug}.html`,
     preload: `<link rel="preload" as="image" imagesrcset="${srcset(imgPrefix, cover)}" imagesizes="100vw" fetchpriority="high">`,
   })}
 ${sidebar("../", "projets")}
